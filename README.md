@@ -1,66 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# AKUN
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Owner
+memantau pesasan, pengiriman, pendapatan, dan penggajian
 
-## About Laravel
+## Admin
+membuat pesanan, mengelola pesanan, mengelola pengiriman, dan memiliki katalog
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Sales 
+membuat pesanan dan memiliki katalog
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# KENTENTUAN
 
-## Learning Laravel
+1. Karyawan dalam 1 bulan bisa memiliki beberapa sesi lembur
+2. Akun Sales dan katalognya tidak bisa diakses jika tidak membuat pesanan dalam Waktu 4 bulan trakhir
+3. Pesanan hanya bisa diubah sebelum statusnya DITERIMA oleh admin
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# ALUR PEMESANAN
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Pembeli melihat katalog milik Sales/Admin 
+2. Pembeli mengontak secara online atau menemui secara langsung Sales/Admin
+3. Pembeli memutuskan untuk memesan
+4. Sales/Admin mencari data pembeli jika sudah ada maka klik buat pesanan, jika belum maka membuat data pembeli dahulu
+5. Sales/Admin memasukan barang yang akan dibeli ke keranjang
+6. Sales/Admin melakukan checkout pesanan
+7. Admin mengisi form pengiriman seperti nama kurir, no telfon kurir, wilayah, alamat lengkap pengiriman, berapa kali pengiriman
+8. Admin mengontak sales untuk mengirim informasi pesanan
+9. Jika Sales setuju maka Admin menerima pesanan tersebut (jika menolak maka harus memberikan alasan)
+10. Admin mengubah status pesanan menjadi DITERIMA
+11. Admin meminta pembayaran ke Sales/Pembeli
+12. Pembeli membayar ke toko dan mengirim buktinya
+13. Admin memberikan nota lunas kepada pembeli
+14. Owner memeriksa mutasi rekening Jika uang sudah diterima maka Admin mengubah status pesanan menjadi DIPROSES
+15. Admin menghubungi kurir yang ditugaskan untuk melakukan pengiriman
+16. Admin mengubah status pesanan menjadi DIKIRIM
+17. Kurir mengirim barang hingga sampai ke alamat tujuan
+18. Kurir mengirim foto bukti bahwa barang sudah diterima oleh pembeli kepada Admin
+29. Admin mengubah status pesanan menjadi SELESAI
+20. Owner memberikan bagian untuk Sales/Admin
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# PENDATAAN KARYAWAN
 
-### Premium Partners
+Admin meminta data pribadi karyawan (nama lengkap, jenis kelamin, tgl lahir, alamat, no hp, foto, dan gaji)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+# ALUR PEMBERIAN GAJI TAMBAHAN BULAN INI
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Owner membuka menu Lembur
+2. Owner memilih karyawan
+3. Owner membuat 1 judul sesi lembur dan memberikan nominal gaji tambahannya (1 bulan bisa beberapa kali lembur)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# ALUR PENGGAJIAN
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Owner membuka menu penggajian
+2. Memilih karyawan
+3. Owner membaca rincian (karyawan memiliki gaji pokok dan gaji tambahan dari sesi lembur)
