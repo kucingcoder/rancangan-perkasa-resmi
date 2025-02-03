@@ -77,10 +77,13 @@ CREATE TABLE `pesanan` (
   `tanggal` date NOT NULL,
   `keranjang_id` int NOT NULL,
   `nota` char(32) DEFAULT '',
+  `laporan` char(32) DEFAULT '',
   `bukti_pelunasan` char(45) DEFAULT '',
   `pengiriman_id` int,
   `status` ENUM ('diperiksa', 'diterima', 'ditolak', 'diproses', 'dikirim', 'selesai') NOT NULL DEFAULT 'diperiksa',
-  `alasan` text DEFAULT ''
+  `alasan` text DEFAULT '',
+  `pendapatan_kotor` int NOT NULL,
+  `pendapatan_bersih` int NOT NULL
 );
 
 CREATE TABLE `karyawan` (
