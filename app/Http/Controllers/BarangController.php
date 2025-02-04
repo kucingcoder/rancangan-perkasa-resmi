@@ -19,7 +19,7 @@ class BarangController extends Controller
             'kategori' => $kategori,
         ];
 
-        return view('barang', $data);
+        return view('Barang', $data);
     }
 
     public function tambah(Request $request)
