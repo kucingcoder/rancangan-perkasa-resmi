@@ -81,7 +81,7 @@
             <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>
 
             <div class="w-full flex justify-around">
-                <div onclick="" class="p-2.5 w-1/2 flex mr-2 items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-yellow-600 hover:bg-yellow-800 text-white">
+                <div onclick="location.href='/profil'" class="p-2.5 w-1/2 flex mr-2 items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-yellow-600 hover:bg-yellow-800 text-white">
                     <span class="text-2xl md:text-lg font-bold">Profil</span>
                 </div>
                 <div onclick="location.href='/keluar'" class="p-2.5 w-1/2 flex items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-red-600 hover:bg-red-800 text-white">
