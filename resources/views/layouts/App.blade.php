@@ -44,7 +44,7 @@
         <div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-full md:w-1/6 overflow-y-auto text-center bg-blue-950 transform -translate-x-full md:translate-x-0 transition-transform duration-300">
             <div class="text-gray-100 text-xl">
                 <div class="p-2.5 mt-1 flex items-center justify-between">
-                    <div class="flex items-center bg-white rounded-md px-2 py-1 w-1/2 md:w-full">
+                    <div onclick="location.href='/dashboard'" style="cursor: pointer;" class="flex items-center bg-white rounded-md px-2 py-1 w-1/2 md:w-full">
                         <img src="Images/Rancangan Perkasa.png" alt="Rancangan Perkasa">
                     </div>
                     <i class="bi bi-x cursor-pointer md:hidden" style="font-size: 3rem;" onclick="openSidebar()"></i>
@@ -54,6 +54,10 @@
 
             <div onclick="location.href='/barang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Barang</span>
+            </div>
+
+            <div onclick="location.href='/akun'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Akun</span>
             </div>
 
             <div onclick="location.href='/kategori'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">

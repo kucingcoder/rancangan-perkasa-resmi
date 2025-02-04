@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
@@ -39,6 +40,14 @@ Route::middleware('Sesi')->group(
         Route::post('/barang-tambah', [BarangController::class, 'tambah']);
         Route::post('/barang-edit', [BarangController::class, 'edit']);
         Route::post('/barang-hapus', [BarangController::class, 'hapus']);
+
+        Route::get('/akun', [AkunController::class, 'index']);
+        Route::post('/akun-tambah', [AkunController::class, 'tambah']);
+        Route::post('/akun-edit', [AkunController::class, 'edit']);
+        Route::post('/akun-ganti-foto', [AkunController::class, 'GantiFoto']);
+        Route::post('/akun-ganti-sandi', [AkunController::class, 'GantiSandi']);
+        Route::post('/akun-aktifkan', [AkunController::class, 'Aktifkan']);
+        Route::post('/akun-nonaktifkan', [AkunController::class, 'Nonaktifkan']);
 
         Route::get('/kategori', [KategoriController::class, 'index']);
         Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
