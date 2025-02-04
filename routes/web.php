@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
@@ -37,5 +38,10 @@ Route::middleware('Sesi')->group(
         Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
         Route::post('/kategori-edit', [KategoriController::class, 'edit']);
         Route::post('/kategori-hapus', [KategoriController::class, 'hapus']);
+
+        Route::get('/biaya-pengiriman', [BiayaPengirimanController::class, 'index']);
+        Route::post('/biaya-pengiriman-tambah', [BiayaPengirimanController::class, 'tambah']);
+        Route::post('/biaya-pengiriman-edit', [BiayaPengirimanController::class, 'edit']);
+        Route::post('/biaya-pengiriman-hapus', [BiayaPengirimanController::class, 'hapus']);
     }
 );
