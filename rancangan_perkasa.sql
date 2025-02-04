@@ -26,6 +26,7 @@ CREATE TABLE `akun` (
   `no_wa` varchar(15) UNIQUE NOT NULL,
   `password` char(32) NOT NULL,
   `nama` varchar(128) NOT NULL,
+  `foto` varchar(45) NOT NULL,
   `jenis_kelamin` ENUM ('laki-laki', 'perempuan') NOT NULL,
   `alamat` text NOT NULL,
   `jenis_akun` ENUM ('owner', 'admin', 'sales') NOT NULL DEFAULT 'sales',
@@ -81,7 +82,9 @@ CREATE TABLE `pesanan` (
   `bukti_pelunasan` char(45) DEFAULT '',
   `pengiriman_id` int,
   `status` ENUM ('diperiksa', 'diterima', 'ditolak', 'diproses', 'dikirim', 'selesai') NOT NULL DEFAULT 'diperiksa',
-  `alasan` text DEFAULT '',
+  `alasan` text,
+  `jenis_transaksi` ENUM ('langsung', 'payment gateway') NOT NULL DEFAULT 'langsung',
+  `transaksi_id` char(36) DEFAULT '',
   `pendapatan_kotor` int NOT NULL,
   `pendapatan_bersih` int NOT NULL
 );
