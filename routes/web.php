@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\MasukController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,11 +31,14 @@ Route::middleware('NonSesi')->group(
 Route::middleware('Sesi')->group(
     function () {
         Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/profil', [ProfilController::class, 'index']);
+        Route::post('/profil-edit', [ProfilController::class, 'edit']);
+        Route::post('/profil-ganti-sandi', [ProfilController::class, 'GantiSandi']);
         Route::get('/keluar', [KeluarController::class, 'keluar']);
     }
 );
 
-Route::middleware('Sesi')->group(
+Route::middleware('Admin')->group(
     function () {
         Route::get('/barang', [BarangController::class, 'index']);
         Route::post('/barang-tambah', [BarangController::class, 'tambah']);
