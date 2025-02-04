@@ -46,8 +46,7 @@ Route::middleware('Sesi')->group(
         Route::post('/akun-edit', [AkunController::class, 'edit']);
         Route::post('/akun-ganti-foto', [AkunController::class, 'GantiFoto']);
         Route::post('/akun-ganti-sandi', [AkunController::class, 'GantiSandi']);
-        Route::post('/akun-aktifkan', [AkunController::class, 'Aktifkan']);
-        Route::post('/akun-nonaktifkan', [AkunController::class, 'Nonaktifkan']);
+        Route::post('/akun-ubah-status', [AkunController::class, 'UbahStatus']);
 
         Route::get('/kategori', [KategoriController::class, 'index']);
         Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);

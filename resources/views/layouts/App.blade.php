@@ -52,6 +52,10 @@
                 <div class="my-2 bg-gray-600 h-[1px]"></div>
             </div>
 
+            <div onclick="" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan (Develop)</span>
+            </div>
+
             <div onclick="location.href='/barang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Barang</span>
             </div>
@@ -70,8 +74,19 @@
 
             <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>
 
-            <div onclick="location.href='/keluar'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-red-600 hover:bg-red-800 text-white">
-                <span class="text-2xl md:text-lg font-bold">Logout</span>
+            <div onclick="" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-lime-600 hover:bg-lime-700 text-white">
+                <span class="text-2xl md:text-lg font-bold">Katalogku (develop)</span>
+            </div>
+
+            <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>
+
+            <div class="w-full flex justify-around">
+                <div onclick="" class="p-2.5 w-1/2 flex mr-2 items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-yellow-600 hover:bg-yellow-800 text-white">
+                    <span class="text-2xl md:text-lg font-bold">Profil</span>
+                </div>
+                <div onclick="location.href='/keluar'" class="p-2.5 w-1/2 flex items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-red-600 hover:bg-red-800 text-white">
+                    <span class="text-2xl md:text-lg font-bold">Logout</span>
+                </div>
             </div>
         </div>
 
