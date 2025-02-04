@@ -146,7 +146,7 @@
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Hapus Data</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModalHapus').classList.add('hidden')">
+                onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-barang').classList.remove('hidden');">
                 ✖
             </button>
         </div>
@@ -162,7 +162,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-barang').classList.remove('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600">

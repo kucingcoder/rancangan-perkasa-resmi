@@ -74,7 +74,10 @@ class BarangController extends Controller
 
         if ($request->hasFile('foto_edit')) {
             if ($barang->foto) {
-                Storage::disk('public')->delete('uploads/foto_barang/' . $barang->foto);
+                try {
+                    Storage::disk('public')->delete('uploads/foto_barang/' . $barang->foto);
+                } catch (\Throwable $th) {
+                }
             }
             $lokasi_full = $request->file('foto_edit')->store('uploads/foto_barang', 'public');
             $barang->foto = basename($lokasi_full);
