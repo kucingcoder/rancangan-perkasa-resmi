@@ -11,7 +11,17 @@ class BiayaPengiriman extends Model
 
     protected $table = 'biaya_pengiriman';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['wilayah', 'nominal'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'wilayah',
+        'nominal',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

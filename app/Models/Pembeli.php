@@ -4,19 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Pembeli extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'pembeli';
     protected $primaryKey = 'id';
-    public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['nama', 'alamat', 'no_wa', 'email'];
+    public $incrementing = false;
+    public $timestamps = true;
 
-    public function pesanan()
-    {
-        return $this->hasMany(Pesanan::class, 'pembeli_id', 'id');
-    }
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'no_wa',
+        'email'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

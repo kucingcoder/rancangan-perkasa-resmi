@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Karyawan extends Model
 {
@@ -11,7 +12,24 @@ class Karyawan extends Model
 
     protected $table = 'karyawan';
     protected $primaryKey = 'id';
-    public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['nama', 'jenis_kelamin', 'tanggal_lahir', 'alamat', 'no_wa', 'foto', 'gaji'];
+    public $incrementing = false;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'nama',
+        'jenis_kelamin',
+        'tanggal_lahir',
+        'alamat',
+        'no_wa',
+        'foto',
+        'gaji',
+    ];
+
+    protected $casts = [
+        'tanggal_lahir' => 'date',
+        'gaji' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

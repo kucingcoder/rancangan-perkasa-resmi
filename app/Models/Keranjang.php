@@ -11,9 +11,23 @@ class Keranjang extends Model
 
     protected $table = 'keranjang';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['judul', 'akun_id, pembeli_id'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'judul',
+        'akun_id',
+        'pembeli_id',
+    ];
+
+    protected $casts = [
+        'id' => 'integer',
+        'akun_id' => 'string',
+        'pembeli_id' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function akun()
     {

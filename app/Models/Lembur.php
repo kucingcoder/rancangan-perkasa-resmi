@@ -11,7 +11,17 @@ class Lembur extends Model
 
     protected $table = 'lembur';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['tanggal', 'judul'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'tanggal',
+        'judul',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

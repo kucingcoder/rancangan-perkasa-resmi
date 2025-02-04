@@ -11,9 +11,22 @@ class Barang extends Model
 
     protected $table = 'barang';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['nama_barang', 'kategori_id', 'harga', 'stok', 'foto'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'nama_barang',
+        'kategori_id',
+        'harga',
+        'stok',
+        'foto',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function kategori()
     {

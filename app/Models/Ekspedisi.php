@@ -5,13 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Expedisi extends Model
+class Ekspedisi extends Model
 {
     use HasFactory;
 
-    protected $table = 'expedisi';
+    protected $table = 'ekspedisi';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['nama'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'nama',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

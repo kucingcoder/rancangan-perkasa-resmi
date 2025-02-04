@@ -11,7 +11,28 @@ class DaftarKaryawan extends Model
 
     protected $table = 'daftar_karyawan';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['karyawan_id', 'lembur_id'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'karyawan_id',
+        'gaji_tambahan',
+        'lembur_id'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+    }
+
+    public function lembur()
+    {
+        return $this->belongsTo(Lembur::class, 'lembur_id');
+    }
 }

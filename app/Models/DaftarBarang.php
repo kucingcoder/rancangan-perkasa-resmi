@@ -11,17 +11,28 @@ class DaftarBarang extends Model
 
     protected $table = 'daftar_barang';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['barang_id', 'keranjang_id', 'jumlah'];
+    public $incrementing = true;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'barang_id',
+        'keranjang_id',
+        'jumlah'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'barang_id', 'id');
+        return $this->belongsTo(Barang::class, 'barang_id');
     }
 
-    public function pesanan()
+    public function keranjang()
     {
-        return $this->belongsTo(Keranjang::class, 'keranjang_id', 'id');
+        return $this->belongsTo(Keranjang::class, 'keranjang_id');
     }
 }

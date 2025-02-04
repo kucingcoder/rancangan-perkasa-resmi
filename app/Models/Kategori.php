@@ -11,12 +11,19 @@ class Kategori extends Model
 
     protected $table = 'kategori';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['nama_kategori', 'ukuran', 'satuan', 'biaya_sales'];
+    public $incrementing = true;
+    public $timestamps = true;
 
-    public function barang()
-    {
-        return $this->hasMany(Barang::class, 'kategori_id', 'id');
-    }
+    protected $fillable = [
+        'nama_kategori',
+        'ukuran',
+        'satuan',
+        'biaya_sales'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

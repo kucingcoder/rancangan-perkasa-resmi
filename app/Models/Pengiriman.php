@@ -11,17 +11,33 @@ class Pengiriman extends Model
 
     protected $table = 'pengiriman';
     protected $primaryKey = 'id';
-    public $incrementing = true;
     protected $keyType = 'int';
-    protected $fillable = ['nama_kurir', 'no_wa_kurir', 'foto_kurir', 'expedisi_id', 'wilayah_id', 'alamat', 'jumlah', 'foto_bukti'];
+    public $incrementing = true;
+    public $timestamps = true;
 
-    public function expedisi()
+    protected $fillable = [
+        'nama_kurir',
+        'no_wa_kurir',
+        'foto_kurir',
+        'expedisi_id',
+        'wilayah_id',
+        'alamat',
+        'jumlah',
+        'foto_bukti'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    public function ekspedisi()
     {
-        return $this->belongsTo(Expedisi::class, 'expedisi_id', 'id');
+        return $this->belongsTo(Ekspedisi::class, 'expedisi_id');
     }
 
-    public function wilayah()
+    public function biayaPengiriman()
     {
-        return $this->belongsTo(BiayaPengiriman::class, 'wilayah_id', 'id');
+        return $this->belongsTo(BiayaPengiriman::class, 'wilayah_id');
     }
 }
