@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\MasukController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +21,12 @@ Route::middleware('NonSesi')->group(
     function () {
         Route::get('/masuk', [MasukController::class, 'index']);
         Route::post('/masuk', [MasukController::class, 'masuk']);
+    }
+);
+
+Route::middleware('Sesi')->group(
+    function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/keluar', [KeluarController::class, 'keluar']);
     }
 );
