@@ -171,24 +171,24 @@
     <table class="w-full bg-white border border-gray-200 table-auto" id="daftar-kategori">
         <thead>
             <tr>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">No</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">Nama Kategori</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">Ukuran</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">Satuan</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">Biaya Sales</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-bold text-gray-600">Aksi</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">No</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Nama Kategori</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Ukuran</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Satuan</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Biaya Sales</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php $index = 1; ?>
             @foreach ($kategori as $item)
             <tr class="">
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $index }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->nama_kategori}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->ukuran}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->satuan}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->biaya_sales}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $index }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->nama_kategori}}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->ukuran}}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->satuan}}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->biaya_sales, 0, ',', '.') }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <button onclick="edit('{{ $item->id }}','{{ $item->nama_kategori }}','{{ $item->ukuran }}','{{ $item->satuan }}','{{ $item->biaya_sales }}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="hapus('{{ $item->id }}')" class="mt-2 md:mt-0 px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Hapus</button>
                 </td>

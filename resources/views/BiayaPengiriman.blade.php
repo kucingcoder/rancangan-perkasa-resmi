@@ -148,20 +148,20 @@
     <table class="w-full bg-white border border-gray-200" id="daftar-kategori">
         <thead>
             <tr class="bg-gray-100 border-b border-gray-200">
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">No</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Wilayah</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Nominal</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Aksi</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">No</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Wilayah</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Nominal</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php $index = 1; ?>
             @foreach ($biayaPengiriman as $item)
             <tr class="border-b">
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $index }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->wilayah}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->nominal}}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $index }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->wilayah}}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->nominal, 0, ',', '.') }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <button onclick="edit('{{ $item->id }}','{{ $item->wilayah }}','{{ $item->nominal }}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="hapus('{{ $item->id }}')" class="mt-2 md:mt-0 px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Hapus</button>
                 </td>

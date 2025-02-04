@@ -187,29 +187,29 @@
 
     <table class="w-full bg-white border border-gray-200" id="daftar-barang">
         <thead>
-            <tr class="bg-gray-100 border-b border-gray-200">
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">No</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Nama Barang</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Kategori</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Harga</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Stok</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Foto</th>
-                <th class="bg-gray-200 border-b border-gray-800 px-4 py-2 text-center text-sm font-medium text-gray-600">Aksi</th>
+            <tr>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">No</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Nama Barang</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Kategori</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Harga</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Stok</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Foto</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php $index = 1; ?>
             @foreach ($barang as $item)
             <tr class="border-b">
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $index }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->nama_barang }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->kategori->nama_kategori }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ number_format($item->harga, 0, ',', '.') }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">{{ $item->stok }}</td>
-                <td class="border-b border-gray-200 px-4 py-2 text-center text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $index }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->nama_barang }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->kategori->nama_kategori }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->harga, 0, ',', '.') }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->stok }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <img src=" {{ asset('storage/uploads/foto_barang/' . $item->foto) }}" alt="Foto {{ $item->nama_barang }}" class="h-16 w-16 object-cover rounded">
                 </td>
-                <td class="px-4 py-2 text-center text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <button onclick="edit('{{ $item->id }}','{{ $item->nama_barang }}','{{ $item->kategori_id }}','{{ $item->harga }}','{{ $item->stok }}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="hapus('{{ $item->id }}')" class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Hapus</button>
                 </td>
