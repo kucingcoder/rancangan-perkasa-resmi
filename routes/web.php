@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\MasukController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +28,14 @@ Route::middleware('Sesi')->group(
     function () {
         Route::get('/dashboard', [DashboardController::class, 'index']);
         Route::get('/keluar', [KeluarController::class, 'keluar']);
+    }
+);
+
+Route::middleware('Sesi')->group(
+    function () {
+        Route::get('/kategori', [KategoriController::class, 'index']);
+        Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
+        Route::post('/kategori-edit', [KategoriController::class, 'edit']);
+        Route::post('/kategori-hapus', [KategoriController::class, 'hapus']);
     }
 );

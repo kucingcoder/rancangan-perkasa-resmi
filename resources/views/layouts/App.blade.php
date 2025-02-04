@@ -8,7 +8,29 @@
     <link rel="icon" href="Images/logo simbol.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .datatable-input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 2px solid rgb(163, 163, 163);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .datatable-input:focus {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 2px solid rgb(30, 30, 30);
+            border-radius: 4px;
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,26 +52,19 @@
                 <div class="my-2 bg-gray-600 h-[1px]"></div>
             </div>
 
-            <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <i class="bi bi-house-door-fill"></i>
-                <span class="text-2xl md:text-lg ml-4 text-gray-200 font-bold">Home</span>
-            </div>
-
-            <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <i class="bi bi-bookmark-fill"></i>
-                <span class="text-2xl md:text-lg ml-4 text-gray-200 font-bold">Bookmark</span>
+            <div onclick="location.href='/kategori'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Kategori</span>
             </div>
 
             <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>
 
-            <div onclick="location.href='/keluar'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <i class="bi bi-box-arrow-in-right h1"></i>
-                <span class="text-2xl ml-4 md:text-lg text-gray-200 font-bold">Logout</span>
+            <div onclick="location.href='/keluar'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-red-600 hover:bg-red-800 text-white">
+                <span class="text-2xl md:text-lg font-bold">Logout</span>
             </div>
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 p-10 ml-0 md:ml-[16.666667%]">
+        <div class="flex-1 p-10 ml-0 md:ml-[16.666667%] mt-8 md:mt-0">
             @yield('content')
         </div>
     </div>
