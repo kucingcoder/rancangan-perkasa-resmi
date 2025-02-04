@@ -1,14 +1,16 @@
 # AKUN
 
 ## Owner
+
 memantau pesasan, pengiriman, pendapatan, dan penggajian
 
 ## Admin
+
 membuat pesanan, mengelola pesanan, mengelola pengiriman, dan memiliki katalog
 
-## Sales 
-membuat pesanan dan memiliki katalog
+## Sales
 
+membuat pesanan dan memiliki katalog
 
 # KENTENTUAN
 
@@ -16,10 +18,9 @@ membuat pesanan dan memiliki katalog
 2. Akun Sales dan katalognya tidak bisa diakses jika tidak membuat pesanan dalam Waktu 4 bulan trakhir
 3. Pesanan hanya bisa diubah sebelum statusnya DITERIMA oleh admin
 
-
 # ALUR PEMESANAN
 
-1. Pembeli melihat katalog milik Sales/Admin 
+1. Pembeli melihat katalog milik Sales/Admin
 2. Pembeli mengontak secara online atau menemui secara langsung Sales/Admin
 3. Pembeli memutuskan untuk memesan
 4. Sales/Admin mencari data pembeli jika sudah ada maka klik buat pesanan, jika belum maka membuat data pembeli dahulu
@@ -37,21 +38,18 @@ membuat pesanan dan memiliki katalog
 16. Admin mengubah status pesanan menjadi DIKIRIM
 17. Kurir mengirim barang hingga sampai ke alamat tujuan
 18. Kurir mengirim foto bukti bahwa barang sudah diterima oleh pembeli kepada Admin
-29. Admin mengubah status pesanan menjadi SELESAI
+19. Admin mengubah status pesanan menjadi SELESAI
 20. Owner memberikan bagian untuk Sales/Admin
-
 
 # PENDATAAN KARYAWAN
 
 Admin meminta data pribadi karyawan (nama lengkap, jenis kelamin, tgl lahir, alamat, no hp, foto, dan gaji)
-
 
 # ALUR PEMBERIAN GAJI TAMBAHAN BULAN INI
 
 1. Owner membuka menu Lembur
 2. Owner memilih karyawan
 3. Owner membuat 1 judul sesi lembur dan memberikan nominal gaji tambahannya (1 bulan bisa beberapa kali lembur)
-
 
 # ALUR PENGGAJIAN
 
