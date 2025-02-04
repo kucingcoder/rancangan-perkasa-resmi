@@ -3,13 +3,17 @@ CREATE TABLE `kategori` (
   `nama_kategori` varchar(128) UNIQUE NOT NULL,
   `ukuran` int NOT NULL,
   `satuan` varchar(16) NOT NULL,
-  `biaya_sales` int NOT NULL
+  `biaya_sales` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `biaya_pengiriman` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `wilayah` varchar(128) UNIQUE NOT NULL,
-  `nominal` int NOT NULL
+  `nominal` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `pembeli` (
@@ -17,7 +21,9 @@ CREATE TABLE `pembeli` (
   `nama` varchar(128) NOT NULL,
   `alamat` text NOT NULL,
   `no_wa` varchar(15) UNIQUE NOT NULL,
-  `email` varchar(364) UNIQUE
+  `email` varchar(364) UNIQUE,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `akun` (
@@ -30,7 +36,9 @@ CREATE TABLE `akun` (
   `jenis_kelamin` ENUM ('laki-laki', 'perempuan') NOT NULL,
   `alamat` text NOT NULL,
   `jenis_akun` ENUM ('owner', 'admin', 'sales') NOT NULL DEFAULT 'sales',
-  `status` ENUM ('aktif', 'non aktif') NOT NULL DEFAULT 'aktif'
+  `status` ENUM ('aktif', 'non aktif') NOT NULL DEFAULT 'aktif',
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `barang` (
@@ -39,26 +47,34 @@ CREATE TABLE `barang` (
   `kategori_id` int NOT NULL,
   `harga` int NOT NULL,
   `stok` int NOT NULL,
-  `foto` char(45) UNIQUE NOT NULL
+  `foto` char(45) UNIQUE NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `daftar_barang` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `barang_id` int NOT NULL,
   `keranjang_id` int NOT NULL,
-  `jumlah` int NOT NULL
+  `jumlah` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `keranjang` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `judul` varchar(128) NOT NULL,
   `akun_id` char(36) NOT NULL,
-  `pembeli_id` char(36) NOT NULL
+  `pembeli_id` char(36) NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `expedisi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `nama` varchar(128) NOT NULL
+  `nama` varchar(128) NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `pengiriman` (
@@ -70,7 +86,9 @@ CREATE TABLE `pengiriman` (
   `wilayah_id` int NOT NULL,
   `alamat` text NOT NULL,
   `jumlah` int NOT NULL,
-  `foto_bukti` varchar(45) NOT NULL
+  `foto_bukti` varchar(45) NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `pesanan` (
@@ -86,7 +104,9 @@ CREATE TABLE `pesanan` (
   `jenis_transaksi` ENUM ('langsung', 'payment gateway') NOT NULL DEFAULT 'langsung',
   `transaksi_id` char(36) DEFAULT '',
   `pendapatan_kotor` int NOT NULL,
-  `pendapatan_bersih` int NOT NULL
+  `pendapatan_bersih` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `karyawan` (
@@ -97,20 +117,26 @@ CREATE TABLE `karyawan` (
   `alamat` text NOT NULL,
   `no_wa` varchar(15) UNIQUE NOT NULL,
   `foto` char(45) UNIQUE NOT NULL,
-  `gaji` int NOT NULL
+  `gaji` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `daftar_karyawan` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `karyawan_id` char(36) NOT NULL,
   `gaji_tambahan` int NOT NULL,
-  `lembur_id` int NOT NULL
+  `lembur_id` int NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `lembur` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `tanggal` date NOT NULL,
-  `judul` varchar(128) NOT NULL
+  `judul` varchar(128) NOT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 ALTER TABLE `barang` ADD FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`);
