@@ -70,7 +70,7 @@ CREATE TABLE `keranjang` (
   `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `expedisi` (
+CREATE TABLE `ekspedisi` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `nama` varchar(128) NOT NULL,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -149,7 +149,7 @@ ALTER TABLE `keranjang` ADD FOREIGN KEY (`akun_id`) REFERENCES `akun` (`id`);
 
 ALTER TABLE `keranjang` ADD FOREIGN KEY (`pembeli_id`) REFERENCES `pembeli` (`id`);
 
-ALTER TABLE `pengiriman` ADD FOREIGN KEY (`expedisi_id`) REFERENCES `expedisi` (`id`);
+ALTER TABLE `pengiriman` ADD FOREIGN KEY (`expedisi_id`) REFERENCES `ekspedisi` (`id`);
 
 ALTER TABLE `pengiriman` ADD FOREIGN KEY (`wilayah_id`) REFERENCES `biaya_pengiriman` (`id`);
 
