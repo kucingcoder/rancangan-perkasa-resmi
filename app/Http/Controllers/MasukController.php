@@ -26,7 +26,7 @@ class MasukController extends Controller
 
         if ($akun) {
             $request->session()->put('id', $akun->id);
-            $request->session()->put('jenis', $akun->jenis_akun_id);
+            $request->session()->put('jenis', $akun->jenis_akun);
             return redirect('/dashboard');
         } else {
             return back()->withErrors('Email atau password salah');
