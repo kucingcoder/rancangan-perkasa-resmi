@@ -14,6 +14,6 @@ class Sesi
             return $next($request);
         }
 
-        return redirect('/login');
+        return redirect('/masuk');
     }
 }
