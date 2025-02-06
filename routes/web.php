@@ -4,6 +4,7 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\MasukController;
@@ -61,5 +62,10 @@ Route::middleware('Admin')->group(
         Route::post('/biaya-pengiriman-tambah', [BiayaPengirimanController::class, 'tambah']);
         Route::post('/biaya-pengiriman-edit', [BiayaPengirimanController::class, 'edit']);
         Route::post('/biaya-pengiriman-hapus', [BiayaPengirimanController::class, 'hapus']);
+
+        Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
+        Route::post('/ekspedisi-tambah', [EkspedisiController::class, 'tambah']);
+        Route::post('/ekspedisi-edit', [EkspedisiController::class, 'edit']);
+        Route::post('/ekspedisi-hapus', [EkspedisiController::class, 'hapus']);
     }
 );
