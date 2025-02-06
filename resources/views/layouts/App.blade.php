@@ -52,8 +52,9 @@
                 <div class="my-2 bg-gray-600 h-[1px]"></div>
             </div>
 
+            @if(session('jenis') === 'admin')
             <div onclick="" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan (Develop)</span>
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan</span>
             </div>
 
             <div onclick="location.href='/barang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
@@ -75,11 +76,22 @@
             <div onclick="location.href='/ekspedisi'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Ekspedisi</span>
             </div>
+            @endif
+
+            @if(session('jenis') === 'sales')
+            <div onclick="location.href='/keranjang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Keranjang</span>
+            </div>
+
+            <div onclick="location.href='/pesanan'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan</span>
+            </div>
+            @endif
 
             <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>
 
-            <div onclick="" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-lime-600 hover:bg-lime-700 text-white">
-                <span class="text-2xl md:text-lg font-bold">Katalogku (develop)</span>
+            <div onclick="location.href='/katalog/<?= session('id') ?>'" class="p-2.5 flex items-center justify-center rounded-md px-4 duration-300 cursor-pointer bg-lime-600 hover:bg-lime-700 text-white">
+                <span class="text-2xl md:text-lg font-bold">Katalogku</span>
             </div>
 
             <div class="mb-2 mt-4 bg-gray-600 h-[1px]"></div>

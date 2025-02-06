@@ -23,8 +23,11 @@ class MasukController extends Controller
         $password = md5($request->input('password'));
 
         $akun = Akun::where('email', $email)->where('password', $password)->first();
-
         if ($akun) {
+            if ($akun->status == 'non aktif') {
+                return back()->withErrors('Akun anda dinonaktifkan oleh admin');
+            }
+
             $request->session()->put('id', $akun->id);
             $request->session()->put('jenis', $akun->jenis_akun);
             return redirect('/dashboard');
