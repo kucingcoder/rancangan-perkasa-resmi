@@ -205,7 +205,7 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->nama_barang }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->kategori->nama_kategori }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->harga, 0, ',', '.') }}</td>
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->stok }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->stok }} {{ $item->kategori->satuan }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <img src=" {{ asset('storage/uploads/foto_barang/' . $item->foto) }}" alt="Foto {{ $item->nama_barang }}" class="h-16 w-16 object-cover rounded">
                 </td>
