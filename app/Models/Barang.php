@@ -21,9 +21,12 @@ class Barang extends Model
         'harga',
         'stok',
         'foto',
+        'deskripsi',
+        'status',
     ];
 
     protected $casts = [
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

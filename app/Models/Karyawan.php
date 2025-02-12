@@ -24,11 +24,14 @@ class Karyawan extends Model
         'no_wa',
         'foto',
         'gaji',
+        'deskripsi',
+        'status',
     ];
 
     protected $casts = [
         'tanggal_lahir' => 'date',
         'gaji' => 'integer',
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

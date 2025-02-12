@@ -18,9 +18,11 @@ class BiayaPengiriman extends Model
     protected $fillable = [
         'wilayah',
         'nominal',
+        'status',
     ];
 
     protected $casts = [
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

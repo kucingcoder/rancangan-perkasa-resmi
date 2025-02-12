@@ -17,12 +17,14 @@ class Kategori extends Model
 
     protected $fillable = [
         'nama_kategori',
-        'ukuran',
+        'spesifikasi',
         'satuan',
-        'biaya_sales'
+        'biaya_sales',
+        'status',
     ];
 
     protected $casts = [
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

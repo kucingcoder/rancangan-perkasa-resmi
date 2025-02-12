@@ -17,9 +17,11 @@ class Ekspedisi extends Model
 
     protected $fillable = [
         'nama',
+        'status',
     ];
 
     protected $casts = [
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
