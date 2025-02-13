@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Ekspedisi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EkspedisiController extends Controller
 {
     public function index()
     {
-        $ekspedisi = Ekspedisi::all();
+        $ekspedisi = Ekspedisi::where('status', 'aktif')->orderBy('nama', 'asc')->get();
 
         $data = [
             'ekspedisi' => $ekspedisi
@@ -25,13 +26,20 @@ class EkspedisiController extends Controller
 
         $nama = $request->input('nama_ekspedisi');
 
+        $ekspedisi = Ekspedisi::where('nama', $nama)->where('status', 'aktif')->first();
+
+        if ($ekspedisi) {
+            return back()->withErrors('Ekspedisi ' . $ekspedisi->nama . ' sudah ada');
+        }
+
         $ekspedisibaru = new Ekspedisi();
         $ekspedisibaru->nama = $nama;
 
         try {
             $ekspedisibaru->save();
-            return back();
+            return back()->with('success', 'Barang ' . $ekspedisibaru->nama . ' tersimpan');
         } catch (\Throwable $th) {
+            Log::error('EkspedisiController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -53,11 +61,13 @@ class EkspedisiController extends Controller
         }
 
         $ekspedisi->nama = $nama;
+        $ekspedisi->updated_at = now();
 
         try {
             $ekspedisi->save();
-            return back();
+            return back()->with('success', 'Ekspedisi ' . $ekspedisi->nama . ' diubah');
         } catch (\Throwable $th) {
+            Log::error('EkspedisiController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -71,9 +81,14 @@ class EkspedisiController extends Controller
             return back()->withErrors('Ekspedisi tidak ditemukan');
         }
 
-        if ($ekspedisi->delete()) {
-            return back();
-        } else {
+        $ekspedisi->status = 'nonaktif';
+        $ekspedisi->updated_at = now();
+
+        try {
+            $ekspedisi->save();
+            return back()->with('success', 'Ekspedisi ' . $ekspedisi->nama . ' dihapus');
+        } catch (\Throwable $th) {
+            Log::error('EkspedisiController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
