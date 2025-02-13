@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::where('status', 'aktif')->get();
+        $kategori = Kategori::where('status', 'aktif')->orderBy('nama_kategori', 'asc')->get();
 
         $data = [
             'kategori' => $kategori,
