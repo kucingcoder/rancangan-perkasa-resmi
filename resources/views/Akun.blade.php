@@ -142,6 +142,7 @@
                 <div class="kiri w-1/3 mr-4">
                     <label class="block text-sm font-medium text-white mb-1" for="foto_detail">Foto Orang</label>
                     <img class="w-full h-auto px-3 py-2 border border-gray-300 rounded" id="foto_detail" src="" alt="foto orang">
+                    <button type="button" onclick="downloadFile()" class="w-full mt-4 px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Download</button>
                 </div>
                 <div class="tengah w-1/3 mr-4">
                     <div class="mb-4">
@@ -428,6 +429,16 @@
     document.addEventListener("DOMContentLoaded", function() {
         const table = new simpleDatatables.DataTable("#daftar-kategori");
     });
+
+    function downloadFile() {
+        let imgSrc = document.getElementById('foto_detail').src;
+        let fileName = imgSrc.substring(imgSrc.lastIndexOf('/') + 1);
+
+        let link = document.createElement('a');
+        link.href = imgSrc;
+        link.download = fileName;
+        link.click();
+    }
 
     function tambah() {
         document.getElementById('daftar-kategori').classList.add('hidden')
