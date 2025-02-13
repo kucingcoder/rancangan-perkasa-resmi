@@ -57,19 +57,21 @@
                 <input type="text" id="nama_kategori" name="nama_kategori" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan nama kategori" required>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="satuan">Satuan</label>
-                <input type="text" id="satuan" name="satuan" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan satuan" required>
+            <div class="flex">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="satuan">Satuan</label>
+                    <input type="text" id="satuan" name="satuan" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan satuan" required>
+                </div>
+
+                <div class="ml-4 mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="biaya_sales">Biaya Sales</label>
+                    <input type="number" id="biaya_sales" name="biaya_sales" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan biaya sales" required>
+                </div>
             </div>
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="spesifikasi">Spesifikasi</label>
-                <textarea name="spesifikasi" id="spesifikasi" cols="30" rows="5" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="biaya_sales">Biaya Sales</label>
-                <input type="number" id="biaya_sales" name="biaya_sales" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan biaya sales" required>
+                <textarea name="spesifikasi" id="spesifikasi" cols="30" rows="4" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
             </div>
 
             <!-- Action Buttons -->
@@ -107,21 +109,23 @@
                 <input type="text" id="nama_kategori_edit" name="nama_kategori_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan nama kategori" required>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="satuan_edit">Satuan</label>
-                <input type="text" id="satuan_edit" name="satuan_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="Masukan satuan" required>
+            <div class="flex">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="satuan_edit">Satuan</label>
+                    <input type="text" id="satuan_edit" name="satuan_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Masukan satuan" required>
+                </div>
+
+                <div class="ml-4 mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="biaya_sales_edit">Biaya Sales</label>
+                    <input type="number" id="biaya_sales_edit" name="biaya_sales_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Masukan biaya sales" required>
+                </div>
             </div>
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="spesifikasi_edit">Spesifikasi</label>
-                <textarea name="spesifikasi_edit" id="spesifikasi_edit" cols="30" rows="5" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="biaya_sales_edit">Biaya Sales</label>
-                <input type="number" id="biaya_sales_edit" name="biaya_sales_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="Masukan biaya sales" required>
+                <textarea name="spesifikasi_edit" id="spesifikasi_edit" cols="30" rows="4" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
             </div>
 
             <!-- Action Buttons -->
