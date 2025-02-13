@@ -11,7 +11,8 @@ class AkunController extends Controller
 {
     function index()
     {
-        $akun = Akun::all();
+        $akun = Akun::orderBy('nama', 'asc')->get();
+
         $data = [
             'akun' => $akun,
         ];
@@ -30,6 +31,18 @@ class AkunController extends Controller
             'jenis_akun_tambah' => 'required',
         ]);
 
+        if (Akun::where('nama', $request->input('nama_tambah'))->exists()) {
+            return back()->withErrors('Akun ' . $request->input('nama_tambah') . ' sudah terdaftar');
+        }
+
+        if (Akun::where('email', $request->input('email_tambah'))->exists()) {
+            return back()->withErrors('Email ' . $request->input('email_tambah') . ' sudah terdaftar');
+        }
+
+        if (Akun::where('no_wa', $request->input('no_wa_tambah'))->exists()) {
+            return back()->withErrors('No WA ' . $request->input('no_wa_tambah') . ' sudah terdaftar');
+        }
+
         $akun = new Akun();
         $akun->nama = $request->input('nama_tambah');
         $akun->email = $request->input('email_tambah');
@@ -46,9 +59,9 @@ class AkunController extends Controller
 
         try {
             $akun->save();
-            return back();
+            return back()->with('success', 'Akun ' . $akun->nama . ' tersimpan');
         } catch (\Throwable $th) {
-            Log::error($th);
+            Log::error('AkunController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -73,7 +86,6 @@ class AkunController extends Controller
         $alamat = $request->input('alamat_edit');
         $jenis_akun = $request->input('jenis_akun_edit');
 
-
         $akun = Akun::where('id', $id)->first();
 
         if (!$akun) {
@@ -86,9 +98,14 @@ class AkunController extends Controller
         $akun->jenis_kelamin = $jenis_kelamin;
         $akun->alamat = $alamat;
         $akun->jenis_akun = $jenis_akun;
+        $akun->updated_at = now();
 
-        if ($akun->save()) {
-            return back();
+        try {
+            $akun->save();
+            return back()->with('success', 'Akun ' . $akun->nama . ' diubah');
+        } catch (\Throwable $th) {
+            Log::error('AkunController : ' . $th);
+            return back()->withErrors('Periksa kembali data anda');
         }
     }
 
@@ -110,15 +127,20 @@ class AkunController extends Controller
                 try {
                     Storage::disk('public')->delete('uploads/foto_orang/' . $akun->foto);
                 } catch (\Throwable $th) {
+                    Log::error('AkunController : ' . $th);
                 }
             }
+
             $lokasi_full = $request->file('foto')->store('uploads/foto_orang', 'public');
             $akun->foto = basename($lokasi_full);
+            $akun->updated_at = now();
         }
 
-        if ($akun->save()) {
-            return back();
-        } else {
+        try {
+            $akun->save();
+            return back()->with('success', 'Foto ' . $akun->nama . ' diubah');
+        } catch (\Throwable $th) {
+            Log::error('AkunController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -135,9 +157,14 @@ class AkunController extends Controller
         }
 
         $akun->password = $sandi_baru;
+        $akun->updated_at = now();
 
-        if ($akun->save()) {
-            return back();
+        try {
+            $akun->save();
+            return back()->with('success', 'Sandi ' . $akun->nama . ' diubah');
+        } catch (\Throwable $th) {
+            Log::error('AkunController : ' . $th);
+            return back()->withErrors('Periksa kembali data anda');
         }
     }
 
@@ -160,9 +187,13 @@ class AkunController extends Controller
             $akun->status = 'aktif';
         }
 
-        if ($akun->save()) {
-            return back();
-        } else {
+        $akun->updated_at = now();
+
+        try {
+            $akun->save();
+            return back()->with('success', 'Status ' . $akun->nama . ' diubah');
+        } catch (\Throwable $th) {
+            Log::error('AkunController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
