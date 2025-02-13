@@ -17,7 +17,7 @@ class BarangController extends Controller
     {
         $barang = Barang::with('kategori')->where('status', 'aktif')->orderBy('nama_barang', 'asc')->get();
 
-        $kategori = Kategori::all();
+        $kategori = Kategori::where('status', 'aktif')->orderBy('nama_kategori', 'asc')->get();
 
         $data = [
             'barang' => $barang,
