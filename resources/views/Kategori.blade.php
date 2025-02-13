@@ -203,7 +203,7 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->nama_kategori}}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->satuan}}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
-                    <pre class="whitespace-pre-wrap">{{ $item->spesifikasi }}</pre>
+                    <pre>{{ $item->spesifikasi }}</pre>
                 </td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->biaya_sales, 0, ',', '.') }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
