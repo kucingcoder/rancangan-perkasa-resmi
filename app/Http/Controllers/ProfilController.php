@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Akun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProfilController extends Controller
 {
@@ -39,11 +40,13 @@ class ProfilController extends Controller
         $akun->alamat = $request->input('alamat');
         $akun->email = $request->input('email');
         $akun->no_wa = $request->input('no_wa');
+        $akun->updated_at = now();
 
         try {
             $akun->save();
-            return back();
+            return back()->with('success', 'Profil berhasil diubah');
         } catch (\Throwable $th) {
+            Log::error('ProfilController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -69,10 +72,13 @@ class ProfilController extends Controller
         }
 
         $akun->password = md5($request->input('password_baru'));
+        $akun->updated_at = now();
 
-        if ($akun->save()) {
-            return back();
-        } else {
+        try {
+            $akun->save();
+            return back()->with('success', 'Sandi berhasil diubah');
+        } catch (\Throwable $th) {
+            Log::error('ProfilController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
