@@ -130,7 +130,7 @@
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">
-                    Perbarui
+                    Perbaharui
                 </button>
             </div>
         </form>
