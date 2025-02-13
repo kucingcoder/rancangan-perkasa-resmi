@@ -112,6 +112,8 @@ class BarangController extends Controller
             }
         }
 
+        $barang->updated_at = now();
+
         try {
             $barang->save();
             return back()->with('success', 'Barang ' . $barang->nama_barang . ' diubah');

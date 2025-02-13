@@ -80,6 +80,7 @@ class KategoriController extends Controller
         $kategori->satuan = $satuan;
         $kategori->spesifikasi = $spesifikasi;
         $kategori->biaya_sales = $biaya_sales;
+        $kategori->updated_at = now();
 
         try {
             $kategori->save();
