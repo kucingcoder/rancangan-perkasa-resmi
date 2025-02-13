@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\BiayaPengiriman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BiayaPengirimanController extends Controller
 {
     function index()
     {
-        $biayaPengiriman = BiayaPengiriman::all();
+        $biayaPengiriman = BiayaPengiriman::where('status', 'aktif')->orderBy('wilayah', 'asc')->get();
 
         $data = [
             'biayaPengiriman' => $biayaPengiriman,
@@ -28,14 +29,21 @@ class BiayaPengirimanController extends Controller
         $wilayah = $request->input('wilayah');
         $nominal = $request->input('nominal');
 
+        $biayaPengiriman = BiayaPengiriman::where('wilayah', $wilayah)->where('status', 'aktif')->first();
+
+        if ($biayaPengiriman) {
+            return back()->withErrors('Wilayah ' . $biayaPengiriman->wilayah . ' sudah ada');
+        }
+
         $Biaya_Pengiriman = new BiayaPengiriman();
         $Biaya_Pengiriman->wilayah = $wilayah;
         $Biaya_Pengiriman->nominal = $nominal;
 
         try {
             $Biaya_Pengiriman->save();
-            return back();
+            return back()->with('success', 'Biaya Pengiriman ' . $Biaya_Pengiriman->wilayah . ' tersimpan');
         } catch (\Throwable $th) {
+            Log::error('BiayaPengirimanController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -60,11 +68,13 @@ class BiayaPengirimanController extends Controller
 
         $biayaPengiriman->wilayah = $wilayah;
         $biayaPengiriman->nominal = $nominal;
+        $biayaPengiriman->updated_at = now();
 
         try {
             $biayaPengiriman->save();
-            return back();
+            return back()->with('success', 'Biaya Pengiriman ' . $biayaPengiriman->wilayah . ' diubah');
         } catch (\Throwable $th) {
+            Log::error('BiayaPengirimanController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
@@ -82,9 +92,14 @@ class BiayaPengirimanController extends Controller
             return back()->withErrors('Biaya Pengiriman tidak ditemukan');
         }
 
-        if ($biayaPengiriman->delete()) {
-            return back();
-        } else {
+        $biayaPengiriman->status = 'nonaktif';
+        $biayaPengiriman->updated_at = now();
+
+        try {
+            $biayaPengiriman->save();
+            return back()->with('success', 'Biaya Pengiriman ' . $biayaPengiriman->wilayah . ' dihapus');
+        } catch (\Throwable $th) {
+            Log::error('BiayaPengirimanController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
         }
     }
