@@ -5,8 +5,10 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,16 @@ Route::middleware('NonSesi')->group(
 Route::middleware('Sesi')->group(
     function () {
         Route::get('/dashboard', [DashboardController::class, 'index']);
+
+        Route::get('/keranjang', [KeranjangController::class, 'index']);
+        Route::post('/keranjang/pembeli-cari', [KeranjangController::class, 'CariPembeli']);
+        Route::post('/keranjang/buat-pembeli-baru', [KeranjangController::class, 'BuatPembeliBaru']);
+        Route::post('/keranjang/buat-keranjang', [KeranjangController::class, 'BuatKeranjangBaru']);
+        Route::post('/keranjang/simpan-keranjang', [KeranjangController::class, 'SimpanKeranjang']);
+        Route::get('/keranjang/kelola/{id}', [KeranjangController::class, 'Kelola']);
+        Route::post('/keranjang/kelola/tambah-barang', [KeranjangController::class, 'TambahBarang']);
+        Route::post('/keranjang/kelola/masukan-barang', [KeranjangController::class, 'MasukanBarangBaru']);
+
         Route::get('/profil', [ProfilController::class, 'index']);
         Route::post('/profil-edit', [ProfilController::class, 'edit']);
         Route::post('/profil-ganti-sandi', [ProfilController::class, 'GantiSandi']);
@@ -52,6 +64,11 @@ Route::middleware('Admin')->group(
         Route::post('/akun-ganti-foto', [AkunController::class, 'GantiFoto']);
         Route::post('/akun-ganti-sandi', [AkunController::class, 'GantiSandi']);
         Route::post('/akun-ubah-status', [AkunController::class, 'UbahStatus']);
+
+        Route::get('/karyawan', [KaryawanController::class, 'index']);
+        Route::post('/karyawan-tambah', [KaryawanController::class, 'tambah']);
+        Route::post('/karyawan-edit', [KaryawanController::class, 'edit']);
+        Route::post('/karyawan-ubah-status', [KaryawanController::class, 'UbahStatus']);
 
         Route::get('/kategori', [KategoriController::class, 'index']);
         Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
