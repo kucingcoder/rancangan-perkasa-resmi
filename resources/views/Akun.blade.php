@@ -43,7 +43,7 @@
     <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
-            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Tambah Data</h2>
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Akun Baru</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
                 onclick="document.getElementById('dataModaltambah').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
@@ -385,7 +385,7 @@
         <button
             class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600"
             onclick="tambah()">
-            Tambah Data
+            Buat Akun Baru
         </button>
     </div>
 

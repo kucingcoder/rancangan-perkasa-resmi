@@ -43,7 +43,7 @@
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
-            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Tambah Data</h2>
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Wilayah Baru</h2>
             <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
                 ✖
             </button>
@@ -54,12 +54,12 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="wilayah">Wilayah</label>
-                <input type="text" id="wilayah" name="wilayah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukkan Wilayah" required>
+                <input type="text" id="wilayah" name="wilayah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan Wilayah" required>
             </div>
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="nominal">Nominal</label>
-                <input type="number" id="nominal" name="nominal" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukkan Nominal" required>
+                <input type="number" id="nominal" name="nominal" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan Nominal" required>
             </div>
 
             <!-- Action Buttons -->
@@ -94,12 +94,12 @@
             <input type="hidden" name="id_edit" id="id_edit" required>
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="wilayah">Wilayah</label>
-                <input type="text" id="wilayah_edit" name="wilayah_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukkan Wilayah" required>
+                <input type="text" id="wilayah_edit" name="wilayah_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan Wilayah" required>
             </div>
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="nominal">Nominal</label>
-                <input type="number" id="nominal_edit" name="nominal_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukkan Nominal" required>
+                <input type="number" id="nominal_edit" name="nominal_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan Nominal" required>
             </div>
 
             <!-- Action Buttons -->
@@ -158,7 +158,7 @@
         <button
             class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600"
             onclick="document.getElementById('dataModal').classList.remove('hidden'); document.getElementById('daftar-kategori').classList.add('hidden')">
-            Tambah Data
+            Buat Wilayah Baru
         </button>
     </div>
 
