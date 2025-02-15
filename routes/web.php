@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MasukController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,8 @@ Route::middleware('Sesi')->group(
         Route::post('/keranjang/kelola/{id}/hapus-barang', [KeranjangController::class, 'HapusBarangBaru']);
         Route::get('/keranjang/kelola/{id}/rincian', [KeranjangController::class, 'Rincian']);
         Route::get('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
+
+        Route::get('/pesanan', [PesananController::class, 'index']);
 
         Route::get('/profil', [ProfilController::class, 'index']);
         Route::post('/profil-edit', [ProfilController::class, 'edit']);
