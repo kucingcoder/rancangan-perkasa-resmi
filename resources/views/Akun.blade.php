@@ -36,6 +36,47 @@
 </div>
 @endif
 
+@if (session('pesan'))
+<div id="dataModalPesan" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Berhasil Membuat Akun</h2>
+            <button
+                class="text-gray-400 hover:text-gray-600"
+                onclick="document.getElementById('dataModalPesan').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                ✖
+            </button>
+        </div>
+
+        <h1>Segera hubungi pemilik akun untuk mengirim informasi akun</h1>
+
+        <br>
+        <h1>Email : {{ session('email') }}</h1>
+        <h1>Password : !Akses99!</h1>
+
+        <div class="flex mt-4 gap-2">
+            <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
+            <button onclick="kirim()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">Kirim WA</button>
+        </div>
+
+        <script>
+            function salin() {
+                let teks = "Halo, kami dari Rancangan Perkasa\nBerikut akses akun anda\n\nEmail : {{ session('email') }}\nPassword : !Akses99!\n\nTerimakasih telah bergabung dengan kami.";
+
+                navigator.clipboard.writeText(teks)
+                    .then(() => alert("Teks telah disalin ke clipboard!"))
+                    .catch(err => console.error("Gagal menyalin teks:", err));
+            }
+
+            function kirim() {
+                window.open("{{ session('link') }}", '_blank');
+            }
+        </script>
+    </div>
+</div>
+@endif
+
 <h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Daftar Akun</h2>
 
 <!-- Modal Dialog tambah data -->

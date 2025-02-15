@@ -59,7 +59,22 @@ class AkunController extends Controller
 
         try {
             $akun->save();
-            return back()->with('success', 'Akun ' . $akun->nama . ' tersimpan');
+
+            $pesan = "Halo, kami dari Rancangan Perkasa\n\n";
+            $pesan .= "Berikut akses akun anda\n\n";
+            $pesan .= "Email : $akun->email\n";
+            $pesan .= "Password : !Akses99!\n\n";
+            $pesan .= "Terimakasih telah bergabung dengan kami.";
+
+            $pesan_terenkripsi = urlencode($pesan);
+            $nomor_wa = "62" . substr($akun->no_wa, 1);
+
+            $link = "https://wa.me/$nomor_wa?text=$pesan_terenkripsi";
+
+            session()->flash('link', $link);
+            session()->flash('email', $akun->email);
+
+            return back()->with('pesan', 'Akun ' . $akun->nama . ' berhasil dibuat');
         } catch (\Throwable $th) {
             Log::error('AkunController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
