@@ -44,6 +44,6 @@ class Pesanan extends Model
 
     public function keranjang()
     {
-        return $this->belongsTo(Pesanan::class, 'keranjang_id');
+        return $this->belongsTo(Keranjang::class, 'keranjang_id');
     }
 }
