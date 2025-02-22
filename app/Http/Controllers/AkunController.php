@@ -197,7 +197,7 @@ class AkunController extends Controller
         }
 
         if ($akun->status == 'aktif') {
-            $akun->status = 'non aktif';
+            $akun->status = 'nonaktif';
         } else {
             $akun->status = 'aktif';
         }
