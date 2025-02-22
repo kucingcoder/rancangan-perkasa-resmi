@@ -41,9 +41,7 @@
     <div class="flex flex-col">
         <h1 class="text-2xl md:text-4xl font-bold">{{$produk->nama}}</h1>
         <h1 class="mt-4 text-xl md:text-3xl font-bold">{{ "Rp. " . number_format($produk->harga, 0, ',', '.') }} / {{$produk->satuan}}</h1>
-        <div class="h-full flex flex-col justify-center">
-            <h1 class="mt-4 text-xl md:text-3xl">Stok : {{floor($produk->stok->jumlah / $produk->isi)}} {{$produk->satuan}}</h1>
-        </div>
+        <h1 class="mt-4 text-xl md:text-3xl">Stok : {{floor($produk->stok->jumlah / $produk->isi)}} {{$produk->satuan}}</h1>
     </div>
 </div>
 
