@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BiayaKirimController;
 use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StokController;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +70,11 @@ Route::middleware('Admin')->group(
         Route::post('/stok-edit', [StokController::class, 'edit']);
         Route::post('/stok-hapus', [StokController::class, 'hapus']);
 
+        Route::get('/produk', [ProdukController::class, 'index']);
+        Route::post('/produk-tambah', [ProdukController::class, 'tambah']);
+        Route::post('/produk-edit', [ProdukController::class, 'edit']);
+        Route::post('/produk-hapus', [ProdukController::class, 'hapus']);
+
         Route::get('/barang', [BarangController::class, 'index']);
         Route::post('/barang-tambah', [BarangController::class, 'tambah']);
         Route::post('/barang-edit', [BarangController::class, 'edit']);
@@ -89,6 +96,11 @@ Route::middleware('Admin')->group(
         Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
         Route::post('/kategori-edit', [KategoriController::class, 'edit']);
         Route::post('/kategori-hapus', [KategoriController::class, 'hapus']);
+
+        Route::get('/biaya-kirim', [BiayaKirimController::class, 'index']);
+        Route::post('/biaya-kirim-tambah', [BiayaKirimController::class, 'tambah']);
+        Route::post('/biaya-kirim-edit', [BiayaKirimController::class, 'edit']);
+        Route::post('/biaya-kirim-hapus', [BiayaKirimController::class, 'hapus']);
 
         Route::get('/biaya-pengiriman', [BiayaPengirimanController::class, 'index']);
         Route::post('/biaya-pengiriman-tambah', [BiayaPengirimanController::class, 'tambah']);
