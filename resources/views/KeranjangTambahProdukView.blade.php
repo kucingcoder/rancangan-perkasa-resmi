@@ -1,5 +1,5 @@
 @extends('layouts.App')
-@section('title', 'Rancangan Perkasa | Info Barang')
+@section('title', 'Rancangan Perkasa | Info Produk')
 
 @section('content')
 @if ($errors->any())
@@ -37,32 +37,19 @@
 @endif
 
 <div class="mt-8 flex flex-col md:flex-row gap-4">
-    <img class="w-full md:w-1/2 h-auto px-3 py-2 border border-gray-300 rounded" src="{{ asset('storage/uploads/foto_barang/' . $barang->foto . '.webp') }}" alt="foto barang">
+    <img class="w-full md:w-1/2 h-auto px-3 py-2 border border-gray-300 rounded" src="{{ asset('storage/uploads/foto_produk/' . $produk->foto . '.webp') }}" alt="Foto Produk">
     <div class="flex flex-col">
-        <h1 class="text-2xl md:text-4xl font-bold">{{$barang->nama_barang}}</h1>
-        <h1 class="mt-4 text-xl md:text-3xl font-bold">{{ "Rp. " . number_format($barang->harga, 0, ',', '.') }} / {{$barang->kategori->satuan}}</h1>
+        <h1 class="text-2xl md:text-4xl font-bold">{{$produk->nama}}</h1>
+        <h1 class="mt-4 text-xl md:text-3xl font-bold">{{ "Rp. " . number_format($produk->harga, 0, ',', '.') }} / {{$produk->satuan}}</h1>
         <div class="h-full flex flex-col justify-center">
-            <h1 class="mt-4 text-xl md:text-3xl">Stok : {{$barang->stok}} {{$barang->kategori->satuan}}</h1>
-            <h1 class="mt-4 text-xl md:text-3xl">Kategori : {{$barang->kategori->nama_kategori}}</h1>
+            <h1 class="mt-4 text-xl md:text-3xl">Stok : {{floor($produk->stok->jumlah / $produk->isi)}} {{$produk->satuan}}</h1>
         </div>
     </div>
 </div>
 
 <div class="flex flex-col">
-    <h1 class="mt-8 text-2xl font-bold">Spesifikasi</h1>
-
-    <?php
-    $lines = explode("\n", trim($barang->kategori->spesifikasi));
-    foreach ($lines as $line) {
-        if (!empty(trim($line))) {
-            list($key, $value) = explode(" : ", $line, 2);
-            echo "<p class=\"mt-4 text-xl\"><strong>$key :</strong> $value</p>\n";
-        }
-    }
-    ?>
-
     <h1 class="mt-8 text-2xl font-bold">Deskripsi</h1>
-    <p class="mt-4 text-xl">{{$barang->deskripsi}}</p>
+    <p class="mt-4 text-xl">{{$produk->deskripsi}}</p>
 </div>
 
 <!-- Modal Dialog tambah data -->
@@ -70,20 +57,20 @@
     <div class="bg-white w-full mx-4 md:w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
-            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">{{$barang->nama_barang}}</h2>
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">{{$produk->nama}}</h2>
             <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden')">
                 ✖
             </button>
         </div>
 
         <!-- Form -->
-        <form id="tambah" action="/keranjang/kelola/{{$id}}/masukan-barang" method="POST">
+        <form id="tambah" action="/keranjang/kelola/{{$id}}/masukan-produk" method="POST">
             @csrf
             <input type="hidden" id="id_keranjang" name="id_keranjang" value="{{$id}}">
-            <input type="hidden" id="id_barang" name="id_barang" value="{{$item_id}}">
+            <input type="hidden" id="id_produk" name="id_produk" value="{{$item_id}}">
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1" for="jumlah">Jumlah {{$barang->kategori->satuan}}</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="jumlah">Jumlah {{$produk->satuan}} (Stok : {{floor($produk->stok->jumlah / $produk->isi)}} {{$produk->satuan}})</label>
                 <input type="number" id="jumlah" name="jumlah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan jumlah" required>
             </div>
 
