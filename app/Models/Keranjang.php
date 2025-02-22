@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Keranjang extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'keranjang';
     protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $incrementing = true;
+    protected $keyType = 'string';
+    public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class Keranjang extends Model
     ];
 
     protected $casts = [
-        'id' => 'integer',
+        'id' => 'string',
         'akun_id' => 'string',
         'pembeli_id' => 'string',
         'created_at' => 'datetime',
