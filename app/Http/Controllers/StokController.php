@@ -24,6 +24,7 @@ class StokController extends Controller
         $request->validate([
             'nama' => 'required',
             'jumlah' => 'required',
+            'satuan' => 'required',
         ]);
 
         $cek_stok = Stok::where('nama', $request->input('nama'))->where('status', 'aktif')->first();
@@ -34,10 +35,12 @@ class StokController extends Controller
 
         $nama = $request->input('nama');
         $jumlah = $request->input('jumlah');
+        $satuan = $request->input('satuan');
 
         $stokbaru = new Stok();
         $stokbaru->nama = $nama;
         $stokbaru->jumlah = $jumlah;
+        $stokbaru->satuan = $satuan;
 
         try {
             $stokbaru->save();
@@ -54,11 +57,13 @@ class StokController extends Controller
             'id_edit' => 'required',
             'nama_edit' => 'required',
             'jumlah_edit' => 'required',
+            'satuan_edit' => 'required',
         ]);
 
         $id = $request->input('id_edit');
         $nama = $request->input('nama_edit');
         $jumlah = $request->input('jumlah_edit');
+        $satuan = $request->input('satuan_edit');
 
         $stok = Stok::where('id', $id)->first();
 
@@ -68,6 +73,7 @@ class StokController extends Controller
 
         $stok->nama = $nama;
         $stok->jumlah = $jumlah;
+        $stok->satuan = $satuan;
         $stok->updated_at = now();
 
         try {

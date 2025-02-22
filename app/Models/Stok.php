@@ -18,6 +18,7 @@ class Stok extends Model
     protected $fillable = [
         'nama',
         'jumlah',
+        'satuan',
         'status',
     ];
 
