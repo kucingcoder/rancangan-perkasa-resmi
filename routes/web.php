@@ -75,11 +75,6 @@ Route::middleware('Admin')->group(
         Route::post('/produk-edit', [ProdukController::class, 'edit']);
         Route::post('/produk-hapus', [ProdukController::class, 'hapus']);
 
-        Route::get('/barang', [BarangController::class, 'index']);
-        Route::post('/barang-tambah', [BarangController::class, 'tambah']);
-        Route::post('/barang-edit', [BarangController::class, 'edit']);
-        Route::post('/barang-hapus', [BarangController::class, 'hapus']);
-
         Route::get('/akun', [AkunController::class, 'index']);
         Route::post('/akun-tambah', [AkunController::class, 'tambah']);
         Route::post('/akun-edit', [AkunController::class, 'edit']);
@@ -91,11 +86,6 @@ Route::middleware('Admin')->group(
         Route::post('/karyawan-tambah', [KaryawanController::class, 'tambah']);
         Route::post('/karyawan-edit', [KaryawanController::class, 'edit']);
         Route::post('/karyawan-ubah-status', [KaryawanController::class, 'UbahStatus']);
-
-        Route::get('/kategori', [KategoriController::class, 'index']);
-        Route::post('/kategori-tambah', [KategoriController::class, 'tambah']);
-        Route::post('/kategori-edit', [KategoriController::class, 'edit']);
-        Route::post('/kategori-hapus', [KategoriController::class, 'hapus']);
 
         Route::get('/biaya-kirim', [BiayaKirimController::class, 'index']);
         Route::post('/biaya-kirim-tambah', [BiayaKirimController::class, 'tambah']);
