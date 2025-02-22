@@ -19,10 +19,10 @@ class Pengiriman extends Model
         'nama_kurir',
         'no_wa_kurir',
         'foto_kurir',
-        'expedisi_id',
-        'wilayah_id',
-        'alamat',
-        'jumlah',
+        'ekspedisi_id',
+        'biaya_kirim_id',
+        'alamat_tujuan',
+        'jumlah_pengiriman',
         'foto_bukti'
     ];
 
@@ -33,11 +33,11 @@ class Pengiriman extends Model
 
     public function ekspedisi()
     {
-        return $this->belongsTo(Ekspedisi::class, 'expedisi_id');
+        return $this->belongsTo(Ekspedisi::class, 'ekspedisi_id');
     }
 
-    public function biayaPengiriman()
+    public function biaya_kirim()
     {
-        return $this->belongsTo(BiayaPengiriman::class, 'wilayah_id');
+        return $this->belongsTo(BiayaKirim::class, 'biaya_kirim_id');
     }
 }
