@@ -1,5 +1,5 @@
 @extends('layouts.App')
-@section('title', 'Rancangan Perkasa | stok')
+@section('title', 'Rancangan Perkasa | Stok')
 
 @section('content')
 @if ($errors->any())
