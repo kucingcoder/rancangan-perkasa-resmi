@@ -92,11 +92,6 @@ Route::middleware('Admin')->group(
         Route::post('/biaya-kirim-edit', [BiayaKirimController::class, 'edit']);
         Route::post('/biaya-kirim-hapus', [BiayaKirimController::class, 'hapus']);
 
-        Route::get('/biaya-pengiriman', [BiayaPengirimanController::class, 'index']);
-        Route::post('/biaya-pengiriman-tambah', [BiayaPengirimanController::class, 'tambah']);
-        Route::post('/biaya-pengiriman-edit', [BiayaPengirimanController::class, 'edit']);
-        Route::post('/biaya-pengiriman-hapus', [BiayaPengirimanController::class, 'hapus']);
-
         Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
         Route::post('/ekspedisi-tambah', [EkspedisiController::class, 'tambah']);
         Route::post('/ekspedisi-edit', [EkspedisiController::class, 'edit']);
