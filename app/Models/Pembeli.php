@@ -12,8 +12,8 @@ class Pembeli extends Model
 
     protected $table = 'pembeli';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    protected $keyType = 'int';
+    public $incrementing = true;
     public $timestamps = true;
 
     protected $fillable = [
