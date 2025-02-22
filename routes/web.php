@@ -12,6 +12,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\StokController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,11 @@ Route::middleware('Sesi')->group(
 
 Route::middleware('Admin')->group(
     function () {
+        Route::get('/stok', [StokController::class, 'index']);
+        Route::post('/stok-tambah', [StokController::class, 'tambah']);
+        Route::post('/stok-edit', [StokController::class, 'edit']);
+        Route::post('/stok-hapus', [StokController::class, 'hapus']);
+
         Route::get('/barang', [BarangController::class, 'index']);
         Route::post('/barang-tambah', [BarangController::class, 'tambah']);
         Route::post('/barang-edit', [BarangController::class, 'edit']);

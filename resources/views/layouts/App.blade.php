@@ -71,6 +71,10 @@
             @endif
 
             @if(session('jenis') === 'admin')
+            <div onclick="location.href='/stok'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Stok</span>
+            </div>
+
             <div onclick="location.href='/barang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Barang</span>
             </div>
