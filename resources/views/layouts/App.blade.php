@@ -79,10 +79,6 @@
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Produk</span>
             </div>
 
-            <div onclick="location.href='/barang'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                <span class="text-2xl md:text-lg text-gray-200 font-bold">Barang</span>
-            </div>
-
             <div onclick="location.href='/akun'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Akun</span>
             </div>
