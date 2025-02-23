@@ -36,6 +36,8 @@
 </div>
 @endif
 
+<h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Daftar Keranjang</h2>
+
 <!-- Modal Dialog tambah data -->
 <div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg mx-4 md:mx-0">

@@ -2,6 +2,7 @@
 @section('title', 'Rancangan Perkasa | Pesanan')
 
 @section('content')
+<h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Daftar Pesanan</h2>
 <div class="mt-6 flex gap-4 flex-wrap justify-center md:justify-start items-center">
     @foreach ($pesanan as $item)
     <div class="w-full md:w-1/4 p-4 rounded-lg bg-grey-100 shadow shadow-lg border border-grey-300">
