@@ -2,37 +2,41 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pesanan extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'pesanan';
     protected $primaryKey = 'id';
-    public $incrementing = true;
+    public $keyType = 'string';
+    public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
-        'tanggal',
         'keranjang_id',
-        'nota',
-        'laporan',
-        'bukti_pelunasan',
         'pengiriman_id',
-        'status',
-        'alasan',
         'jenis_transaksi',
-        'transaksi_id',
-        'pendapatan_kotor',
-        'pendapatan_bersih'
+        'id_transaksi',
+        'pendapatan',
+        'biaya_sales',
+        'biaya_pengiriman',
+        'kode_invoice',
+        'bukti_pelunasan',
+        'nota_pembeli',
+        'nota_kurir',
+        'laporan_sales',
+        'laporan_internal',
+        'status',
+        'alasan_ditolak',
     ];
 
     protected $casts = [
-        'tanggal' => 'date',
-        'status' => 'string',
         'jenis_transaksi' => 'string',
+        'status' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
