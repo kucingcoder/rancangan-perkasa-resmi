@@ -432,7 +432,7 @@ class KeranjangController extends Controller
         try {
             $pesanan->save();
             $keranjang->save();
-            return back()->with('success', 'Keranjang dipesan');
+            return redirect('/pesanan');
         } catch (\Throwable $th) {
             Log::error('KeranjangController : ' . $th);
             return back()->withErrors('Pesanan tidak dibuat');

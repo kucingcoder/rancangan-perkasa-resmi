@@ -11,8 +11,9 @@
             <p>{{$item->created_at->format('d-m-Y')}}</p>
         </div>
         <div class="mt-4 flex">
-            <button class="w-full px-4 py-2 text-sm text-white bg-blue-950 rounded hover:bg-blue-600">Lihat</button>
+            <button class="w-full px-4 py-2 text-sm text-white bg-blue-950 rounded hover:bg-blue-600">Kelola</button>
         </div>
-        @endforeach
     </div>
-    @endsection
+    @endforeach
+</div>
+@endsection
