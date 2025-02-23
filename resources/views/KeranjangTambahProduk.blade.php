@@ -2,6 +2,11 @@
 @section('title', 'Rancangan Perkasa | Tambah Produk')
 
 @section('content')
+<div class="mt-6 flex gap-4">
+    <input type="text" name="cari" id="cari" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Cari Produk" required>
+    <button type="button" onclick="cari()" class="px-4 py-2 bg-blue-950 text-white rounded hover:bg-blue-700">Cari</button>
+</div>
+
 <div class="mt-6 flex gap-4 flex-wrap justify-center md:justify-start items-center">
     @foreach ($produk as $item)
     <div class="w-full md:w-1/4 p-4 rounded-lg shadow-lg border border-gray-300">
@@ -22,4 +27,11 @@
     </div>
     @endforeach
 </div>
+
+<script>
+    function cari() {
+        var cari = document.getElementById('cari').value;
+        window.location.href = '/keranjang/kelola/{{$id}}/tambah-produk/cari/' + cari;
+    }
+</script>
 @endsection

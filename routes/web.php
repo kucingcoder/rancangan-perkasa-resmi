@@ -45,14 +45,16 @@ Route::middleware('Sesi')->group(
         Route::post('/keranjang/buat-pembeli-baru', [KeranjangController::class, 'BuatPembeliBaru']);
         Route::post('/keranjang/buat-keranjang', [KeranjangController::class, 'BuatKeranjangBaru']);
         Route::post('/keranjang/simpan-keranjang', [KeranjangController::class, 'SimpanKeranjang']);
+
         Route::get('/keranjang/kelola/{id}', [KeranjangController::class, 'Kelola']);
-        Route::get('/keranjang/kelola/{id}/tambah-barang', [KeranjangController::class, 'TambahBarang']);
-        Route::get('/keranjang/kelola/{id}/tambah-barang/{item_id}', [KeranjangController::class, 'TambahBarangViewBarang']);
-        Route::post('/keranjang/kelola/{id}/masukan-barang', [KeranjangController::class, 'MasukanBarangBaru']);
-        Route::post('/keranjang/kelola/{id}/edit-barang', [KeranjangController::class, 'EditBarangBaru']);
-        Route::post('/keranjang/kelola/{id}/hapus-barang', [KeranjangController::class, 'HapusBarangBaru']);
+        Route::get('/keranjang/kelola/{id}/tambah-produk', [KeranjangController::class, 'TambahProduk']);
+        Route::get('/keranjang/kelola/{id}/tambah-produk/cari/{keyword}', [KeranjangController::class, 'TambahProdukCari']);
+        Route::get('/keranjang/kelola/{id}/tambah-produk/{item_id}', [KeranjangController::class, 'TambahProdukView']);
+        Route::post('/keranjang/kelola/{id}/masukan-produk', [KeranjangController::class, 'MasukanProduk']);
+        Route::post('/keranjang/kelola/{id}/edit-produk', [KeranjangController::class, 'EditProduk']);
+        Route::post('/keranjang/kelola/{id}/hapus-produk', [KeranjangController::class, 'HapusProduk']);
         Route::get('/keranjang/kelola/{id}/rincian', [KeranjangController::class, 'Rincian']);
-        Route::get('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
+        Route::post('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
 
         Route::get('/pesanan', [PesananController::class, 'index']);
 

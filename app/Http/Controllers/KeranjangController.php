@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\DaftarBarang;
+use App\Models\Akun;
+use App\Models\DaftarProduk;
 use App\Models\Keranjang;
 use App\Models\Pembeli;
 use App\Models\Pesanan;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use function Spatie\LaravelPdf\Support\pdf;
+use Spatie\LaravelPdf\Enums\Format;
 
 class KeranjangController extends Controller
 {
     public function index(Request $request)
     {
         $sales = $request->session()->get('id');
-        $keranjang = Keranjang::where('status', 'belum dipesan')
+        $keranjang = Keranjang::where('status', 'aktif')
             ->where('akun_id', $sales)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -138,10 +140,10 @@ class KeranjangController extends Controller
         }
 
         try {
-            DaftarBarang::where('keranjang_id', $id)->delete();
+            DaftarProduk::where('keranjang_id', $id)->delete();
             $keranjang->delete();
 
-            return back()->with('success', 'Keranjang dihapus');
+            return back()->with('success', 'Keranjang ' . $keranjang->judul . ' berhasil dihapus');
         } catch (\Throwable $th) {
             Log::error('KeranjangController : ' . $th);
             return back()->withErrors('Periksa kembali data anda');
@@ -150,58 +152,73 @@ class KeranjangController extends Controller
 
     public function Kelola($id)
     {
-        $daftar_barang = DaftarBarang::with('barang')
-            ->with('barang.kategori')
+        $daftar_produk = DaftarProduk::with('produk')
+            ->with('produk.stok')
             ->where('keranjang_id', $id)
             ->orderBy('updated_at', 'desc')
             ->get();
 
         $data = [
-            'daftar_barang' => $daftar_barang,
+            'daftar_produk' => $daftar_produk,
             'id' => $id,
         ];
         return view('KeranjangKelola', $data);
     }
 
-    public function TambahBarang($id)
+    public function TambahProduk($id)
     {
-        $barang = Barang::where('status', 'aktif')->orderBy('nama_barang', 'asc')->get();
+        $produk = Produk::where('status', 'aktif')->orderBy('nama', 'asc')->get();
 
         $data = [
-            'barang' => $barang,
+            'produk' => $produk,
             'id' => $id
         ];
 
-        return view('KeranjangTambahBarang', $data);
+        return view('KeranjangTambahProduk', $data);
     }
 
-    public function TambahBarangViewBarang($id, $item_id)
+    public function TambahProdukCari($id, $keyword)
     {
-        $barang = Barang::with('kategori')->where('id', $item_id)->first();
+        $produk = Produk::where('status', 'aktif')
+            ->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$keyword])
+            ->orderByRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE) DESC", [$keyword])
+            ->get();
 
         $data = [
-            'barang' => $barang,
+            'produk' => $produk,
+            'id' => $id
+        ];
+
+        return view('KeranjangTambahProduk', $data);
+    }
+
+    public function TambahProdukView($id, $item_id)
+    {
+        $produk = Produk::with('stok')->where('id', $item_id)->first();
+
+        $data = [
+            'produk' => $produk,
             'id' => $id,
             'item_id' => $item_id
         ];
 
-        return view('KeranjangTambahBarangViewBarang', $data);
+        return view('KeranjangTambahProdukView', $data);
     }
 
-    public function MasukanBarangBaru(Request $request)
+    public function MasukanProduk(Request $request)
     {
         $request->validate([
             'id_keranjang' => 'required',
-            'id_barang' => 'required',
+            'id_produk' => 'required',
             'jumlah' => 'required',
         ]);
 
         $id_keranjang = $request->input('id_keranjang');
-        $id_barang = $request->input('id_barang');
+        $id_produk = $request->input('id_produk');
         $jumlah = $request->input('jumlah');
 
-        $daftar_sudah_ada = DaftarBarang::where('keranjang_id', $request->input('id_keranjang'))
-            ->where('barang_id', $request->input('id_barang'))
+        $daftar_sudah_ada = DaftarProduk::where('keranjang_id', $id_keranjang)
+            ->where('produk_id', $id_produk)
             ->first();
 
         $daftar = null;
@@ -210,17 +227,26 @@ class KeranjangController extends Controller
             $daftar = $daftar_sudah_ada;
             $daftar->jumlah = $daftar_sudah_ada->jumlah + $jumlah;
         } else {
-            $daftar = new DaftarBarang();
+            $daftar = new DaftarProduk();
             $daftar->jumlah = $jumlah;
         }
 
-        $barang = Barang::where('id', $request->input('id_barang'))->first();
-        if ($barang->stok < $daftar->jumlah) {
-            return back()->withErrors('Stok barang tidak mencukupi');
+        $produk = Produk::where('id', $id_produk)->first();
+
+        if (!$produk) {
+            return back()->withErrors('Produk tidak ditemukan');
+        }
+
+        if ($daftar->jumlah < 1) {
+            return back()->withErrors('Minimum jumlah produk adalah 1');
+        }
+
+        if (floor($produk->stok->jumlah / $produk->isi) < $daftar->jumlah) {
+            return back()->withErrors('Stok produk tidak mencukupi');
         }
 
         $daftar->keranjang_id = $id_keranjang;
-        $daftar->barang_id = $id_barang;
+        $daftar->produk_id = $id_produk;
         $daftar->updated_at = now();
 
         $keranjang = Keranjang::where('id', $id_keranjang)->first();
@@ -232,35 +258,44 @@ class KeranjangController extends Controller
             return redirect('/keranjang/kelola/' . $id_keranjang);
         } catch (\Throwable $th) {
             Log::error('KeranjangController : ' . $th);
-            return back()->withErrors('Barang tidak ditambahkan');
+            return back()->withErrors('Produk ' . $produk->nama . ' gagal ditambahkan');
         }
     }
 
-    public function EditBarangBaru(Request $request)
+    public function EditProduk(Request $request)
     {
         $request->validate([
             'id_keranjang' => 'required',
-            'id_barang' => 'required',
+            'id_produk' => 'required',
             'jumlah' => 'required',
         ]);
 
         $id_keranjang = $request->input('id_keranjang');
-        $id_barang = $request->input('id_barang');
+        $id_produk = $request->input('id_produk');
         $jumlah = $request->input('jumlah');
 
-        $daftar = DaftarBarang::where('keranjang_id', $id_keranjang)
-            ->where('barang_id', $id_barang)
+        $daftar = DaftarProduk::where('keranjang_id', $id_keranjang)
+            ->where('produk_id', $id_produk)
             ->first();
 
         if (!$daftar) {
-            return back()->withErrors('Barang tidak ditemukan');
+            return back()->withErrors('Produk tidak ditemukan');
         }
 
         $daftar->jumlah = $jumlah;
 
-        $barang = Barang::where('id', $id_barang)->first();
-        if ($barang->stok < $daftar->jumlah) {
-            return back()->withErrors('Stok barang tidak mencukupi');
+        $produk = Produk::where('id', $id_produk)->first();
+
+        if (!$produk) {
+            return back()->withErrors('Produk tidak ditemukan');
+        }
+
+        if ($daftar->jumlah < 1) {
+            return back()->withErrors('Minimum jumlah produk adalah 1');
+        }
+
+        if (floor($produk->stok->jumlah / $produk->isi) < $daftar->jumlah) {
+            return back()->withErrors('Stok produk tidak mencukupi');
         }
 
         $daftar->updated_at = now();
@@ -271,29 +306,29 @@ class KeranjangController extends Controller
         try {
             $daftar->save();
             $keranjang->save();
-            return back()->with('success', 'Barang diubah');
+            return back()->with('success', 'Produk ' . $daftar->produk->nama . ' diubah');
         } catch (\Throwable $th) {
             Log::error('KeranjangController : ' . $th);
-            return back()->withErrors('Barang tidak diubah');
+            return back()->withErrors('Produk ' . $daftar->produk->nama . ' tidak diubah');
         }
     }
 
-    public function HapusBarangBaru(Request $request)
+    public function HapusProduk(Request $request)
     {
         $request->validate([
             'id_keranjang_hapus' => 'required',
-            'id_barang_hapus' => 'required',
+            'id_produk_hapus' => 'required',
         ]);
 
         $id_keranjang = $request->input('id_keranjang_hapus');
-        $id_barang = $request->input('id_barang_hapus');
+        $id_produk = $request->input('id_produk_hapus');
 
-        $daftar = DaftarBarang::where('keranjang_id', $id_keranjang)
-            ->where('barang_id', $id_barang)
+        $daftar = DaftarProduk::where('keranjang_id', $id_keranjang)
+            ->where('produk_id', $id_produk)
             ->first();
 
         if (!$daftar) {
-            return back()->withErrors('Barang tidak ditemukan');
+            return back()->withErrors('Produk tidak ditemukan');
         }
 
         $keranjang = Keranjang::where('id', $id_keranjang)->first();
@@ -302,55 +337,97 @@ class KeranjangController extends Controller
         try {
             $daftar->delete();
             $keranjang->save();
-            return back()->with('success', 'Barang dihapus');
+            return back()->with('success', 'Produk ' . $daftar->produk->nama . ' dihapus');
         } catch (\Throwable $th) {
             Log::error('KeranjangController : ' . $th);
-            return back()->withErrors('Barang tidak dihapus');
+            return back()->withErrors('Produk ' . $daftar->produk->nama . ' tidak dihapus');
         }
     }
 
     public function Rincian($id)
     {
-        $daftar_barang = DaftarBarang::with('barang')
-            ->with('barang.kategori')
+        $keranjang = Keranjang::where('id', $id)->first();
+
+        $sales = Akun::where('id', $keranjang->akun_id)->first();
+        $pembeli = Pembeli::where('id', $keranjang->pembeli_id)->first();
+
+        $daftar_produk = DaftarProduk::with('produk')
+            ->with('produk.stok')
             ->where('keranjang_id', $id)
             ->orderBy('updated_at', 'desc')
             ->get();
 
-        $pdf = Pdf::loadview('RincianKeranjang', ['daftar_barang' => $daftar_barang]);
-        $pdf->setPaper('A4', 'portrait');
         $nama = md5(now());
 
-        return $pdf->download($nama . '.pdf');
+        $data = [
+            'daftar_produk' => $daftar_produk,
+            'sales' => $sales,
+            'pembeli' => $pembeli
+        ];
 
-        // $data = [
-        //     'daftar_barang' => $daftar_barang,
-        // ];
+        return pdf()
+            ->view('RincianKeranjang', $data)
+            ->format(Format::A6)
+            ->name($nama . '.pdf')
+            ->download();
+    }
 
-        // return view('RincianKeranjang', $data);
+    private function getNextCode($code)
+    {
+        preg_match('/([A-Z]{3})(\d{3})/', $code, $matches);
+        $letters = $matches[1];
+        $numbers = intval($matches[2]);
+
+        if ($numbers < 999) {
+            $numbers++;
+        } else {
+            $numbers = 1;
+            $letters = $this->incrementLetters($letters);
+        }
+
+        return $letters . str_pad($numbers, 3, '0', STR_PAD_LEFT);
+    }
+
+    private function incrementLetters($letters)
+    {
+        for ($i = 2; $i >= 0; $i--) {
+            if ($letters[$i] !== 'Z') {
+                $letters[$i] = chr(ord($letters[$i]) + 1);
+                return $letters;
+            } else {
+                $letters[$i] = 'A';
+            }
+        }
+        return $letters;
     }
 
     public function Pesan($id)
     {
-        $daftar_barang = DaftarBarang::with('barang')
-            ->with('barang.kategori')
+        $daftar_produk = DaftarProduk::with('produk')
+            ->with('produk.stok')
             ->where('keranjang_id', $id)
             ->orderBy('updated_at', 'desc')
             ->get();
 
         $biaya_sales = 0;
 
-        foreach ($daftar_barang as $item) {
-            $biaya_sales += $item->jumlah * $item->barang->kategori->biaya_sales;
+        foreach ($daftar_produk as $item) {
+            $biaya_sales += $item->jumlah * $item->produk->biaya_sales;
         }
 
         $keranjang = Keranjang::where('id', $id)->first();
-        $keranjang->status = 'dipesan';
+        $keranjang->status = 'nonaktif';
         $keranjang->updated_at = now();
+
+        $lastInvoice = Pesanan::latest()->first();
+        $lastCode = $lastInvoice ? $lastInvoice->invoice_code : 'AAA000';
+
+        $newCode = $this->getNextCode($lastCode);
 
         $pesanan = new Pesanan();
         $pesanan->keranjang_id = $id;
         $pesanan->biaya_sales = $biaya_sales;
+        $pesanan->kode_invoice = $newCode;
 
         try {
             $pesanan->save();
