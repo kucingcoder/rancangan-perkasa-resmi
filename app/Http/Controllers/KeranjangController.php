@@ -133,7 +133,7 @@ class KeranjangController extends Controller
 
         $id = $request->input('id_hapus');
 
-        $keranjang = Keranjang::where('id', $id)->first();
+        $keranjang = Keranjang::where('id', $id)->where('status', 'aktif')->first();
 
         if (!$keranjang) {
             return back()->withErrors('Keranjang tidak ditemukan');
@@ -217,6 +217,12 @@ class KeranjangController extends Controller
         $id_produk = $request->input('id_produk');
         $jumlah = $request->input('jumlah');
 
+        $cek_keranjang = Keranjang::where('id', $id_keranjang)->where('status', 'aktif')->first();
+
+        if (!$cek_keranjang) {
+            return back()->withErrors('Keranjang tidak ditemukan');
+        }
+
         $daftar_sudah_ada = DaftarProduk::where('keranjang_id', $id_keranjang)
             ->where('produk_id', $id_produk)
             ->first();
@@ -274,6 +280,12 @@ class KeranjangController extends Controller
         $id_produk = $request->input('id_produk');
         $jumlah = $request->input('jumlah');
 
+        $cek_keranjang = Keranjang::where('id', $id_keranjang)->where('status', 'aktif')->first();
+
+        if (!$cek_keranjang) {
+            return back()->withErrors('Keranjang tidak ditemukan');
+        }
+
         $daftar = DaftarProduk::where('keranjang_id', $id_keranjang)
             ->where('produk_id', $id_produk)
             ->first();
@@ -322,6 +334,12 @@ class KeranjangController extends Controller
 
         $id_keranjang = $request->input('id_keranjang_hapus');
         $id_produk = $request->input('id_produk_hapus');
+
+        $cek_keranjang = Keranjang::where('id', $id_keranjang)->where('status', 'aktif')->first();
+
+        if (!$cek_keranjang) {
+            return back()->withErrors('Keranjang tidak ditemukan');
+        }
 
         $daftar = DaftarProduk::where('keranjang_id', $id_keranjang)
             ->where('produk_id', $id_produk)
