@@ -42,30 +42,37 @@
 </head>
 
 <body>
-    <div class="flex gap-4 justify-center items-center">
-        <div>
-            <img src="{{base_path('/public/Images/logo simbol.png')}}" alt="Rancangan Perkasa" style="width: 60px;">
+    <div style="width: 100%; text-align: center; white-space: nowrap;">
+        <div style="display: inline-block; vertical-align: middle; width: 60px;">
+            <img src="{{ base_path('/public/Images/logo simbol.png') }}" alt="Rancangan Perkasa" style="width: 60px;">
         </div>
-        <div>
-            <h1 class="text-center font-bold" style="font-size: 14px;">RANCANGAN PERKASA</h1>
-            <h2 class="text-center font-bold" style="font-size: 12px;">Vendor Toko Bangunan Terpercaya</h2>
-            <p class="text-center" style="font-size: 10px;">Jl. Raya Cikarang No. 1, Cikarang Timur, Bekasi</p>
-        </div>
-    </div>
-
-    <div class="mt-4 flex gap-4 justify-between">
-        <div class="max-w-1/2">
-            <p>{{ $pembeli->nama }}</p>
-            <p>{{ $pembeli->no_wa }}</p>
-            <p>{{ $pembeli->alamat }}</p>
-        </div>
-        <div class="max-w-1/2">
-            <p class="text-right">{{ $sales->nama }}</p>
-            <p class="text-right">{{ $sales->no_wa }}</p>
+        <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
+            <h1 style="font-size: 14px; font-weight: bold; margin: 0;">RANCANGAN PERKASA</h1>
+            <h2 style="font-size: 12px; font-weight: bold; margin: 0;">Vendor Toko Bangunan Terpercaya</h2>
+            <p style="font-size: 10px; margin: 0;">Jl. Sultan Agung No. 132RT.006/RW. 002 Desa Kejambon</p>
+            <p style="font-size: 10px; margin: 0;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
         </div>
     </div>
 
-    <table class="mt-4">
+    <table style="width: 100%; margin-top: 10px; border-collapse: collapse; border: none;">
+        <tr>
+            <td style="width: 50%; text-align: left; vertical-align: top; padding: 0; border: none;">
+                <p style="margin: 0;">{{ $pembeli->nama }}</p>
+                <p style="margin: 0;">{{ $pembeli->no_wa }}</p>
+                <p style="margin: 0;">{{ $pembeli->alamat }}</p>
+            </td>
+            <td style="border: none;"></td>
+            <td style="width: 50%; text-align: right; vertical-align: top; padding: 0; border: none;">
+                <p style="margin: 0;">{{ $sales->nama }}</p>
+                <p style="margin: 0;">{{ $sales->no_wa }}</p>
+            </td>
+        </tr>
+    </table>
+
+
+    <br>
+
+    <table>
         <thead>
             <tr>
                 <th>No</th>
@@ -90,9 +97,13 @@
         </tbody>
     </table>
 
-    <p class="mt-4" style="font-size: 12px;"><strong>Total : {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</strong></p>
+    <br>
 
-    <p class="mt-4 text-justify">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan disetujui oleh toko.</p>
+    <p style="font-size: 12px;"><strong>Total : {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</strong></p>
+
+    <br>
+
+    <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan disetujui oleh toko.</p>
 </body>
 
 </html>

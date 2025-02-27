@@ -10,8 +10,7 @@ use App\Models\Pesanan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use function Spatie\LaravelPdf\Support\pdf;
-use Spatie\LaravelPdf\Enums\Format;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KeranjangController extends Controller
 {
@@ -383,11 +382,9 @@ class KeranjangController extends Controller
             'pembeli' => $pembeli
         ];
 
-        return pdf()
-            ->view('RincianKeranjang', $data)
-            ->format(Format::A6)
-            ->name($nama . '.pdf')
-            ->download();
+        $pdf = PDF::loadView('RincianKeranjang', $data)->setPaper('a6', 'portrait');
+
+        return $pdf->download($nama . '.pdf');
     }
 
     private function getNextCode($code)
