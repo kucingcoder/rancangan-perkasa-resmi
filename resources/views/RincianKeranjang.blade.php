@@ -107,7 +107,7 @@
 
     <br>
 
-    <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan diperiksa oleh toko Rancangan Perkasa.</p>
+    <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan diterima oleh toko Rancangan Perkasa.</p>
 </body>
 
 </html>
