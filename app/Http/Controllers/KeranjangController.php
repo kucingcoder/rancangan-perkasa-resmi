@@ -369,7 +369,6 @@ class KeranjangController extends Controller
         $pembeli = Pembeli::where('id', $keranjang->pembeli_id)->first();
 
         $daftar_produk = DaftarProduk::with('produk')
-            ->with('produk.stok')
             ->where('keranjang_id', $id)
             ->orderBy('updated_at', 'desc')
             ->get();
