@@ -28,7 +28,7 @@ class KaryawanController extends Controller
             'tanggal_lahir' => 'required',
             'alamat' => 'required',
             'no_wa' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg',
             'gaji' => 'required',
             'deskripsi' => 'required',
         ]);
@@ -74,7 +74,7 @@ class KaryawanController extends Controller
             'alamat_edit' => 'required',
             'no_wa_edit' => 'required',
             'gaji_edit' => 'required',
-            'foto_edit' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_edit' => 'nullable|image|mimes:jpeg,png,jpg',
             'deskripsi_edit' => 'required',
         ]);
 
