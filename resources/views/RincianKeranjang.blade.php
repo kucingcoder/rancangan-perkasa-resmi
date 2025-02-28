@@ -103,11 +103,11 @@
 
     <br>
 
-    <p style="font-size: 14px;"><strong>BELUM LUNAS</strong></p>
+    <p style="font-size: 12px;"><strong>Status : <strong style="color: red;">BELUM LUNAS</strong></p>
 
     <br>
 
-    <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan disetujui oleh toko.</p>
+    <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan diperiksa oleh toko Rancangan Perkasa.</p>
 </body>
 
 </html>
