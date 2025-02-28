@@ -103,6 +103,10 @@
 
     <br>
 
+    <p style="font-size: 14px;"><strong>BELUM LUNAS</strong></p>
+
+    <br>
+
     <p style="text-align: justify;">Harga di atas belum termasuk biaya pengiriman. Anda akan menerima nota pembayaran termasuk biaya pengiriman setelah pesanan disetujui oleh toko.</p>
 </body>
 
