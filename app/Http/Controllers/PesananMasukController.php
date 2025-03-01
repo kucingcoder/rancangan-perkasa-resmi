@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Response;
 
 class PesananMasukController extends Controller
 {
@@ -327,6 +328,8 @@ class PesananMasukController extends Controller
 
         $nota_pembeli = PDF::loadView('NotaPembeliLunas', $data)->setPaper('a6', 'portrait');
         $nota_kurir = PDF::loadView('NotaKurir', $data)->setPaper('a6', 'portrait');
+        $laporan_internal = PDF::loadView('LaporanInternal', $data)->setPaper('a4', 'portrait');
+        $laporan_sales = PDF::loadView('LaporanSales', $data)->setPaper('a4', 'portrait');
 
         try {
             if ($pesanan->nota_pembeli) {
@@ -334,11 +337,15 @@ class PesananMasukController extends Controller
             }
             Storage::disk('public')->put("uploads/nota_pembeli/{$nama}.pdf", $nota_pembeli->output());
             Storage::disk('public')->put("uploads/nota_kurir/{$nama}.pdf", $nota_kurir->output());
+            Storage::disk('public')->put("uploads/laporan_internal/{$nama}.pdf", $laporan_internal->output());
+            Storage::disk('public')->put("uploads/laporan_sales/{$nama}.pdf", $laporan_sales->output());
 
             $lokasi_full = $request->file('bukti_pelunasan')->store('uploads/bukti_pelunasan', 'public');
             $pesanan->bukti_pelunasan = basename($lokasi_full);
             $pesanan->nota_pembeli = $nama;
             $pesanan->nota_kurir = $nama;
+            $pesanan->laporan_internal = $nama;
+            $pesanan->laporan_sales = $nama;
             $pesanan->status = 'diproses';
             $pesanan->updated_at = now();
             $pesanan->save();

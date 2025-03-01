@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancangan Perkasa | Laporan Sales</title>
+    <link rel="icon" href="/Images/logo simbol.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 2px;
+        }
+
+        th {
+            background: #ddd;
+            font-weight: bold;
+        }
+
+        * {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 24px;
+        }
+
+        th,
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width: 100%; text-align: center; white-space: nowrap;">
+        <div style="display: inline-block; vertical-align: middle; width: 60px;">
+            <img src="{{ base_path('/public/Images/logo simbol.png') }}" alt="Rancangan Perkasa" style="width: 80px;">
+        </div>
+        <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
+            <h1 style="font-size: 24px; font-weight: bold; margin: 0; text-align: center;">RANCANGAN PERKASA</h1>
+            <h2 style="font-size: 20px; font-weight: bold; margin: 0; text-align: center;">Vendor Toko Bangunan Terpercaya</h2>
+            <p style="font-size: 16px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132 RT. 006/RW. 002 Desa Kejambon</p>
+            <p style="font-size: 16px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">Informasi Pesanan</h1>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Kode Invoice</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->kode_invoice }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Judul</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->judul }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Dibuat</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->created_at->format('d/m/Y') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">Informasi Pembeli</h1>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Nama</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->pembeli->nama }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left; white-space: nowrap; min-width: 100px;">No Whatsapp</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->pembeli->no_wa }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Email</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->pembeli->email }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Alamat</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->pembeli->alamat }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">Informasi Sales</h1>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Nama</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->nama }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left; white-space: nowrap; min-width: 100px;">No Whatsapp</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left; white-space: nowrap; min-width: 100px;">{{ $pesanan->keranjang->akun->no_wa }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Email</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->email }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Alamat</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->alamat }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">Informasi Produk</h1>
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Biaya Sales</th>
+                <th>Total Harga</th>
+                <th>Total Biaya Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $index = 1; ?>
+            <?php $total_harga = 0; ?>
+
+            @foreach ($daftar_produk as $item)
+            <?php $index++; ?>
+            <?php $total_harga += $item->jumlah * $item->produk->harga; ?>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->produk->nama }}</td>
+                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>{{ "Rp. " . number_format($item->produk->harga, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->produk->biaya_sales, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->biaya_sales, 0, ',', '.') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Total Harga Barang</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Total Biaya Sales</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pesanan->biaya_sales, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">Informasi Pengiriman</h1>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Wilayah</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pengiriman->biaya_kirim->wilayah }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left; white-space: nowrap; min-width: 100px;">Jumlah Pengiriman</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left; white-space: nowrap; min-width: 100px;">{{ $pengiriman->jumlah_pengiriman }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Biaya Per Pengiriman</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ "Rp. " . number_format($pengiriman->biaya_kirim->nominal, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Total Biaya Pengiriman</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ "Rp. " . number_format($pengiriman->jumlah_pengiriman * $pengiriman->biaya_kirim->nominal, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+</body>
+
+</html>
