@@ -30,6 +30,13 @@ class MasukController extends Controller
 
             $request->session()->put('id', $akun->id);
             $request->session()->put('jenis', $akun->jenis_akun);
+
+            if ($akun->jenis_akun == 'admin') {
+                return redirect('/pesanan-masuk');
+            } elseif ($akun->jenis_akun == 'sales') {
+                return redirect('/keranjang');
+            }
+
             return redirect('/dashboard');
         } else {
             return back()->withErrors('Email atau password salah');
