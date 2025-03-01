@@ -7,6 +7,7 @@ use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananMasukController;
@@ -26,6 +27,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', [LandingPage::class, 'Ikhtisar']);
+Route::get('/ikhtisar', [LandingPage::class, 'Ikhtisar']);
+Route::get('/kontak', [LandingPage::class, 'Kontak']);
+Route::get('/katalog', [LandingPage::class, 'Katalog']);
+Route::get('/katalog/{id}', [LandingPage::class, 'KatalogUser']);
+Route::get('/jam-kerja', [LandingPage::class, 'JamKerja']);
 
 Route::middleware('NonSesi')->group(
     function () {
@@ -59,6 +67,7 @@ Route::middleware('Sesi')->group(
         Route::get('/pesanan/{id}', [PesananController::class, 'detail']);
         Route::get('/pesanan/{id}/daftar-produk', [PesananController::class, 'DaftarProduk']);
         Route::get('/pesanan/{id}/nota-pembeli', [PesananMasukController::class, 'DownloadNotaPembeli']);
+        Route::get('/pesanan/{id}/laporan-sales', [PesananMasukController::class, 'DownloadLaporanSales']);
 
         Route::get('/profil', [ProfilController::class, 'index']);
         Route::post('/profil-edit', [ProfilController::class, 'edit']);
@@ -77,7 +86,6 @@ Route::middleware('Admin')->group(
         Route::post('/pesanan-masuk/{id}/proses', [PesananMasukController::class, 'Proses']);
         Route::post('/pesanan-masuk/{id}/tolak', [PesananMasukController::class, 'Tolak']);
         Route::get('/pesanan-masuk/{id}/nota-kurir', [PesananMasukController::class, 'DownloadNotaKurir']);
-        Route::get('/pesanan-masuk/{id}/laporan-sales', [PesananMasukController::class, 'DownloadLaporanSales']);
         Route::get('/pesanan-masuk/{id}/laporan-internal', [PesananMasukController::class, 'DownloadLaporanInternal']);
         Route::get('/pesanan-masuk/{id}/kirim', [PesananMasukController::class, 'Kirim']);
         Route::post('/pesanan-masuk/{id}/selesai', [PesananMasukController::class, 'Selesai']);

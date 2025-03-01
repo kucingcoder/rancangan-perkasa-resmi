@@ -52,5 +52,9 @@
     @if($pesanan->status != 'diperiksa' && $pesanan->status != 'ditolak')
     <button onclick="location.href='/pesanan/{{$pesanan->id}}/nota-pembeli'" class="w-full md:w-fit px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Nota</button>
     @endif
+
+    @if($pesanan->status == 'selesai')
+    <button onclick="location.href='/pesanan/{{$pesanan->id}}/laporan-sales'" class="w-full md:w-fit px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Laporan</button>
+    @endif
 </div>
 @endsection

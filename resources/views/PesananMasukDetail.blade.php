@@ -218,7 +218,7 @@
 
             @if($pesanan->status == 'diproses' || $pesanan->status == 'dikirim' || $pesanan->status == 'selesai')
             <button onclick="location.href='/pesanan-masuk/{{$pesanan->id}}/nota-kurir'" class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Nota Kurir</button>
-            <button onclick="location.href='/pesanan-masuk/{{$pesanan->id}}/laporan-sales'" class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Laporan Sales</button>
+            <button onclick="location.href='/pesanan/{{$pesanan->id}}/laporan-sales'" class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Laporan Sales</button>
             <button onclick="location.href='/pesanan-masuk/{{$pesanan->id}}/laporan-internal'" class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Download Laporan Internal</button>
             @endif
         </div>
