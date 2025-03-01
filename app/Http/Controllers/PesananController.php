@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akun;
+use App\Models\DaftarProduk;
+use App\Models\Pembeli;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 
@@ -22,5 +25,42 @@ class PesananController extends Controller
         ];
 
         return view('Pesanan', $data);
+    }
+
+    public function detail($id)
+    {
+        $pesanan = Pesanan::with('keranjang')->where('id', $id)->first();
+
+        if (!$pesanan) {
+            return back()->withErrors('Pesanan tidak ditemukan');
+        }
+
+        $pembeli = Pembeli::where('id', $pesanan->keranjang->pembeli_id)->first();
+        $sales = Akun::where('id', $pesanan->keranjang->akun_id)->first();
+
+        $data = [
+            'pesanan' => $pesanan,
+            'pembeli' => $pembeli,
+            'sales' => $sales,
+        ];
+
+        return view('PesananDetail', $data);
+    }
+
+    public function DaftarProduk($id)
+    {
+        $pesanan = Pesanan::where('id', $id)->first();
+
+        if (!$pesanan) {
+            return back()->withErrors('Pesanan tidak ditemukan');
+        }
+
+        $dafter_produk = DaftarProduk::with('produk')->where('keranjang_id', $pesanan->keranjang_id)->get();
+
+        $data = [
+            'daftar_produk' => $dafter_produk,
+        ];
+
+        return view('PesananDaftarProduk', $data);
     }
 }

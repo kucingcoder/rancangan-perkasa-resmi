@@ -56,6 +56,8 @@ Route::middleware('Sesi')->group(
         Route::post('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
 
         Route::get('/pesanan', [PesananController::class, 'index']);
+        Route::get('/pesanan/{id}', [PesananController::class, 'detail']);
+        Route::get('/pesanan/{id}/daftar-produk', [PesananController::class, 'DaftarProduk']);
         Route::get('/pesanan/{id}/nota-pembeli', [PesananMasukController::class, 'DownloadNotaPembeli']);
 
         Route::get('/profil', [ProfilController::class, 'index']);

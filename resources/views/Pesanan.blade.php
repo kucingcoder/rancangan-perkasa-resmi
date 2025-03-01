@@ -12,7 +12,7 @@
             <p>{{$item->created_at->format('d-m-Y')}}</p>
         </div>
         <div class="mt-4 flex">
-            <button class="w-full px-4 py-2 text-sm text-white bg-blue-950 rounded hover:bg-blue-600">Kelola</button>
+            <button onclick="window.location.href='/pesanan/{{$item->id}}'" class="w-full px-4 py-2 text-sm text-white bg-blue-950 rounded hover:bg-blue-600">Lihat</button>
         </div>
     </div>
     @endforeach
