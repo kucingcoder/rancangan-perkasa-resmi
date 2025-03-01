@@ -1,20 +1,19 @@
 <?php
 
 use App\Http\Controllers\AkunController;
-use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BiayaKirimController;
-use App\Http\Controllers\BiayaPengirimanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PesananMasukController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\StokController;
+use App\Models\Pesanan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +56,7 @@ Route::middleware('Sesi')->group(
         Route::post('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
 
         Route::get('/pesanan', [PesananController::class, 'index']);
+        Route::get('/pesanan/{id}/nota-pembeli', [PesananMasukController::class, 'DownloadNotaPembeli']);
 
         Route::get('/profil', [ProfilController::class, 'index']);
         Route::post('/profil-edit', [ProfilController::class, 'edit']);
@@ -67,6 +67,22 @@ Route::middleware('Sesi')->group(
 
 Route::middleware('Admin')->group(
     function () {
+        Route::get('/pesanan-masuk', [PesananMasukController::class, 'index']);
+        Route::get('/pesanan-masuk/{id}', [PesananMasukController::class, 'detail']);
+        Route::post('/pesanan-masuk/{id}/buat-skema-pengiriman', [PesananMasukController::class, 'BuatSkemaPengiriman']);
+        Route::post('/pesanan-masuk/{id}/edit-skema-pengiriman', [PesananMasukController::class, 'EditSkemaPengiriman']);
+        Route::get('/pesanan-masuk/{id}/cetak-nota-pembeli', [PesananMasukController::class, 'CetakNotaPembeli']);
+        Route::post('/pesanan-masuk/{id}/proses', [PesananMasukController::class, 'Proses']);
+        Route::post('/pesanan-masuk/{id}/tolak', [PesananMasukController::class, 'Tolak']);
+        Route::get('/pesanan-masuk/{id}/nota-kurir', [PesananMasukController::class, 'DownloadNotaKurir']);
+        Route::get('/pesanan-masuk/{id}/laporan-sales', [PesananMasukController::class, 'DownloadLaporanSales']);
+        Route::get('/pesanan-masuk/{id}/laporan-internal', [PesananMasukController::class, 'DownloadLaporanInternal']);
+        Route::get('/pesanan-masuk/{id}/kirim', [PesananMasukController::class, 'Kirim']);
+        Route::post('/pesanan-masuk/{id}/selesai', [PesananMasukController::class, 'Selesai']);
+        Route::get('/pesanan-masuk/{id}/foto-kurir', [PesananMasukController::class, 'DownloadFotoKurir']);
+        Route::get('/pesanan-masuk/{id}/foto-bukti-pembayaran', [PesananMasukController::class, 'DownloadBuktiPembayaran']);
+        Route::get('/pesanan-masuk/{id}/foto-bukti-pengiriman', [PesananMasukController::class, 'DownloadBuktiPengiriman']);
+
         Route::get('/stok', [StokController::class, 'index']);
         Route::post('/stok-tambah', [StokController::class, 'tambah']);
         Route::post('/stok-edit', [StokController::class, 'edit']);

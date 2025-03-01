@@ -59,7 +59,7 @@
             @endif
 
             @if(session('jenis') === 'admin')
-            <div onclick="" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+            <div onclick="location.href='/pesanan-masuk'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan Masuk</span>
             </div>
             @endif
