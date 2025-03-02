@@ -34,6 +34,29 @@ class LandingPage extends Controller
         $produk = Produk::where('status', 'aktif')->get();
 
         $data = [
+            'id' => $id,
+            'akun' => $akun,
+            'produk' => $produk
+        ];
+
+        return view('Katalog', $data);
+    }
+
+    public function KatalogCari($id, $cari)
+    {
+        $akun = Akun::where('id', $id)->where('status', 'aktif')->first();
+
+        if (!$akun) {
+            return redirect('/katalog/6bde6ca2-f0f3-11ef-a016-1063c8e04372');
+        }
+
+        $produk = Produk::where('status', 'aktif')
+            ->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$cari])
+            ->orderByRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE) DESC", [$cari])
+            ->get();
+
+        $data = [
+            'id' => $id,
             'akun' => $akun,
             'produk' => $produk
         ];
