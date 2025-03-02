@@ -27,8 +27,8 @@
     <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
-            <div class="text-lg font-bold text-blue-950">
-                <a href="/">RANCANGAN PERKASA</a>
+            <div class="">
+                <a href="/"><img src="/Images/Rancangan Perkasa.png" class="w-32" alt="logo"></a>
             </div>
 
             <!-- Menu untuk Desktop -->
