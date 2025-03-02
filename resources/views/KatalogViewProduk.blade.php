@@ -17,4 +17,8 @@
         <p class="mt-4 text-xl">{{$produk->deskripsi}}</p>
     </div>
 </div>
+
+<div class="absolute sticky bottom-0 bg-blue-950 p-4 text-white">
+    <h1 class="text-xl">Untuk memesan hubungi <strong>{{$akun->no_wa}}</strong> (<strong>{{$akun->nama}})</strong></h1>
+</div>
 @endsection
