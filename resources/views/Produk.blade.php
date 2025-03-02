@@ -277,8 +277,8 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <img style="cursor: pointer" onclick="window.open(`{{ asset('storage/uploads/foto_produk/' . $item->foto . '.webp') }}`, '_blank');" src="{{ asset('storage/uploads/foto_produk/' . $item->foto . '.webp') }}" alt="Foto {{ $item->nama_produk }}" class="h-16 w-16 object-cover rounded">
                 </td>
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
-                    <pre>{{ $item->deskripsi }}</pre>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700 max-w-80">
+                    <pre class="whitespace-pre-wrap">{{ $item->deskripsi }}</pre>
                 </td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->isi }} {{ $item->stok->satuan }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->satuan }}</td>
