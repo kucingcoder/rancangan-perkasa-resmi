@@ -47,10 +47,10 @@
             <img src="{{ base_path('/public/Images/logo simbol.png') }}" alt="Rancangan Perkasa" style="width: 60px;">
         </div>
         <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
-            <h1 style="font-size: 14px; font-weight: bold; margin: 0;">RANCANGAN PERKASA</h1>
-            <h2 style="font-size: 12px; font-weight: bold; margin: 0;">Vendor Toko Bangunan Terpercaya</h2>
-            <p style="font-size: 10px; margin: 0;">Jl. Sultan Agung No. 132RT.006/RW. 002 Desa Kejambon</p>
-            <p style="font-size: 10px; margin: 0;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
+            <h1 style="font-size: 14px; font-weight: bold; margin: 0; text-align: center;">RANCANGAN PERKASA</h1>
+            <h2 style="font-size: 12px; font-weight: bold; margin: 0; text-align: center;">Distribusi Jasa & Bahan Interior Eksterior</h2>
+            <p style="font-size: 10px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132RT.006/RW. 002 Desa Kejambon</p>
+            <p style="font-size: 10px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
         </div>
     </div>
 
