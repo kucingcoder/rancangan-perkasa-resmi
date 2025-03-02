@@ -343,14 +343,14 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <pre>{{ $item->deskripsi }}</pre>
                 </td>
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700 flex flex-col gap-2">
                     <?php $link_foto = asset('storage/uploads/foto_orang/' . $item->foto) ?>
-                    <button onclick="detail('{{$item->id}}', '{{$item->nama}}', '{{$item->jenis_kelamin}}', `{{$item->tanggal_lahir->format('d-m-Y')}}`, `{{$item->alamat}}`, '{{$item->no_wa}}', '{{$item->gaji}}', '{{$link_foto}}', `{{$item->deskripsi}}`)" class="px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Detail</button>
-                    <button onclick="edit('{{$item->id}}', '{{$item->nama}}', '{{$item->jenis_kelamin}}', `{{$item->tanggal_lahir->format('Y-m-d')}}`, `{{$item->alamat}}`, '{{$item->no_wa}}', '{{$item->gaji}}', `{{$item->deskripsi}}`)" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
+                    <button onclick="detail('{{$item->id}}', '{{$item->nama}}', '{{$item->jenis_kelamin}}', `{{$item->tanggal_lahir->format('d-m-Y')}}`, `{{$item->alamat}}`, '{{$item->no_wa}}', '{{$item->gaji}}', '{{$link_foto}}', `{{$item->deskripsi}}`)" class="w-fit px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Detail</button>
+                    <button onclick="edit('{{$item->id}}', '{{$item->nama}}', '{{$item->jenis_kelamin}}', `{{$item->tanggal_lahir->format('Y-m-d')}}`, `{{$item->alamat}}`, '{{$item->no_wa}}', '{{$item->gaji}}', `{{$item->deskripsi}}`)" class="w-fit px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <?php if ($item->status == "aktif") {
-                        echo '<button onclick="status(\'' . $item->id . '\')" class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Nonaktifkan</button>';
+                        echo '<button onclick="status(\'' . $item->id . '\')" class="w-fit px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Nonaktifkan</button>';
                     } else {
-                        echo '<button onclick="status(\'' . $item->id . '\')" class="px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600">Aktifkan</button>';
+                        echo '<button onclick="status(\'' . $item->id . '\')" class="w-fit px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600">Aktifkan</button>';
                     }
                     ?>
                 </td>

@@ -286,7 +286,7 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->biaya_sales, 0, ',', '.') }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ floor($item->stok->jumlah / $item->isi) }} {{ $item->satuan }}</td>
 
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700 flex flex-col gap-2">
                     <button onclick="edit('{{ $item->id }}', '{{ $item->nama }}', '{{ $item->stok_id }}', '{{ $item->isi }}', '{{ $item->satuan }}', '{{ $item->harga }}', '{{ $item->biaya_sales }}', `{{ $item->deskripsi }}`)" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="hapus('{{ $item->id }}')" class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Hapus</button>
                 </td>
