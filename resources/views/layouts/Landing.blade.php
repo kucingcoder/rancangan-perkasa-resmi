@@ -28,7 +28,7 @@
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="text-lg font-bold text-blue-950">
-                RANCANGAN PERKASA
+                <a href="/">RANCANGAN PERKASA</a>
             </div>
 
             <!-- Menu untuk Desktop -->
