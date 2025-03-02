@@ -10,7 +10,7 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         @foreach ($produk as $item)
-        <a href="#"
+        <a href="/katalog/{{$id}}/produk/{{$item->id}}"
             class="mx-auto sm:mr-0 group cursor-pointer lg:mx-auto bg-white transition-all duration-500">
             <div class="">
                 <img src="{{ asset('storage/uploads/foto_produk/' . $item->foto . '.webp') }}" alt="{{$item->nama}}" loading="lazy"

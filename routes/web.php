@@ -32,8 +32,9 @@ Route::get('/', [LandingPage::class, 'Ikhtisar']);
 Route::get('/ikhtisar', [LandingPage::class, 'Ikhtisar']);
 Route::get('/kontak', [LandingPage::class, 'Kontak']);
 Route::get('/katalog', [LandingPage::class, 'Katalog']);
-Route::get('/katalog/{id}/{cari}', [LandingPage::class, 'KatalogCari']);
 Route::get('/katalog/{id}', [LandingPage::class, 'KatalogUser']);
+Route::get('/katalog/{id}/{cari}', [LandingPage::class, 'KatalogCari']);
+Route::get('/katalog/{id}/produk/{id_produk}', [LandingPage::class, 'KatalogViewProduk']);
 Route::get('/jam-kerja', [LandingPage::class, 'JamKerja']);
 
 Route::middleware('NonSesi')->group(
