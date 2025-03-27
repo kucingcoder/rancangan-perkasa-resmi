@@ -434,7 +434,7 @@ class KeranjangController extends Controller
         $keranjang->updated_at = now();
 
         $lastInvoice = Pesanan::latest()->first();
-        $lastCode = $lastInvoice ? $lastInvoice->invoice_code : 'AAA000';
+        $lastCode = $lastInvoice ? $lastInvoice->kode_invoice : 'AAA000';
 
         $newCode = $this->getNextCode($lastCode);
 
