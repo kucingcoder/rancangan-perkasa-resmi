@@ -16,7 +16,7 @@
         <h1 class="text-center text-xl md:text-sm mb-4">{{$item->keranjang->pembeli->nama}}</h1>
         <div class="flex justify-between">
             <p>{{$item->status}}</p>
-            <p>{{$item->created_at->format('d-m-Y')}}</p>
+            <p>{{$item->updated_at->format('d-m-Y')}}</p>
         </div>
         <div class="mt-4 flex">
             <button onclick="window.location.href='/pesanan-masuk/{{$item->id}}'" class="w-full px-4 py-2 text-sm text-white bg-blue-950 rounded hover:bg-blue-600">Kelola</button>
