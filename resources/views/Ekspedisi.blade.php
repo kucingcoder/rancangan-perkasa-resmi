@@ -152,7 +152,7 @@
         </button>
     </div>
 
-    <table class="w-full bg-white border border-gray-200 table-auto" id="daftar-kategori">
+    <table class="mt-4 w-full bg-white border border-gray-200 table-auto" id="daftar-kategori">
         <thead>
             <tr>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">No</th>
@@ -178,11 +178,8 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const table = new simpleDatatables.DataTable("#daftar-kategori", {
-            perPage: 5,
-            perPageSelect: [5, 10, 15, 20, 50]
-        });
+    $(document).ready(function() {
+        $('#daftar-kategori').DataTable();
     });
 
     function edit(id, nama_ekspedisi) {

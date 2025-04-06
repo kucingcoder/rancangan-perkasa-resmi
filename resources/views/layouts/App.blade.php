@@ -8,27 +8,16 @@
     <link rel="icon" href="/Images/logo simbol.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-        .datatable-input {
-            width: 100%;
-            padding: 8px;
-            font-size: 14px;
-            border: 2px solid rgb(163, 163, 163);
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .datatable-input:focus {
-            width: 100%;
-            padding: 8px;
-            font-size: 14px;
-            border: 2px solid rgb(30, 30, 30);
-            border-radius: 4px;
-            outline: none;
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            margin-bottom: 1rem;
         }
     </style>
 </head>

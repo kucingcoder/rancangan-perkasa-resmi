@@ -202,11 +202,8 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const table = new simpleDatatables.DataTable("#daftar-stok", {
-            perPage: 5,
-            perPageSelect: [5, 10, 15, 20, 50]
-        });
+    $(document).ready(function() {
+        $('#daftar-stok').DataTable();
     });
 
     function edit(id, nama, jumlah, satuan) {

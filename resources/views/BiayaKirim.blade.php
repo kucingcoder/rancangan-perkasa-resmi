@@ -190,8 +190,8 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const table = new simpleDatatables.DataTable("#daftar-kategori");
+    $(document).ready(function() {
+        $('#daftar-kategori').DataTable();
     });
 
     function edit(id, wilayah, nominal) {

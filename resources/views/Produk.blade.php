@@ -310,8 +310,8 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const table = new simpleDatatables.DataTable("#daftar-produk");
+    $(document).ready(function() {
+        $('#daftar-produk').DataTable();
     });
 
     function edit(id, nama_produk, stok, isi, satuan, modal, harga, biaya_sales, deskripsi) {
