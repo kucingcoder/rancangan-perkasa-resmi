@@ -29,6 +29,12 @@
 </div>
 
 <script>
+    document.getElementById("cari").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            cari();
+        }
+    });
+
     function cari() {
         var cari = document.getElementById('cari').value;
         window.location.href = '/keranjang/kelola/{{$id}}/tambah-produk/cari/' + cari;
