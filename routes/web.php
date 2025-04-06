@@ -13,8 +13,8 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananMasukController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\StokController;
-use App\Models\Pesanan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,6 +82,10 @@ Route::middleware('Sesi')->group(
 
 Route::middleware('Admin')->group(
     function () {
+        Route::get('/statistik', [StatistikController::class, 'index']);
+        Route::get('/statistik/data-omzet/{tahun}', [StatistikController::class, 'DataOmzet']);
+        Route::get('/statistik/data-laba/{tahun}', [StatistikController::class, 'DataLaba']);
+
         Route::get('/pesanan-masuk', [PesananMasukController::class, 'index']);
         Route::get('/pesanan-masuk/cari/{keyword}', [PesananMasukController::class, 'Cari']);
         Route::get('/pesanan-masuk/{id}', [PesananMasukController::class, 'detail']);
