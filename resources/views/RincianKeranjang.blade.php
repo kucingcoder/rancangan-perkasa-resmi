@@ -43,15 +43,19 @@
 
 <body>
     <div style="width: 100%; text-align: center; white-space: nowrap;">
-        <div style="display: inline-block; vertical-align: middle; width: 60px;">
-            <img src="{{ base_path('/public/Images/logo simbol.png') }}" alt="Rancangan Perkasa" style="width: 60px;">
+        <div style="display: inline-block; vertical-align: middle; width: 70px;">
+            <img src="{{ base_path('/public/Images/logo.png') }}" alt="Rancangan Perkasa" style="width: 70px;">
         </div>
+
         <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
             <h1 style="font-size: 14px; font-weight: bold; margin: 0; text-align: center;">CV. RANCANGAN PERKASA</h1>
-            <h2 style="font-size: 12px; font-weight: bold; margin: 0; text-align: center;">Distributor Jasa & Bahan Interior Eksterior</h2>
-            <p style="font-size: 10px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132 RT.006/RW. 002 Kelurahan Kejambon</p>
-            <p style="font-size: 10px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
+            <h2 style="font-size: 12px; font-weight: bold; margin: 0; text-align: center;">Distributor Bahan & Jasa Interior Eksterior</h2>
+            <p style="font-size: 10px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132 RT 006 RW 002 Kelurahan Kejambon</p>
+            <p style="font-size: 10px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
         </div>
+
+        <hr style="border: none; height: 0.5px; background-color: black; margin-bottom: 1px;">
+        <hr style="border: none; height: 2px; background-color: black;">
     </div>
 
     <table style="width: 100%; margin-top: 10px; border-collapse: collapse; border: none;">
