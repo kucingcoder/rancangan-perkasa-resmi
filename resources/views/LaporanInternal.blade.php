@@ -157,9 +157,7 @@
                 <th>Produk</th>
                 <th>Jumlah</th>
                 <th>Harga</th>
-                <th>Biaya Sales</th>
                 <th>Total Harga</th>
-                <th>Total Biaya Sales</th>
             </tr>
         </thead>
         <tbody>
@@ -174,9 +172,7 @@
                 <td>{{ $item->produk->nama }}</td>
                 <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
                 <td>{{ "Rp. " . number_format($item->produk->harga, 0, ',', '.') }}</td>
-                <td>{{ "Rp. " . number_format($item->produk->biaya_sales, 0, ',', '.') }}</td>
                 <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga, 0, ',', '.') }}</td>
-                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->biaya_sales, 0, ',', '.') }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -186,12 +182,8 @@
 
     <table style="border-collapse: collapse; width: auto;">
         <tr>
-            <td style="border: none; text-align: left;">Total Harga Barang</td>
+            <td style="border: none; text-align: left;">Total Harga Produk</td>
             <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</td>
-        </tr>
-        <tr>
-            <td style="border: none; text-align: left;">Total Biaya Sales</td>
-            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pesanan->biaya_sales, 0, ',', '.') }}</td>
         </tr>
     </table>
 

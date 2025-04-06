@@ -182,7 +182,7 @@
 
     <table style="border-collapse: collapse; width: auto;">
         <tr>
-            <td style="border: none; text-align: left;">Total Harga Barang</td>
+            <td style="border: none; text-align: left;">Total Harga Produk</td>
             <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</td>
         </tr>
         <tr>
