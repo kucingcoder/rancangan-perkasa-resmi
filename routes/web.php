@@ -49,6 +49,7 @@ Route::middleware('Sesi')->group(
         Route::get('/dashboard', [DashboardController::class, 'index']);
 
         Route::get('/keranjang', [KeranjangController::class, 'index']);
+        Route::get('/keranjang/cari/{keyword}', [KeranjangController::class, 'Cari']);
         Route::post('/keranjang-hapus', [KeranjangController::class, 'HapusKeranjang']);
         Route::post('/keranjang/pembeli-cari', [KeranjangController::class, 'CariPembeli']);
         Route::post('/keranjang/buat-pembeli-baru', [KeranjangController::class, 'BuatPembeliBaru']);

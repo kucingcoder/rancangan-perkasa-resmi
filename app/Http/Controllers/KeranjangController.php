@@ -29,6 +29,28 @@ class KeranjangController extends Controller
         return view('Keranjang', $data);
     }
 
+    public function Cari(Request $request, $keyword)
+    {
+        $sales = $request->session()->get('id');
+
+        $keranjang = Keranjang::where('akun_id', $sales)
+            ->where('status', 'aktif')
+            ->where(function ($query) use ($keyword) {
+                $query->where('judul', 'like', '%' . $keyword . '%')
+                    ->orWhereHas('pembeli', function ($q) use ($keyword) {
+                        $q->where('nama', 'like', '%' . $keyword . '%');
+                    });
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $data = [
+            'keranjang' => $keranjang
+        ];
+
+        return view('Keranjang', $data);
+    }
+
     public function CariPembeli(Request $request)
     {
         $request->validate([
