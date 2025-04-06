@@ -31,10 +31,10 @@ class MasukController extends Controller
             $request->session()->put('id', $akun->id);
             $request->session()->put('jenis', $akun->jenis_akun);
 
-            if ($akun->jenis_akun == 'admin') {
-                return redirect('/pesanan-masuk');
+            if ($akun->jenis_akun == 'admin' || $akun->jenis_akun == 'owner') {
+                return redirect('/statistik');
             } elseif ($akun->jenis_akun == 'sales') {
-                return redirect('/keranjang');
+                return redirect('/pesanan');
             }
 
             return redirect('/dashboard');

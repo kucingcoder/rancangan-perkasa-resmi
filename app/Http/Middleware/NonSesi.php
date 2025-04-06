@@ -11,7 +11,11 @@ class NonSesi
     public function handle(Request $request, Closure $next): Response
     {
         if ($request->session()->has('id')) {
-            return redirect('/dashboard');
+            if ($request->session()->get('jenis') == 'admin' || $request->session()->get('jenis') == 'owner') {
+                return redirect('/statistik');
+            } else {
+                return redirect('/pesanan');
+            }
         }
 
         return $next($request);
