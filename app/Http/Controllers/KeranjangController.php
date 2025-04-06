@@ -201,7 +201,11 @@ class KeranjangController extends Controller
     public function TambahProdukCari($id, $keyword)
     {
         $produk = Produk::where('status', 'aktif')
-            ->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$keyword])
+            ->where(function ($query) use ($keyword) {
+                $query->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$keyword])
+                    ->orWhere('nama', 'LIKE', "%$keyword%")
+                    ->orWhere('deskripsi', 'LIKE', "%$keyword%");
+            })
             ->orderByRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE) DESC", [$keyword])
             ->get();
 

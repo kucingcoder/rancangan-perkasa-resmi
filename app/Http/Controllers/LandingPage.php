@@ -51,7 +51,11 @@ class LandingPage extends Controller
         }
 
         $produk = Produk::where('status', 'aktif')
-            ->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$cari])
+            ->where(function ($query) use ($cari) {
+                $query->whereRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE)", [$cari])
+                    ->orWhere('nama', 'LIKE', "%$cari%")
+                    ->orWhere('deskripsi', 'LIKE', "%$cari%");
+            })
             ->orderByRaw("MATCH(nama, deskripsi) AGAINST(? IN NATURAL LANGUAGE MODE) DESC", [$cari])
             ->get();
 
