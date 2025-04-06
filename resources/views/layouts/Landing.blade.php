@@ -45,6 +45,9 @@
                 <li class="flex items-center space-x-2">
                     <a href="/jam-kerja" class="text-gray-500 hover:text-blue-950">Jam Kerja</a>
                 </li>
+                <li class="flex items-center space-x-2">
+                    <a href="/masuk" class="text-gray-500 hover:text-blue-950">Akun</a>
+                </li>
             </ul>
 
             <!-- Tombol Hamburger untuk Mobile -->
