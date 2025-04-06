@@ -66,6 +66,7 @@ Route::middleware('Sesi')->group(
         Route::post('/keranjang/kelola/{id}/pesan', [KeranjangController::class, 'Pesan']);
 
         Route::get('/pesanan', [PesananController::class, 'index']);
+        Route::get('/pesanan/cari/{keyword}', [PesananController::class, 'Cari']);
         Route::get('/pesanan/{id}', [PesananController::class, 'detail']);
         Route::get('/pesanan/{id}/daftar-produk', [PesananController::class, 'DaftarProduk']);
         Route::get('/pesanan/{id}/nota-pembeli', [PesananMasukController::class, 'DownloadNotaPembeli']);
@@ -81,6 +82,7 @@ Route::middleware('Sesi')->group(
 Route::middleware('Admin')->group(
     function () {
         Route::get('/pesanan-masuk', [PesananMasukController::class, 'index']);
+        Route::get('/pesanan-masuk/cari/{keyword}', [PesananMasukController::class, 'Cari']);
         Route::get('/pesanan-masuk/{id}', [PesananMasukController::class, 'detail']);
         Route::post('/pesanan-masuk/{id}/buat-skema-pengiriman', [PesananMasukController::class, 'BuatSkemaPengiriman']);
         Route::post('/pesanan-masuk/{id}/edit-skema-pengiriman', [PesananMasukController::class, 'EditSkemaPengiriman']);

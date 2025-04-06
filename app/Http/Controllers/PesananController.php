@@ -27,6 +27,34 @@ class PesananController extends Controller
         return view('Pesanan', $data);
     }
 
+    public function Cari(Request $request, $keyword)
+    {
+        $pesanan = Pesanan::with(['keranjang.pembeli'])
+            ->whereHas('keranjang', function ($query) use ($request) {
+                $query->where('akun_id', $request->session()->get('id'));
+            })
+            ->where(function ($query) use ($keyword) {
+                $search = $keyword;
+                if ($search) {
+                    $query->where('kode_invoice', 'like', '%' . $search . '%')
+                        ->orWhereHas('keranjang', function ($q) use ($search) {
+                            $q->where('judul', 'like', '%' . $search . '%') // nama keranjang
+                                ->orWhereHas('pembeli', function ($qp) use ($search) {
+                                    $qp->where('nama', 'like', '%' . $search . '%'); // nama pembeli
+                                });
+                        });
+                }
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $data = [
+            'pesanan' => $pesanan
+        ];
+
+        return view('Pesanan', $data);
+    }
+
     public function detail($id)
     {
         $pesanan = Pesanan::with('keranjang')->where('id', $id)->first();
