@@ -61,7 +61,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pesanan</h1>
+    <h1 style="font-size: 20px;">PESANAN</h1>
 
     <br>
 
@@ -86,7 +86,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pembeli</h1>
+    <h1 style="font-size: 20px;">PEMBELI</h1>
 
     <br>
 
@@ -116,7 +116,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Sales</h1>
+    <h1 style="font-size: 20px;">SALES</h1>
 
     <br>
 
@@ -146,7 +146,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Produk</h1>
+    <h1 style="font-size: 20px;">PRODUK</h1>
 
     <br>
 
@@ -194,7 +194,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pengiriman</h1>
+    <h1 style="font-size: 20px;">PENGIRIMAN</h1>
 
     <br>
 

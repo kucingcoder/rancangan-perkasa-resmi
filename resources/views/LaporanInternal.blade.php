@@ -61,7 +61,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pesanan</h1>
+    <h1 style="font-size: 20px;">PESANAN</h1>
 
     <br>
 
@@ -86,7 +86,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pembeli</h1>
+    <h1 style="font-size: 20px;">PEMBELI</h1>
 
     <br>
 
@@ -116,7 +116,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Sales</h1>
+    <h1 style="font-size: 20px;">SALES</h1>
 
     <br>
 
@@ -146,7 +146,7 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Produk</h1>
+    <h1 style="font-size: 20px;">PRODUK</h1>
 
     <br>
 
@@ -190,7 +190,138 @@
     <br>
     <br>
 
-    <h1 style="font-size: 20px;">Informasi Pengiriman</h1>
+    <h1 style="font-size: 20px;">MODAL</h1>
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Modal</th>
+                <th>Total Modal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $index = 1; ?>
+            <?php $total_modal = 0; ?>
+
+            @foreach ($daftar_produk as $item)
+            <?php $index++; ?>
+            <?php $total_modal += $item->jumlah * $item->produk->modal; ?>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->produk->nama }}</td>
+                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>{{ "Rp. " . number_format($item->produk->modal, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->modal, 0, ',', '.') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Total Modal Produk</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_modal, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">BIAYA SALES</h1>
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Biaya Sales</th>
+                <th>Total Biaya Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $index = 1; ?>
+
+            @foreach ($daftar_produk as $item)
+            <?php $index++; ?>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->produk->nama }}</td>
+                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>{{ "Rp. " . number_format($item->produk->biaya_sales, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->biaya_sales, 0, ',', '.') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Total Biaya Sales</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pesanan->biaya_sales, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">LABA</h1>
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Laba</th>
+                <th>Total laba</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $index = 1; ?>
+            <?php $total_laba = 0; ?>
+
+            @foreach ($daftar_produk as $item)
+            <?php $index++; ?>
+            <?php $laba = $item->produk->harga - $item->produk->modal - $item->produk->biaya_sales; ?>
+            <?php $total_laba += $item->jumlah * ($item->produk->harga - $item->produk->modal - $item->produk->biaya_sales); ?>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->produk->nama }}</td>
+                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>{{ "Rp. " . number_format($laba, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $laba, 0, ',', '.') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Total Laba</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_laba, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">PENGIRIMAN</h1>
 
     <br>
 
@@ -214,6 +345,40 @@
             <td style="border: none; text-align: left;">Total Biaya Pengiriman</td>
             <td style="border: none;">:</td>
             <td style="border: none; text-align: left;">{{ "Rp. " . number_format($pengiriman->jumlah_pengiriman * $pengiriman->biaya_kirim->nominal, 0, ',', '.') }}</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <h1 style="font-size: 20px;">KEUANGAN</h1>
+
+    <br>
+
+    <table style="border-collapse: collapse; width: auto;">
+        <tr>
+            <td style="border: none; text-align: left;">Omzet</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pesanan->pendapatan, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Penjualan Produk</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_harga, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Modal</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_modal, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Biaya Sales</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pesanan->biaya_sales, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Biaya Pengiriman</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($pengiriman->jumlah_pengiriman * $pengiriman->biaya_kirim->nominal, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Laba</td>
+            <td style="border: none; text-align: left;">: {{ "Rp. " . number_format($total_laba, 0, ',', '.') }}</td>
         </tr>
     </table>
 </body>
