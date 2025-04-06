@@ -116,7 +116,8 @@
 <div class="mt-6 flex gap-4 flex-wrap justify-center md:justify-start items-center">
     @foreach ($keranjang as $item)
     <div class="w-full md:w-1/4 p-4 rounded-lg bg-grey-100 shadow shadow-lg border border-grey-300">
-        <h1 class="text-center text-xl md:text-sm font-bold mb-4">{{$item->judul}}</h1>
+        <h1 class="text-center text-xl md:text-sm font-bold">{{$item->judul}}</h1>
+        <h1 class="text-center text-xl md:text-sm mb-4">{{$item->pembeli->nama}}</h1>
         <div class="mb-4">
             <input type="hidden" id="id" name="id" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" value="{{$item->id}}" readonly required>
         </div>
