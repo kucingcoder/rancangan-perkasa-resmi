@@ -83,8 +83,8 @@
 
                     <div class="flex">
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-1" for="harga">Harga</label>
-                            <input type="number" id="harga" name="harga" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan harga" required>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="modal_produk">Modal</label>
+                            <input type="number" id="modal_produk" name="modal_produk" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan modal" required>
                         </div>
 
                         <div class="ml-4 mb-4">
@@ -102,7 +102,12 @@
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="8" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="4" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="harga">Harga Jual</label>
+                        <input type="number" id="harga" name="harga" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan harga" required>
                     </div>
                 </div>
             </div>
@@ -169,8 +174,8 @@
 
                     <div class="flex">
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-1" for="harga_edit">Harga</label>
-                            <input type="number" id="harga_edit" name="harga_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan harga" required>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="modal_produk_edit">Modal</label>
+                            <input type="number" id="modal_produk_edit" name="modal_produk_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan modal" required>
                         </div>
 
                         <div class="ml-4 mb-4">
@@ -188,7 +193,12 @@
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="deskripsi_edit">Deskripsi</label>
-                        <textarea name="deskripsi_edit" id="deskripsi_edit" cols="30" rows="8" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
+                        <textarea name="deskripsi_edit" id="deskripsi_edit" cols="30" rows="4" style="resize: none;" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" id="spesifikasi"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="harga_edit">Harga</label>
+                        <input type="number" id="harga_edit" name="harga_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan harga" required>
                     </div>
                 </div>
             </div>
@@ -262,8 +272,9 @@
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Deskripsi</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Isi</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Satuan Pembelian</th>
-                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Harga</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Modal</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Biaya Sales</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Harga</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Stok</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Aksi</th>
             </tr>
@@ -282,12 +293,13 @@
                 </td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->isi }} {{ $item->stok->satuan }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->satuan }}</td>
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->harga, 0, ',', '.') }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->modal, 0, ',', '.') }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->biaya_sales, 0, ',', '.') }}</td>
+                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ "Rp. " . number_format($item->harga, 0, ',', '.') }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ floor($item->stok->jumlah / $item->isi) }} {{ $item->satuan }}</td>
 
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700 flex flex-col gap-2">
-                    <button onclick="edit('{{ $item->id }}', '{{ $item->nama }}', '{{ $item->stok_id }}', '{{ $item->isi }}', '{{ $item->satuan }}', '{{ $item->harga }}', '{{ $item->biaya_sales }}', `{{ $item->deskripsi }}`)" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
+                    <button onclick="edit('{{ $item->id }}', '{{ $item->nama }}', '{{ $item->stok_id }}', '{{ $item->isi }}', '{{ $item->satuan }}', '{{ $item->modal }}', '{{ $item->harga }}', '{{ $item->biaya_sales }}', `{{ $item->deskripsi }}`)" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="hapus('{{ $item->id }}')" class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Hapus</button>
                 </td>
             </tr>
@@ -302,7 +314,7 @@
         const table = new simpleDatatables.DataTable("#daftar-produk");
     });
 
-    function edit(id, nama_produk, stok, isi, satuan, harga, biaya_sales, deskripsi) {
+    function edit(id, nama_produk, stok, isi, satuan, modal, harga, biaya_sales, deskripsi) {
         document.getElementById('dataModaledit').classList.remove('hidden');
 
         document.getElementById('id_edit').value = id;
@@ -310,6 +322,7 @@
         document.getElementById('stok_id_edit').value = stok;
         document.getElementById('isi_edit').value = isi;
         document.getElementById('satuan_edit').value = satuan;
+        document.getElementById('modal_produk_edit').value = modal;
         document.getElementById('harga_edit').value = harga;
         document.getElementById('biaya_sales_edit').value = biaya_sales;
         document.getElementById('deskripsi_edit').value = deskripsi;

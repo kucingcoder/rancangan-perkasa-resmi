@@ -34,6 +34,7 @@ class ProdukController extends Controller
             'deskripsi' => 'required',
             'isi' => 'required',
             'satuan' => 'required',
+            'modal_produk' => 'required',
             'harga' => 'required',
             'biaya_sales' => 'required',
             'stok_id' => 'required',
@@ -50,6 +51,7 @@ class ProdukController extends Controller
         $produk->deskripsi = $request->input('deskripsi');
         $produk->isi = $request->input('isi');
         $produk->satuan = $request->input('satuan');
+        $produk->modal = $request->input('modal_produk');
         $produk->harga = $request->input('harga');
         $produk->biaya_sales = $request->input('biaya_sales');
         $produk->stok_id = $request->input('stok_id');
@@ -86,6 +88,7 @@ class ProdukController extends Controller
             'deskripsi_edit' => 'required',
             'isi_edit' => 'required',
             'satuan_edit' => 'required',
+            'modal_produk_edit' => 'required',
             'harga_edit' => 'required',
             'biaya_sales_edit' => 'required',
             'stok_id_edit' => 'required',
@@ -101,6 +104,7 @@ class ProdukController extends Controller
         $produk->deskripsi = $request->input('deskripsi_edit');
         $produk->isi = $request->input('isi_edit');
         $produk->satuan = $request->input('satuan_edit');
+        $produk->modal = $request->input('modal_produk_edit');
         $produk->harga = $request->input('harga_edit');
         $produk->biaya_sales = $request->input('biaya_sales_edit');
         $produk->stok_id = $request->input('stok_id_edit');

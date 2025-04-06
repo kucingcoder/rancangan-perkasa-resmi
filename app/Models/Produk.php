@@ -21,6 +21,7 @@ class Produk extends Model
         'deskripsi',
         'isi',
         'satuan',
+        'modal',
         'harga',
         'biaya_sales',
         'stok_id',
