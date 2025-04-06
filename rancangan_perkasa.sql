@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Mar 2025 pada 07.42
+-- Waktu pembuatan: 06 Apr 2025 pada 11.05
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -41,6 +41,15 @@ CREATE TABLE `akun` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `akun`
+--
+
+INSERT INTO `akun` (`id`, `email`, `no_wa`, `password`, `nama`, `foto`, `jenis_kelamin`, `alamat`, `jenis_akun`, `status`, `created_at`, `updated_at`) VALUES
+('6bde6ca2-f0f3-11ef-a016-1063c8e04372', 'admin@rancanganperkasa.com', '085229205799', '40a2618a2218496e7ebfc7d0fd68e182', 'Ananda Adhitama Afriansyah', 'kosong', 'laki-laki', 'Jl. Srigunting No.43, RT.001/RW.002 Kel, Randugunting, Kec. Tegal Sel., Kota Tegal, Jawa Tengah 52131', 'admin', 'aktif', '2025-03-02 06:40:28', '2025-03-02 06:40:28');
+
+-- --------------------------------------------------------
 
 --
 -- Struktur dari tabel `biaya_kirim`
@@ -198,6 +207,7 @@ CREATE TABLE `pesanan` (
   `jenis_transaksi` enum('langsung','payment gateway') NOT NULL DEFAULT 'langsung',
   `id_transaksi` text DEFAULT NULL,
   `pendapatan` bigint(20) DEFAULT NULL,
+  `laba` bigint(20) DEFAULT NULL,
   `biaya_sales` bigint(20) NOT NULL,
   `biaya_pengiriman` bigint(20) DEFAULT NULL,
   `kode_invoice` char(6) NOT NULL,
@@ -225,6 +235,7 @@ CREATE TABLE `produk` (
   `deskripsi` text NOT NULL,
   `isi` int(11) NOT NULL,
   `satuan` varchar(64) NOT NULL,
+  `modal` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
   `biaya_sales` int(11) NOT NULL,
   `stok_id` int(11) NOT NULL,
