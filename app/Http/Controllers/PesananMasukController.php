@@ -30,6 +30,30 @@ class PesananMasukController extends Controller
         return view('PesananMasuk', $data);
     }
 
+    public function cari($keyword)
+    {
+        $pesanan = Pesanan::where(function ($query) use ($keyword) {
+            $search = $keyword;
+            if ($search) {
+                $query->where('kode_invoice', 'like', '%' . $search . '%')
+                    ->orWhereHas('keranjang', function ($q) use ($search) {
+                        $q->where('judul', 'like', '%' . $search . '%') // nama keranjang
+                            ->orWhereHas('pembeli', function ($qp) use ($search) {
+                                $qp->where('nama', 'like', '%' . $search . '%'); // nama pembeli
+                            });
+                    });
+            }
+        })
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $data = [
+            'pesanan' => $pesanan
+        ];
+
+        return view('PesananMasuk', $data);
+    }
+
     public function detail($id)
     {
         $pesanan = Pesanan::with('keranjang')->where('id', $id)->first();
