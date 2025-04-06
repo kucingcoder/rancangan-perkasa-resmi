@@ -174,9 +174,11 @@ class PesananMasukController extends Controller
         $pengiriman = Pengiriman::with('biaya_kirim')->where('id', $pesanan->pengiriman_id)->first();
 
         $pendapatan = 0;
+        $laba = 0;
 
         foreach ($daftar_produk as $item) {
             $pendapatan += $item->jumlah * $item->produk->harga;
+            $laba +=  $item->jumlah * ($item->produk->harga - $item->produk->modal - $item->produk->biaya_sales);
         }
 
         $pendapatan += $pesanan->biaya_pengiriman;
@@ -201,6 +203,7 @@ class PesananMasukController extends Controller
 
             $pesanan->nota_pembeli = $nama;
             $pesanan->pendapatan = $pendapatan;
+            $pesanan->laba = $laba;
             $pesanan->status = 'diterima';
             $pesanan->updated_at = now();
             $pesanan->save();
