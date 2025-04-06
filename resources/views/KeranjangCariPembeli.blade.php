@@ -2,7 +2,6 @@
 @section('title', 'Rancangan Perkasa | Cari Pembeli')
 
 @section('content')
-@if ($pembeli->isEmpty())
 <!-- Modal Dialog tambah data -->
 <div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg mx-4 md:mx-4">
@@ -50,6 +49,7 @@
     </div>
 </div>
 
+@if ($pembeli->isEmpty())
 <div class="mt-8 w-full flex justify-center items-center">
     <div class="w-full flex flex-col justify-center items-center border-2 border-dashed rounded-lg border-gray-500 p-4">
         <h1 class="text-xl md:text-2xl font-bold text-center text-blue-900">Data Pembeli</h1>
@@ -83,5 +83,13 @@
     </div>
     @endforeach
 </div>
+
+<div class="fixed bottom-4 left-0 right-0 px-4 z-50 flex justify-center md:justify-end md:bottom-4 md:right-4 md:left-auto">
+    <button onclick="document.getElementById('dataModal').classList.remove('hidden')"
+        class="w-full md:w-fit px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600 shadow-lg">
+        Buat Pembeli Baru
+    </button>
+</div>
+
 @endif
 @endsection
