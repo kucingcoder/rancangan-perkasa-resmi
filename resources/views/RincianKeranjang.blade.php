@@ -42,6 +42,9 @@
 </head>
 
 <body>
+    <br>
+    <br>
+
     <div style="width: 100%; text-align: center; white-space: nowrap;">
         <div style="display: inline-block; vertical-align: middle; width: 70px;">
             <img src="{{ base_path('/public/Images/logo.png') }}" alt="Rancangan Perkasa" style="width: 70px;">
@@ -57,6 +60,8 @@
         <hr style="border: none; height: 0.5px; background-color: black; margin-bottom: 1px;">
         <hr style="border: none; height: 2px; background-color: black;">
     </div>
+
+    <br>
 
     <table style="width: 100%; margin-top: 10px; border-collapse: collapse; border: none;">
         <tr>
@@ -79,9 +84,9 @@
     <table>
         <thead>
             <tr>
-                <th>No</th>
+                <th style="width: 8%;">No</th>
                 <th>Produk</th>
-                <th>Jumlah</th>
+                <th style="width: 12%;">Jumlah</th>
                 <th>Harga</th>
                 <th>Total Harga</th>
             </tr>
@@ -91,11 +96,14 @@
             @foreach ($daftar_produk as $item)
             <?php $total_harga += $item->jumlah * $item->produk->harga; ?>
             <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td>{{ $loop->iteration * 1000 }}</td>
                 <td>{{ $item->produk->nama }}</td>
-                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>
+                    <p>{{ $item->jumlah }}</p>
+                    <p>{{ $item->produk->satuan }}</p>
+                </td>
                 <td>{{ "Rp. " . number_format($item->produk->harga, 0, ',', '.') }}</td>
-                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga * 100, 0, ',', '.') }}</td>
             </tr>
             @endforeach
         </tbody>

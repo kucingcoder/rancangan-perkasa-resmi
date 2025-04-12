@@ -10,28 +10,67 @@ class StatistikController extends Controller
     public function index()
     {
         $tahunSekarang = Carbon::now()->year;
+        $bulanSekarang = Carbon::now()->month;
+
+        $BulanTahunList = Pesanan::selectRaw('DISTINCT YEAR(updated_at) AS tahun, MONTH(updated_at) AS bulan')
+            ->orderByRaw('tahun DESC, bulan DESC')
+            ->get();
+
         $tahunList = Pesanan::selectRaw('YEAR(updated_at) as tahun')
             ->distinct()
-            ->orderBy('tahun')
+            ->orderBy('tahun', 'desc')
             ->pluck('tahun');
 
         $data = [
             'tahunSekarang' => $tahunSekarang,
+            'bulanSekarang' => $bulanSekarang,
             'tahunList' => $tahunList,
+            'BulanTahunList' => $BulanTahunList
         ];
 
         return view('Statistik', $data);
     }
 
-    public function DataOmzet($tahun)
+    public function DataOmzetHarian($tahun, $bulan)
+    {
+        $bulanSekarang = Carbon::now()->month;
+        $tahunSekarang = Carbon::now()->year;
+
+        if (!empty($bulan)) {
+            $bulanSekarang = $bulan;
+        }
+
+        if (!empty($tahun)) {
+            $tahunSekarang = $tahun;
+        }
+
+        $OmzetHarian = Pesanan::whereYear('updated_at', $tahunSekarang)
+            ->whereMonth('updated_at', $bulanSekarang)
+            ->where('status', 'selesai')
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->updated_at->format('d');
+            })
+            ->map(function ($group) {
+                return $group->sum('pendapatan');
+            })
+            ->sortKeys();
+
+        $data = [
+            'labels' => $OmzetHarian->keys()->values(),
+            'data' => $OmzetHarian->values()
+        ];
+
+        return response()->json($data);
+    }
+
+    public function DataOmzetBulanan($tahun)
     {
         $tahunSekarang = Carbon::now()->year;
 
         if (!empty($tahun)) {
             $tahunSekarang = $tahun;
         }
-
-        $tahunAwal = $tahunSekarang - 9;
 
         $OmzetBulanan = Pesanan::whereYear('updated_at', $tahunSekarang)
             ->where('status', 'selesai')
@@ -44,13 +83,23 @@ class StatistikController extends Controller
             })
             ->sortKeys();
 
-        $OmzetTahunan = Pesanan::all()
-            ->where('status', 'selesai')
+        $data = [
+            'labels' => $OmzetBulanan->keys()->values(),
+            'data' => $OmzetBulanan->values()
+        ];
+
+        return response()->json($data);
+    }
+
+    public function DataOmzetTahunan($tahunAwal, $tahunAkhir)
+    {
+        $OmzetTahunan = Pesanan::where('status', 'selesai')
+            ->get()
             ->groupBy(function ($item) {
                 return $item->updated_at->format('Y');
             })
-            ->filter(function ($group, $tahun) use ($tahunAwal) {
-                return $tahun >= $tahunAwal;
+            ->filter(function ($group, $tahun) use ($tahunAwal, $tahunAkhir) {
+                return $tahun >= $tahunAwal && $tahun <= $tahunAkhir;
             })
             ->map(function ($group) {
                 return $group->sum('pendapatan');
@@ -58,20 +107,47 @@ class StatistikController extends Controller
             ->sortKeys();
 
         $data = [
-            'omzet_bulanan' => [
-                'labels' => $OmzetBulanan->keys()->values(),
-                'data' => $OmzetBulanan->values()
-            ],
-            'omzet_tahunan' => [
-                'labels' => $OmzetTahunan->keys()->values(),
-                'data' => $OmzetTahunan->values()
-            ]
+            'labels' => $OmzetTahunan->keys()->values(),
+            'data' => $OmzetTahunan->values()
         ];
 
         return response()->json($data);
     }
 
-    public function DataLaba($tahun)
+    public function DataLabaHarian($tahun, $bulan)
+    {
+        $bulanSekarang = Carbon::now()->month;
+        $tahunSekarang = Carbon::now()->year;
+
+        if (!empty($bulan)) {
+            $bulanSekarang = $bulan;
+        }
+
+        if (!empty($tahun)) {
+            $tahunSekarang = $tahun;
+        }
+
+        $OmzetHarian = Pesanan::whereYear('updated_at', $tahunSekarang)
+            ->whereMonth('updated_at', $bulanSekarang)
+            ->where('status', 'selesai')
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->updated_at->format('d');
+            })
+            ->map(function ($group) {
+                return $group->sum('laba');
+            })
+            ->sortKeys();
+
+        $data = [
+            'labels' => $OmzetHarian->keys()->values(),
+            'data' => $OmzetHarian->values()
+        ];
+
+        return response()->json($data);
+    }
+
+    public function DataLabaBulanan($tahun)
     {
         $tahunSekarang = Carbon::now()->year;
 
@@ -79,9 +155,7 @@ class StatistikController extends Controller
             $tahunSekarang = $tahun;
         }
 
-        $tahunAwal = $tahunSekarang - 9;
-
-        $LabaBulanan = Pesanan::whereYear('updated_at', $tahunSekarang)
+        $OmzetBulanan = Pesanan::whereYear('updated_at', $tahunSekarang)
             ->where('status', 'selesai')
             ->get()
             ->groupBy(function ($item) {
@@ -92,13 +166,23 @@ class StatistikController extends Controller
             })
             ->sortKeys();
 
-        $LabaTahunan = Pesanan::all()
-            ->where('status', 'selesai')
+        $data = [
+            'labels' => $OmzetBulanan->keys()->values(),
+            'data' => $OmzetBulanan->values()
+        ];
+
+        return response()->json($data);
+    }
+
+    public function DataLabaTahunan($tahunAwal, $tahunAkhir)
+    {
+        $OmzetTahunan = Pesanan::where('status', 'selesai')
+            ->get()
             ->groupBy(function ($item) {
                 return $item->updated_at->format('Y');
             })
-            ->filter(function ($group, $tahun) use ($tahunAwal) {
-                return $tahun >= $tahunAwal;
+            ->filter(function ($group, $tahun) use ($tahunAwal, $tahunAkhir) {
+                return $tahun >= $tahunAwal && $tahun <= $tahunAkhir;
             })
             ->map(function ($group) {
                 return $group->sum('laba');
@@ -106,14 +190,8 @@ class StatistikController extends Controller
             ->sortKeys();
 
         $data = [
-            'laba_bulanan' => [
-                'labels' => $LabaBulanan->keys()->values(),
-                'data' => $LabaBulanan->values()
-            ],
-            'laba_tahunan' => [
-                'labels' => $LabaTahunan->keys()->values(),
-                'data' => $LabaTahunan->values()
-            ]
+            'labels' => $OmzetTahunan->keys()->values(),
+            'data' => $OmzetTahunan->values()
         ];
 
         return response()->json($data);

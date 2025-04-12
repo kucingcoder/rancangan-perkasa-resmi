@@ -83,8 +83,12 @@ Route::middleware('Sesi')->group(
 Route::middleware('Admin')->group(
     function () {
         Route::get('/statistik', [StatistikController::class, 'index']);
-        Route::get('/statistik/data-omzet/{tahun}', [StatistikController::class, 'DataOmzet']);
-        Route::get('/statistik/data-laba/{tahun}', [StatistikController::class, 'DataLaba']);
+        Route::get('/statistik/data-omzet-harian/{tahun}/{bulan}', [StatistikController::class, 'DataOmzetHarian']);
+        Route::get('/statistik/data-omzet-bulanan/{tahun}', [StatistikController::class, 'DataOmzetBulanan']);
+        Route::get('/statistik/data-omzet-tahunan/{tahunAwal}/{tahunAkhir}', [StatistikController::class, 'DataOmzetTahunan']);
+        Route::get('/statistik/data-laba-harian/{tahun}/{bulan}', [StatistikController::class, 'DataLabaHarian']);
+        Route::get('/statistik/data-laba-bulanan/{tahun}', [StatistikController::class, 'DataLabaBulanan']);
+        Route::get('/statistik/data-laba-tahunan/{tahunAwal}/{tahunAkhir}', [StatistikController::class, 'DataLabaTahunan']);
 
         Route::get('/pesanan-masuk', [PesananMasukController::class, 'index']);
         Route::get('/pesanan-masuk/cari/{keyword}', [PesananMasukController::class, 'Cari']);
