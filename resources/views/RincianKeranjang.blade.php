@@ -42,9 +42,6 @@
 </head>
 
 <body>
-    <br>
-    <br>
-
     <div style="width: 100%; text-align: center; white-space: nowrap;">
         <div style="display: inline-block; vertical-align: middle; width: 70px;">
             <img src="{{ base_path('/public/Images/logo.png') }}" alt="Rancangan Perkasa" style="width: 70px;">
@@ -52,7 +49,9 @@
 
         <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
             <h1 style="font-size: 14px; font-weight: bold; margin: 0; text-align: center;">CV. RANCANGAN PERKASA</h1>
+            <div style="height: 3px;"></div>
             <h2 style="font-size: 12px; font-weight: bold; margin: 0; text-align: center;">Distributor Bahan & Jasa Interior Eksterior</h2>
+            <div style="height: 5px;"></div>
             <p style="font-size: 10px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132 RT 006 RW 002 Kelurahan Kejambon</p>
             <p style="font-size: 10px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
         </div>
@@ -60,8 +59,6 @@
         <hr style="border: none; height: 0.5px; background-color: black; margin-bottom: 1px;">
         <hr style="border: none; height: 2px; background-color: black;">
     </div>
-
-    <br>
 
     <table style="width: 100%; margin-top: 10px; border-collapse: collapse; border: none;">
         <tr>
@@ -78,17 +75,16 @@
         </tr>
     </table>
 
-
     <br>
 
     <table>
         <thead>
             <tr>
-                <th style="width: 8%;">No</th>
+                <th style="width: 5%;">No</th>
                 <th>Produk</th>
-                <th style="width: 12%;">Jumlah</th>
-                <th>Harga</th>
-                <th>Total Harga</th>
+                <th style="width: 15%;">Jumlah</th>
+                <th style="width: 26%;">Harga</th>
+                <th style="width: 26%;">Total Harga</th>
             </tr>
         </thead>
         <tbody>
@@ -96,14 +92,14 @@
             @foreach ($daftar_produk as $item)
             <?php $total_harga += $item->jumlah * $item->produk->harga; ?>
             <tr>
-                <td>{{ $loop->iteration * 1000 }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->produk->nama }}</td>
                 <td>
                     <p>{{ $item->jumlah }}</p>
                     <p>{{ $item->produk->satuan }}</p>
                 </td>
                 <td>{{ "Rp. " . number_format($item->produk->harga, 0, ',', '.') }}</td>
-                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga * 100, 0, ',', '.') }}</td>
+                <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga, 0, ',', '.') }}</td>
             </tr>
             @endforeach
         </tbody>

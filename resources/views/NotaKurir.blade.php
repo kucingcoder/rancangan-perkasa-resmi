@@ -51,7 +51,9 @@
 
         <div style="display: inline-block; vertical-align: middle; text-align: left; padding-left: 10px;">
             <h1 style="font-size: 14px; font-weight: bold; margin: 0; text-align: center;">CV. RANCANGAN PERKASA</h1>
+            <div style="height: 3px;"></div>
             <h2 style="font-size: 12px; font-weight: bold; margin: 0; text-align: center;">Distributor Bahan & Jasa Interior Eksterior</h2>
+            <div style="height: 5px;"></div>
             <p style="font-size: 10px; margin: 0; text-align: center;">Jl. Sultan Agung No. 132 RT 006 RW 002 Kelurahan Kejambon</p>
             <p style="font-size: 10px; margin: 0; text-align: center;">Kecamatan Tegal Timur, Kota Tegal, Jawa Tengah, Indonesia</p>
         </div>
@@ -81,9 +83,9 @@
     <table>
         <thead>
             <tr>
-                <th>No</th>
+                <th style="width: 5%;">No</th>
                 <th>Produk</th>
-                <th>Jumlah</th>
+                <th style="width: 15%;">Jumlah</th>
             </tr>
         </thead>
         <tbody>
@@ -94,7 +96,10 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->produk->nama }}</td>
-                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>
+                    <p>{{ $item->jumlah }}</p>
+                    <p>{{ $item->produk->satuan }}</p>
+                </td>
             </tr>
             @endforeach
 
