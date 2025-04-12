@@ -47,6 +47,12 @@
             </div>
             @endif
 
+            @if(session('jenis') === 'owner')
+            <div onclick="location.href='/laporan'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan</span>
+            </div>
+            @endif
+
             @if(session('jenis') === 'sales' || session('jenis') === 'admin')
             <div onclick="location.href='/pesanan'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Pesanan</span>

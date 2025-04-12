@@ -8,6 +8,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingPage;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananMasukController;
@@ -89,6 +90,11 @@ Route::middleware('Admin')->group(
         Route::get('/statistik/data-laba-harian/{tahun}/{bulan}', [StatistikController::class, 'DataLabaHarian']);
         Route::get('/statistik/data-laba-bulanan/{tahun}', [StatistikController::class, 'DataLabaBulanan']);
         Route::get('/statistik/data-laba-tahunan/{tahunAwal}/{tahunAkhir}', [StatistikController::class, 'DataLabaTahunan']);
+
+        Route::get('/laporan', [LaporanController::class, 'index']);
+        Route::get('/laporan/cari/{keyword}', [LaporanController::class, 'Cari']);
+        Route::get('/laporan/{id}', [LaporanController::class, 'detail']);
+        Route::get('/laporan/{id}/laporan-internal', [LaporanController::class, 'DownloadLaporanInternal']);
 
         Route::get('/pesanan-masuk', [PesananMasukController::class, 'index']);
         Route::get('/pesanan-masuk/cari/{keyword}', [PesananMasukController::class, 'Cari']);
