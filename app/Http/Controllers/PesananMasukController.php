@@ -265,7 +265,18 @@ class PesananMasukController extends Controller
             return back()->withErrors('Nota pembeli tidak ditemukan');
         }
 
-        return response()->download(storage_path("app/public/uploads/nota_pembeli/{$pesanan->nota_pembeli}.pdf"));
+        $nama = "";
+
+        if ($pesanan->status == "diterima") {
+            $nama = "nota pembeli belum lunas - {$pesanan->kode_invoice}_{$pesanan->keranjang->pembeli->nama}_{$pesanan->keranjang->akun->nama}.pdf";
+        } else {
+            $nama = "nota pembeli lunas - {$pesanan->kode_invoice}_{$pesanan->keranjang->pembeli->nama}_{$pesanan->keranjang->akun->nama}.pdf";
+        }
+
+        return response()->download(
+            storage_path("app/public/uploads/nota_pembeli/{$pesanan->nota_pembeli}.pdf"),
+            $nama
+        );
     }
 
     public function DownloadNotaKurir($id)
@@ -280,7 +291,7 @@ class PesananMasukController extends Controller
             return back()->withErrors('Nota kurir tidak ditemukan');
         }
 
-        return response()->download(storage_path("app/public/uploads/nota_kurir/{$pesanan->nota_kurir}.pdf"));
+        return response()->download(storage_path("app/public/uploads/nota_kurir/{$pesanan->nota_kurir}.pdf"), "nota kurir.pdf");
     }
 
     public function DownloadLaporanSales($id)
@@ -295,7 +306,10 @@ class PesananMasukController extends Controller
             return back()->withErrors('Laporan sales tidak ditemukan');
         }
 
-        return response()->download(storage_path("app/public/uploads/laporan_sales/{$pesanan->laporan_sales}.pdf"));
+        return response()->download(
+            storage_path("app/public/uploads/laporan_sales/{$pesanan->laporan_sales}.pdf"),
+            "laporan sales - {$pesanan->kode_invoice}_{$pesanan->keranjang->pembeli->nama}_{$pesanan->keranjang->akun->nama}.pdf"
+        );
     }
 
     public function DownloadLaporanInternal($id)
@@ -310,7 +324,10 @@ class PesananMasukController extends Controller
             return back()->withErrors('Laporan internal tidak ditemukan');
         }
 
-        return response()->download(storage_path("app/public/uploads/laporan_internal/{$pesanan->laporan_internal}.pdf"));
+        return response()->download(
+            storage_path("app/public/uploads/laporan_internal/{$pesanan->laporan_internal}.pdf"),
+            "laporan toko - {$pesanan->kode_invoice}_{$pesanan->keranjang->pembeli->nama}_{$pesanan->keranjang->akun->nama}.pdf"
+        );
     }
 
     public function Proses($id, Request $request)

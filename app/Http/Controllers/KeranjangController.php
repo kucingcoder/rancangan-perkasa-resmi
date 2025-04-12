@@ -399,7 +399,7 @@ class KeranjangController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get();
 
-        $nama = md5(now());
+        $nama = 'nota keranjang' . ' - ' . $pembeli->nama . '_' . $sales->nama;
 
         $data = [
             'daftar_produk' => $daftar_produk,
@@ -408,6 +408,7 @@ class KeranjangController extends Controller
         ];
 
         $pdf = PDF::loadView('RincianKeranjang', $data)->setPaper('a6', 'portrait');
+
 
         return $pdf->download($nama . '.pdf');
     }
