@@ -39,12 +39,12 @@
 <h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Daftar Ekspedisi</h2>
 
 <!-- Modal Dialog tambah data -->
-<div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Ekspedisi Baru</h2>
-            <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+            <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -59,7 +59,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModal').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModal').classList.add('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">
@@ -71,14 +71,14 @@
 </div>
 
 <!-- Modal Dialog edit data -->
-<div id="dataModaledit" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModaledit" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Edit Data</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModaledit').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                onclick="document.getElementById('dataModaledit').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -94,7 +94,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaledit').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaledit').classList.add('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">
@@ -106,14 +106,14 @@
 </div>
 
 <!-- Modal Dialog hapus data -->
-<div id="dataModalHapus" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModalHapus" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Hapus Data</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                onclick="document.getElementById('dataModalHapus').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -129,7 +129,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden');;">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600">
@@ -147,7 +147,7 @@
     <div class="flex justify-left my-4">
         <button
             class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600"
-            onclick="document.getElementById('dataModal').classList.remove('hidden'); document.getElementById('daftar-kategori').classList.add('hidden')">
+            onclick="document.getElementById('dataModal').classList.remove('hidden'); ">
             Buat Ekspedisi Baru
         </button>
     </div>
@@ -183,14 +183,12 @@
     });
 
     function edit(id, nama_ekspedisi) {
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModaledit').classList.remove('hidden')
         document.getElementById('id_edit').value = id
         document.getElementById('nama_edit').value = nama_ekspedisi
     }
 
     function hapus(id) {
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModalHapus').classList.remove('hidden')
         document.getElementById('id_hapus').value = id
     }

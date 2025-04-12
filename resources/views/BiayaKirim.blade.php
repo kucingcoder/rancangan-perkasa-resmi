@@ -154,7 +154,7 @@
 <div class="flex flex-col w-full">
     <!-- Button Tambah -->
     <!-- Button untuk membuka dialog -->
-    <div class="flex justify-left my-4 mx-4">
+    <div class="flex justify-left my-4">
         <button
             class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600"
             onclick="document.getElementById('dataModal').classList.remove('hidden')">

@@ -39,12 +39,12 @@
 <h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Daftar Karyawan</h2>
 
 <!-- Modal Dialog tambah data -->
-<div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Karyawan Baru</h2>
-            <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+            <button class="text-gray-400 hover:text-gray-600" onclick="document.getElementById('dataModal').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -108,7 +108,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModal').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModal').classList.add('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">
@@ -120,14 +120,14 @@
 </div>
 
 <!-- Modal Dialog Detail data -->
-<div id="dataModaldetail" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModaldetail" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Detail Karyawan</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModaldetail').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                onclick="document.getElementById('dataModaldetail').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -183,7 +183,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaldetail').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaldetail').classList.add('hidden');">
                     Ok
                 </button>
             </div>
@@ -192,14 +192,14 @@
 </div>
 
 <!-- Modal Dialog edit data -->
-<div id="dataModaledit" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModaledit" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Edit Data</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModaledit').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                onclick="document.getElementById('dataModaledit').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -265,7 +265,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaledit').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden')">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModaledit').classList.add('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">
@@ -277,14 +277,14 @@
 </div>
 
 <!-- Modal Dialog ubah status -->
-<div id="dataModalHapus" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+<div id="dataModalHapus" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Ubah Status</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                onclick="document.getElementById('dataModalHapus').classList.add('hidden');">
                 ✖
             </button>
         </div>
@@ -300,7 +300,7 @@
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
-                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                <button type="button" class="mx-2 px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded hover:bg-gray-300" onclick="document.getElementById('dataModalHapus').classList.add('hidden');">
                     Batal
                 </button>
                 <button type="submit" class="mx-2 px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600">
@@ -315,7 +315,7 @@
 <div class="flex flex-col w-full">
     <!-- Button Tambah -->
     <!-- Button untuk membuka dialog -->
-    <div class="flex justify-left my-4 mx-4">
+    <div class="flex justify-left my-4">
         <button
             class="px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600"
             onclick="tambah()">
@@ -382,7 +382,6 @@
     }
 
     function tambah() {
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModal').classList.remove('hidden')
     }
 
@@ -397,7 +396,6 @@
         document.getElementById('deskripsi_detail').value = deskripsi
         document.getElementById('foto_detail').src = foto
 
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModaldetail').classList.remove('hidden')
     }
 
@@ -411,12 +409,10 @@
         document.getElementById('gaji_edit').value = gaji
         document.getElementById('deskripsi_edit').value = deskripsi
 
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModaledit').classList.remove('hidden')
     }
 
     function status(id) {
-        document.getElementById('daftar-kategori').classList.add('hidden')
         document.getElementById('dataModalHapus').classList.remove('hidden')
         document.getElementById('id_status').value = id
     }
