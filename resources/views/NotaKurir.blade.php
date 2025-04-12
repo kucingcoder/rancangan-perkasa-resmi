@@ -67,7 +67,7 @@
             <td style="width: 50%; text-align: left; vertical-align: top; padding: 0; border: none;">
                 <p style="margin: 0;">{{ $pembeli->nama }}</p>
                 <p style="margin: 0;">{{ $pembeli->no_wa }}</p>
-                <p style="margin: 0;">{{ $pembeli->alamat }}</p>
+                <p style="margin: 0;">{{ $pengiriman->alamat_tujuan }}</p>
             </td>
             <td style="border: none;"></td>
             <td style="width: 50%; text-align: right; vertical-align: top; padding: 0; border: none;">
