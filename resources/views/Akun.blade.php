@@ -62,7 +62,7 @@
 
         <script>
             function salin() {
-                let teks = "Halo, kami dari Rancangan Perkasa\nBerikut akses akun anda\n\nEmail : {{ session('email') }}\nPassword : !Akses99!\n\nTerimakasih telah bergabung dengan kami.";
+                let teks = "Halo, kami dari Rancangan Perkasa\nBerikut akses akun anda\n\nWebsite : rancanganperkasa.com\nEmail : {{ session('email') }}\nPassword : !Akses99!\n\nTerimakasih telah bergabung dengan kami.";
 
                 navigator.clipboard.writeText(teks)
                     .then(() => alert("Teks telah disalin ke clipboard!"))

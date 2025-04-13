@@ -66,6 +66,7 @@ class AkunController extends Controller
 
             $pesan = "Halo, kami dari Rancangan Perkasa\n\n";
             $pesan .= "Berikut akses akun anda\n\n";
+            $pesan .= "Website : rancanganperkasa.com\n";
             $pesan .= "Email : $akun->email\n";
             $pesan .= "Password : !Akses99!\n\n";
             $pesan .= "Terimakasih telah bergabung dengan kami.";
