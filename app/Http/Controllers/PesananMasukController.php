@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Response;
 
 class PesananMasukController extends Controller
 {
@@ -236,7 +235,7 @@ class PesananMasukController extends Controller
             $pesan .= "Pesanan anda bernama *$keranjang->judul* telah *DITERIMA*\n";
             $pesan .= "Anda sudah bisa download nota pembelian yang sah\n\n";
             $pesan .= "Jika anda ingin membatalkan pesanan atau menanyakan hal - hal terkait pesanan silahkan hubungi admin\n";
-            $pesan .= "Terima kasih telah menggunakan layanan kami";
+            $pesan .= "Terima kasih telah menggunakan layanan kami.";
 
             $pesan_terenkripsi = urlencode($pesan);
             $nomor_wa = "62" . substr($sales->no_wa, 1);
@@ -425,6 +424,8 @@ class PesananMasukController extends Controller
     public function Kirim($id)
     {
         $pesanan = Pesanan::where('id', $id)->where('status', 'diproses')->first();
+        $keranjang = Keranjang::where('id', $pesanan->keranjang_id)->first();
+        $sales = Akun::where('id', $keranjang->akun_id)->first();
 
         if (!$pesanan) {
             return back()->withErrors('Pesanan tidak ditemukan');
@@ -435,7 +436,21 @@ class PesananMasukController extends Controller
 
         try {
             $pesanan->save();
-            return back()->with('success', 'Pesanan berhasil dikirim');
+
+            $pesan = "Halo, kami dari Rancangan Perkasa\n\n";
+            $pesan .= "Pesanan anda bernama *$keranjang->judul* telah *DIKIRIM*\n";
+            $pesan .= "Jika anda ingin membatalkan pesanan atau menanyakan hal - hal terkait pesanan silahkan hubungi admin\n";
+            $pesan .= "Terima kasih telah menggunakan layanan kami.";
+
+            $pesan_terenkripsi = urlencode($pesan);
+            $nomor_wa = "62" . substr($sales->no_wa, 1);
+
+            $link = "https://wa.me/$nomor_wa?text=$pesan_terenkripsi";
+
+            session()->flash('link', $link);
+            session()->flash('judul', $keranjang->judul);
+
+            return back()->with('dikirim', 'Pesanan berhasil dikirim');
         } catch (\Throwable $th) {
             Log::error('PesananController : ' . $th);
             return back()->withErrors('Pesanan gagal dikirim');
@@ -449,6 +464,8 @@ class PesananMasukController extends Controller
         ]);
 
         $pesanan = Pesanan::where('id', $id)->where('status', 'dikirim')->first();
+        $keranjang = Keranjang::where('id', $pesanan->keranjang_id)->first();
+        $sales = Akun::where('id', $keranjang->akun_id)->first();
 
         if (!$pesanan) {
             return back()->withErrors('Pesanan tidak ditemukan');
@@ -465,7 +482,21 @@ class PesananMasukController extends Controller
             $pesanan->status = 'selesai';
             $pesanan->updated_at = now();
             $pesanan->save();
-            return back()->with('success', 'Pesanan berhasil selesai');
+
+            $pesan = "Halo, kami dari Rancangan Perkasa\n\n";
+            $pesan .= "Pesanan anda bernama *$keranjang->judul* telah *SELESAI*\n";
+            $pesan .= "Jika anda ingin menanyakan hal - hal terkait pesanan silahkan hubungi admin\n";
+            $pesan .= "Terima kasih telah menggunakan layanan kami.";
+
+            $pesan_terenkripsi = urlencode($pesan);
+            $nomor_wa = "62" . substr($sales->no_wa, 1);
+
+            $link = "https://wa.me/$nomor_wa?text=$pesan_terenkripsi";
+
+            session()->flash('link', $link);
+            session()->flash('judul', $keranjang->judul);
+
+            return back()->with('selesai', 'Pesanan berhasil selesai');
         } catch (\Throwable $th) {
             Log::error('PesananController : ' . $th);
             return back()->withErrors('Pesanan gagal selesai');
@@ -481,6 +512,8 @@ class PesananMasukController extends Controller
         $alasan = $request->input('alasan');
 
         $pesanan = Pesanan::where('id', $id)->whereNotIn('status', ['ditolak', 'selesai'])->first();
+        $keranjang = Keranjang::where('id', $pesanan->keranjang_id)->first();
+        $sales = Akun::where('id', $keranjang->akun_id)->first();
 
         if (!$pesanan) {
             return back()->withErrors('Pesanan tidak ditemukan');
@@ -492,7 +525,22 @@ class PesananMasukController extends Controller
 
         try {
             $pesanan->save();
-            return back()->with('success', 'Pesanan berhasil ditolak');
+
+            $pesan = "Halo, kami dari Rancangan Perkasa\n\n";
+            $pesan .= "Pesanan anda bernama *$keranjang->judul* telah *DITOLAK*\n";
+            $pesan .= "Alasan penolakan sebagai berikut:\n\n$alasan\n\n";
+            $pesan .= "Terima kasih telah menggunakan layanan kami.";
+
+            $pesan_terenkripsi = urlencode($pesan);
+            $nomor_wa = "62" . substr($sales->no_wa, 1);
+
+            $link = "https://wa.me/$nomor_wa?text=$pesan_terenkripsi";
+
+            session()->flash('link', $link);
+            session()->flash('judul', $keranjang->judul);
+            session()->flash('alasan', $alasan);
+
+            return back()->with('ditolak', 'Pesanan berhasil ditolak');
         } catch (\Throwable $th) {
             Log::error('PesananController : ' . $th);
             return back()->withErrors('Pesanan gagal ditolak');

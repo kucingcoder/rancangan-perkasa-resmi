@@ -44,12 +44,12 @@
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Berhasil Membuat Nota</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModalPesan').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                onclick="document.getElementById('dataModalPesan').classList.add('hidden');">
                 ✖
             </button>
         </div>
 
-        <h1>Segera hubungi sales atau pembeli</h1>
+        <h1>Segera hubungi sales</h1>
 
         <div class="flex mt-4 gap-2">
             <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
@@ -73,6 +73,43 @@
 </div>
 @endif
 
+@if (session('ditolak'))
+<div id="dataModalDitolak" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Pesanan Ditolak</h2>
+            <button
+                class="text-gray-400 hover:text-gray-600"
+                onclick="document.getElementById('dataModalDitolak').classList.add('hidden');">
+                ✖
+            </button>
+        </div>
+
+        <h1>Segera hubungi sales</h1>
+
+        <div class="flex mt-4 gap-2">
+            <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
+            <button onclick="kirim()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">Kirim WA</button>
+        </div>
+
+        <script>
+            function salin() {
+                let teks = `Halo, kami dari Rancangan Perkasa\n\nPesanan anda bernama *{{ session('judul') }}* telah *DITOLAK*\nAlasan penolakan sebagai berikut:\n\n{{ session('alasan') }}\n\nTerima kasih telah menggunakan layanan kami.`
+
+                navigator.clipboard.writeText(teks)
+                    .then(() => alert("Teks telah disalin ke clipboard!"))
+                    .catch(err => console.error("Gagal menyalin teks:", err));
+            }
+
+            function kirim() {
+                window.open("{{ session('link') }}", '_blank');
+            }
+        </script>
+    </div>
+</div>
+@endif
+
 @if (session('diproses'))
 <div id="dataModalDiProses" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
@@ -81,12 +118,12 @@
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Pesanan Diproses</h2>
             <button
                 class="text-gray-400 hover:text-gray-600"
-                onclick="document.getElementById('dataModalDiProses').classList.add('hidden'); document.getElementById('daftar-kategori').classList.remove('hidden');">
+                onclick="document.getElementById('dataModalDiProses').classList.add('hidden');">
                 ✖
             </button>
         </div>
 
-        <h1>Segera hubungi sales atau pembeli</h1>
+        <h1>Segera hubungi sales</h1>
 
         <div class="flex mt-4 gap-2">
             <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
@@ -96,6 +133,80 @@
         <script>
             function salin() {
                 let teks = "Halo, kami dari Rancangan Perkasa\n\nPesanan anda bernama *{{ session('judul') }}* telah *DIPROSES*\nAnda sudah bisa download ulang nota pembelian yang sah\n\nJika anda ingin membatalkan pesanan atau menanyakan hal - hal terkait pesanan silahkan hubungi admin\nTerima kasih telah menggunakan layanan kami"
+
+                navigator.clipboard.writeText(teks)
+                    .then(() => alert("Teks telah disalin ke clipboard!"))
+                    .catch(err => console.error("Gagal menyalin teks:", err));
+            }
+
+            function kirim() {
+                window.open("{{ session('link') }}", '_blank');
+            }
+        </script>
+    </div>
+</div>
+@endif
+
+@if (session('dikirim'))
+<div id="dataModalDiKirim" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Pesanan Dikirim</h2>
+            <button
+                class="text-gray-400 hover:text-gray-600"
+                onclick="document.getElementById('dataModalDiKirim').classList.add('hidden');">
+                ✖
+            </button>
+        </div>
+
+        <h1>Segera hubungi sales</h1>
+
+        <div class="flex mt-4 gap-2">
+            <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
+            <button onclick="kirim()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">Kirim WA</button>
+        </div>
+
+        <script>
+            function salin() {
+                let teks = "Halo, kami dari Rancangan Perkasa\n\nPesanan anda bernama *{{ session('judul') }}* telah *DIKIRIM*\n\nJika anda ingin membatalkan pesanan atau menanyakan hal - hal terkait pesanan silahkan hubungi admin\nTerima kasih telah menggunakan layanan kami."
+
+                navigator.clipboard.writeText(teks)
+                    .then(() => alert("Teks telah disalin ke clipboard!"))
+                    .catch(err => console.error("Gagal menyalin teks:", err));
+            }
+
+            function kirim() {
+                window.open("{{ session('link') }}", '_blank');
+            }
+        </script>
+    </div>
+</div>
+@endif
+
+@if (session('selesai'))
+<div id="dataModalSelesai" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Pesanan Selesai</h2>
+            <button
+                class="text-gray-400 hover:text-gray-600"
+                onclick="document.getElementById('dataModalSelesai').classList.add('hidden');">
+                ✖
+            </button>
+        </div>
+
+        <h1>Segera hubungi sales</h1>
+
+        <div class="flex mt-4 gap-2">
+            <button onclick="salin()" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-blue-700">Salin Pesan</button>
+            <button onclick="kirim()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500">Kirim WA</button>
+        </div>
+
+        <script>
+            function salin() {
+                let teks = "Halo, kami dari Rancangan Perkasa\n\nPesanan anda bernama *{{ session('judul') }}* telah *SELESAI*\n\nJika anda ingin menanyakan hal - hal terkait pesanan silahkan hubungi admin\nTerima kasih telah menggunakan layanan kami."
 
                 navigator.clipboard.writeText(teks)
                     .then(() => alert("Teks telah disalin ke clipboard!"))
