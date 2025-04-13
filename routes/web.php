@@ -9,6 +9,7 @@ use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LemburController;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananMasukController;
@@ -133,6 +134,11 @@ Route::middleware('Admin')->group(
         Route::post('/karyawan-tambah', [KaryawanController::class, 'tambah']);
         Route::post('/karyawan-edit', [KaryawanController::class, 'edit']);
         Route::post('/karyawan-ubah-status', [KaryawanController::class, 'UbahStatus']);
+
+        Route::get('/lembur', [LemburController::class, 'index']);
+        Route::post('/lembur-tambah', [LemburController::class, 'tambah']);
+        Route::get('/lembur-detail/{id}', [LemburController::class, 'detail']);
+        Route::post('/lembur-hapus', [LemburController::class, 'hapus']);
 
         Route::get('/biaya-kirim', [BiayaKirimController::class, 'index']);
         Route::post('/biaya-kirim-tambah', [BiayaKirimController::class, 'tambah']);

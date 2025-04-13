@@ -92,7 +92,19 @@
             <div onclick="location.href='/karyawan'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Karyawan</span>
             </div>
+            @endif
 
+            @if(session('jenis') === 'owner' || session('jenis') === 'admin')
+            <div onclick="location.href='/lembur'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Lembur</span>
+            </div>
+
+            <div onclick="location.href='/gajian'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                <span class="text-2xl md:text-lg text-gray-200 font-bold">Gajian</span>
+            </div>
+            @endif
+
+            @if(session('jenis') === 'admin')
             <div onclick="location.href='/biaya-kirim'" class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <span class="text-2xl md:text-lg text-gray-200 font-bold">Biaya Kirim</span>
             </div>
