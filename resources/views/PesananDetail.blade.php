@@ -6,7 +6,7 @@
 <h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Detail Pesanan</h2>
 
 <div class="mt-6 w-full flex flex-col md:flex-row gap-4">
-    <div class="w-full md:w-1/2 flex">
+    <div class="w-full md:w-1/3 flex">
         <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
             <h1 class="text-center text-xl md:text-sm font-bold mb-4">Pembeli</h1>
             <div class="flex flex-col">
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="w-full md:w-1/2 flex">
+    <div class="w-full md:w-1/3 flex">
         <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
             <h1 class="text-center text-xl md:text-sm font-bold mb-4">Sales</h1>
             <div class="flex flex-col">
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="w-full md:w-1/2 flex">
+    <div class="w-full md:w-1/3 flex">
         <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
             <h1 class="text-center text-xl md:text-sm font-bold mb-4">Info Pesanan</h1>
             <div class="flex flex-col">
@@ -45,6 +45,17 @@
         </div>
     </div>
 </div>
+
+@if($pesanan->status == 'ditolak')
+<div class="mt-6 w-full md:w-1/3 flex">
+    <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
+        <h1 class="text-center text-xl md:text-sm font-bold mb-4">Alasan Ditolak</h1>
+        <div class="flex flex-col">
+            <p>{{$pesanan->alasan_ditolak}}</p>
+        </div>
+    </div>
+</div>
+@endif
 
 <div class="flex flex-col md:flex-row gap-4 mt-4">
     <button onclick="location.href='/pesanan/{{$pesanan->id}}/daftar-produk'" class="w-full md:w-fit px-4 py-2 text-sm text-white bg-green-500 rounded hover:bg-green-600">Daftar Produk Dibeli</button>

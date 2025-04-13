@@ -113,7 +113,7 @@
 <h2 class="text-2xl md:text-4xl text-center font-bold text-gray-700 mb-2">Detail Pesanan</h2>
 
 <div class="mt-6 w-full flex flex-col md:flex-row gap-4">
-    <div class="w-full md:w-1/2 flex">
+    <div class="w-full md:w-1/3 flex">
         <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
             <h1 class="text-center text-xl md:text-sm font-bold mb-4">Pembeli</h1>
             <div class="flex flex-col">
@@ -125,7 +125,7 @@
         </div>
     </div>
 
-    <div class="w-full md:w-1/2 flex">
+    <div class="w-full md:w-1/3 flex">
         <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
             <h1 class="text-center text-xl md:text-sm font-bold mb-4">Sales</h1>
             <div class="flex flex-col">
@@ -136,7 +136,33 @@
             </div>
         </div>
     </div>
+
+    <div class="w-full md:w-1/3 flex">
+        <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
+            <h1 class="text-center text-xl md:text-sm font-bold mb-4">Info Pesanan</h1>
+            <div class="flex flex-col">
+                <p>Status : <span class="font-bold">{{$pesanan->status}}</span></p>
+                @if($pesanan->status != 'diperiksa' || $pesanan->status != 'tolak')
+                <p>Total Pembelian : <span class="font-bold">{{ "Rp. " . number_format($pesanan->pendapatan, 0, ',', '.') }}</span></p>
+                <p>Total Bonus : <span class="font-bold">{{ "Rp. " . number_format($pesanan->biaya_sales, 0, ',', '.') }}</span></p>
+                @endif
+                <p>Tanggal Dibuat : <span class="font-bold">{{$pesanan->created_at->format('d/m/Y')}}</span></p>
+                <p>Tanggal Diperbaharui : <span class="font-bold">{{$pesanan->updated_at->format('d/m/Y')}}</span></p>
+            </div>
+        </div>
+    </div>
 </div>
+
+@if($pesanan->status == 'ditolak')
+<div class="mt-6 w-full md:w-1/3 flex">
+    <div class="w-full p-4 rounded-lg bg-grey-100 shadow-lg border border-grey-300 flex-1 h-full">
+        <h1 class="text-center text-xl md:text-sm font-bold mb-4">Alasan Ditolak</h1>
+        <div class="flex flex-col">
+            <p>{{$pesanan->alasan_ditolak}}</p>
+        </div>
+    </div>
+</div>
+@endif
 
 
 <h2 class="mt-6 mb-4 text-xl md:text-2xl text-center md:text-left font-bold text-gray-700 mb-2">Daftar Produk</h2>
