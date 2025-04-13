@@ -4,6 +4,7 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BiayaKirimController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkspedisiController;
+use App\Http\Controllers\GajianController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\KeranjangController;
@@ -139,6 +140,9 @@ Route::middleware('Admin')->group(
         Route::post('/lembur-tambah', [LemburController::class, 'tambah']);
         Route::get('/lembur-detail/{id}', [LemburController::class, 'detail']);
         Route::post('/lembur-hapus', [LemburController::class, 'hapus']);
+
+        Route::get('/gajian', [GajianController::class, 'index']);
+        Route::get('/gajian/{id}', [GajianController::class, 'detail']);
 
         Route::get('/biaya-kirim', [BiayaKirimController::class, 'index']);
         Route::post('/biaya-kirim-tambah', [BiayaKirimController::class, 'tambah']);
