@@ -17,6 +17,7 @@
         td {
             border: 1px solid #000;
             padding: 2px;
+            font-size: 11px;
         }
 
         th {
@@ -85,9 +86,9 @@
             <tr>
                 <th style="width: 5%;">No</th>
                 <th>Produk</th>
-                <th style="width: 15%;">Jumlah</th>
-                <th style="width: 26%;">Harga</th>
-                <th style="width: 26%;">Total Harga</th>
+                <th style="width: 17%;">Jumlah</th>
+                <th style="width: 23%;">Harga</th>
+                <th style="width: 28%;">Total Harga</th>
             </tr>
         </thead>
         <tbody>
