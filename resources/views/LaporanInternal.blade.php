@@ -83,6 +83,11 @@
             <td style="border: none;">:</td>
             <td style="border: none; text-align: left;">{{ $pesanan->created_at->format('d/m/Y') }}</td>
         </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Diselesaikan</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->updated_at->format('d/m/Y') }}</td>
+        </tr>
     </table>
 
     <br>
@@ -142,6 +147,16 @@
             <td style="border: none; text-align: left;">Alamat</td>
             <td style="border: none;">:</td>
             <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->alamat }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Bank</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->bank }}</td>
+        </tr>
+        <tr>
+            <td style="border: none; text-align: left;">Rekening</td>
+            <td style="border: none;">:</td>
+            <td style="border: none; text-align: left;">{{ $pesanan->keranjang->akun->rekening }}</td>
         </tr>
     </table>
 

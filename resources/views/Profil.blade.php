@@ -80,6 +80,20 @@
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-md md:text-lg"
                     placeholder="08xxxxxxx" autocomplete="phone" value="{{$akun->no_wa}}" required>
             </div>
+
+            <div class="mb-4">
+                <label for="bank" class="block text-md font-medium md:text-lg text-gray-700">Bank</label>
+                <input type="text" id="bank" name="bank"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-md md:text-lg"
+                    placeholder="Bank" autocomplete="bank" value="{{$akun->bank}}" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="rekening" class="block text-md font-medium md:text-lg text-gray-700">Nomor Rekening</label>
+                <input type="text" id="rekening" name="rekening"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-md md:text-lg"
+                    placeholder="Nomor Rekening" autocomplete="rekening" value="{{$akun->rekening}}" required>
+            </div>
         </div>
     </div>
     <button type="submit"

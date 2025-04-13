@@ -81,7 +81,7 @@
 
 <!-- Modal Dialog tambah data -->
 <div id="dataModaltambah" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
+    <div class="bg-white w-full mx-4 md:w-3/6 md:mx-0 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Akun Baru</h2>
@@ -96,8 +96,8 @@
         <form id="tambah" action="/akun-tambah" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id_tambah" id="id_tambah" required>
-            <div class="flex justify-center">
-                <div class="kiri w-1/2 mr-4">
+            <div class="flex flex-col md:flex-row justify-center">
+                <div class="kiri w-full md:w-1/2 mr-4">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="nama_tambah">Nama</label>
                         <input type="text" id="nama_tambah" name="nama_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan nama" required>
@@ -114,11 +114,22 @@
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="alamat_tambah">Alamat</label>
-                        <textarea type="text" id="alamat_tambah" name="alamat_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" cols="100" rows="5"
-                            placeholder="Masukan alamat" required style="resize: none;"></textarea>
+                        <input type="text" id="alamat_tambah" name="alamat_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan alamat" required>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="bank_tambah">Bank</label>
+                            <input type="text" id="bank_tambah" name="bank_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan bank" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="rekening_tambah">No Rekening</label>
+                            <input type="text" id="rekening_tambah" name="rekening_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan no rek" required>
+                        </div>
                     </div>
                 </div>
-                <div class="kanan w-1/2">
+                <div class="kanan w-full md:w-1/2">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="email_tambah">Email</label>
                         <input type="text" id="email_tambah" name="email_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -128,7 +139,7 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="no_wa_tambah">Nomor Whatsapp</label>
                         <input type="text" id="no_wa_tambah" name="no_wa_tambah" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            placeholder="Masukan Nomor Whatsapp" required>
+                            placeholder="Masukan Nomor whatsapp" required>
                     </div>
 
                     <div class="mb-4">
@@ -164,7 +175,7 @@
 
 <!-- Modal Dialog Detail data -->
 <div id="dataModaldetail" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
+    <div class="bg-white w-full max-h-[80vh] overflow-y-auto mx-4 md:w-3/6 md:mx-0 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Detail Akun</h2>
@@ -179,14 +190,14 @@
         <form>
             @csrf
             <input type="hidden" name="id_detail" id="id_detail" required>
-            <div class="flex">
-                <div class="kiri w-1/3 mr-4">
+            <div class="flex flex-col md:flex-row">
+                <div class="kiri w-full md:w-1/3 mr-4">
                     <label class="block text-sm font-medium text-white mb-1" for="foto_detail">Foto Orang</label>
                     <img class="w-full h-auto px-3 py-2 border border-gray-300 rounded" id="foto_detail" src="" alt="foto orang">
                     <button type="button" onclick="downloadFile()" class="w-full mt-4 px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Download</button>
                 </div>
-                <div class="tengah w-1/3 mr-4">
-                    <div class="mb-4">
+                <div class="tengah w-full md:w-1/3 mr-4">
+                    <div class="mt-4 md:mt-0 mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="nama_detail">Nama</label>
                         <input type="text" id="nama_detail" name="nama_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
                     </div>
@@ -198,10 +209,15 @@
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="alamat_detail">Alamat</label>
-                        <textarea type="text" id="alamat_detail" name="alamat_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" cols="100" rows="4" style="resize: none;" readonly></textarea>
+                        <input type="text" id="alamat_detail" name="alamat_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="bank_detail">Bank</label>
+                        <input type="text" id="bank_detail" name="bank_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
                     </div>
                 </div>
-                <div class="kanan w-1/3">
+                <div class="kanan w-full md:w-1/3">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="email_detail">Email</label>
                         <input type="text" id="email_detail" name="email_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
@@ -216,6 +232,11 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="jenis_akun_detail">Jenis Akun</label>
                         <input type="text" id="jenis_akun_detail" name="jenis_akun_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="rekening_detail">No Rekening</label>
+                        <input type="text" id="rekening_detail" name="rekening_detail" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
+                    </div>
                 </div>
             </div>
 
@@ -229,9 +250,10 @@
     </div>
 </div>
 
+
 <!-- Modal Dialog edit data -->
 <div id="dataModaledit" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white w-3/6 p-6 rounded-lg shadow-lg">
+    <div class="bg-white w-full mx-4 md:w-3/6 md:mx-0 p-6 rounded-lg shadow-lg">
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
             <h2 id="modalTitle" class="text-lg font-bold text-gray-700">Edit Data</h2>
@@ -246,8 +268,8 @@
         <form id="edit" action="/akun-edit" method="POST">
             @csrf
             <input type="hidden" name="id_edit" id="id_edit" required>
-            <div class="flex justify-center">
-                <div class="kiri w-1/2 mr-4">
+            <div class="flex flex-col md:flex-row justify-center">
+                <div class="kiri w-full md:w-1/2 mr-4">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="nama_edit">Nama</label>
                         <input type="text" id="nama_edit" name="nama_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan nama" required>
@@ -263,11 +285,15 @@
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="alamat_edit">Alamat</label>
-                        <textarea type="text" id="alamat_edit" name="alamat_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" cols="100" rows="4"
-                            placeholder="Masukan alamat" required style="resize: none;"></textarea>
+                        <input type="text" id="alamat_edit" name="alamat_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan alamat" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="bank_edit">Bank</label>
+                        <input type="text" id="bank_edit" name="bank_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan bank" required>
                     </div>
                 </div>
-                <div class="kanan w-1/2">
+                <div class="kanan w-full md:w-1/2">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="email_edit">Email</label>
                         <input type="text" id="email_edit" name="email_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -277,7 +303,7 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1" for="no_wa_edit">Nomor Whatsapp</label>
                         <input type="text" id="no_wa_edit" name="no_wa_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            placeholder="Masukan Nomor Whatsapp" required>
+                            placeholder="Masukan Nomor whatsapp" required>
                     </div>
 
                     <div class="mb-4">
@@ -287,6 +313,11 @@
                             <option value="admin">Admin</option>
                             <option value="sales">Sales</option>
                         </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="rekening_edit">No Rekening</label>
+                        <input type="text" id="rekening_edit" name="rekening_edit" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Masukan no rek" required>
                     </div>
                 </div>
             </div>
@@ -436,7 +467,7 @@
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">No</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Nama</th>
                 <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Jenis Akun</th>
-                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600">Aksi</th>
+                <th class="bg-gray-200 border-gray-800 px-4 py-2 text-sm text-gray-600 md:w-1/2">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -446,10 +477,10 @@
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $index }}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->nama}}</td>
                 <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">{{ $item->jenis_akun}}</td>
-                <td class="border-gray-200 px-4 py-2 text-sm text-gray-700">
+                <td class="flex flex-col md:flex-row gap-2 border-gray-200 px-4 py-2 text-sm text-gray-700">
                     <?php $link_foto = asset('storage/uploads/foto_orang/' . $item->foto) ?>
-                    <button onclick="detail('{{ $item->id }}', '{{ $link_foto }}','{{ $item->nama }}','{{ $item->email }}','{{ $item->no_wa}}','{{ $item->jenis_kelamin}}','{{ $item->alamat}}','{{ $item->jenis_akun}}')" class="px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Detail</button>
-                    <button onclick="edit('{{ $item->id }}','{{ $item->nama }}','{{ $item->email }}','{{ $item->no_wa}}','{{ $item->jenis_kelamin}}','{{ $item->alamat}}','{{ $item->jenis_akun}}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
+                    <button onclick="detail('{{ $item->id }}', '{{ $link_foto }}','{{ $item->nama }}','{{ $item->email }}','{{ $item->no_wa}}','{{ $item->jenis_kelamin}}','{{ $item->alamat}}', '{{ $item->bank }}', '{{ $item->rekening }}', '{{ $item->jenis_akun}}')" class="px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Detail</button>
+                    <button onclick="edit('{{ $item->id }}','{{ $item->nama }}','{{ $item->email }}','{{ $item->no_wa}}','{{ $item->jenis_kelamin}}','{{ $item->alamat}}', '{{ $item->bank }}', '{{ $item->rekening }}', '{{ $item->jenis_akun}}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</button>
                     <button onclick="password('{{ $item->id }}')" class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600">Ganti Sandi</button>
                     <button onclick="foto('{{ $item->id }}')" class="px-3 py-1 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600">Ganti Foto</button>
                     <?php if ($item->status == "aktif") {
@@ -485,7 +516,7 @@
         document.getElementById('dataModaltambah').classList.remove('hidden')
     }
 
-    function detail(id, foto, nama, email, no_wa, jenis_kelamin, alamat, jenis_akun) {
+    function detail(id, foto, nama, email, no_wa, jenis_kelamin, alamat, bank, rekening, jenis_akun) {
         document.getElementById('dataModaldetail').classList.remove('hidden')
 
         let jk = "";
@@ -513,10 +544,12 @@
         document.getElementById('no_wa_detail').value = no_wa
         document.getElementById('jenis_kelamin_detail').value = jk
         document.getElementById('alamat_detail').value = alamat
+        document.getElementById('bank_detail').value = bank
+        document.getElementById('rekening_detail').value = rekening
         document.getElementById('jenis_akun_detail').value = ja
     }
 
-    function edit(id, nama, email, no_wa, jenis_kelamin, alamat, jenis_akun_id) {
+    function edit(id, nama, email, no_wa, jenis_kelamin, alamat, bank, rekening, jenis_akun_id) {
         document.getElementById('dataModaledit').classList.remove('hidden')
 
         document.getElementById('id_edit').value = id
@@ -525,6 +558,8 @@
         document.getElementById('no_wa_edit').value = no_wa
         document.getElementById('jenis_kelamin_edit').value = jenis_kelamin
         document.getElementById('alamat_edit').value = alamat
+        document.getElementById('bank_edit').value = bank
+        document.getElementById('rekening_edit').value = rekening
         document.getElementById('jenis_akun_edit').value = jenis_akun_id
     }
 

@@ -28,6 +28,8 @@ class AkunController extends Controller
             'no_wa_tambah' => 'required',
             'jenis_kelamin_tambah' => 'required',
             'alamat_tambah' => 'required',
+            'bank_tambah' => 'required',
+            'rekening_tambah' => 'required',
             'jenis_akun_tambah' => 'required',
         ]);
 
@@ -49,6 +51,8 @@ class AkunController extends Controller
         $akun->no_wa = $request->input('no_wa_tambah');
         $akun->jenis_kelamin = $request->input('jenis_kelamin_tambah');
         $akun->alamat = $request->input('alamat_tambah');
+        $akun->bank = $request->input('bank_tambah');
+        $akun->rekening = $request->input('rekening_tambah');
         $akun->jenis_akun = $request->input('jenis_akun_tambah');
         $akun->password = md5('!Akses99!');
 
@@ -90,6 +94,8 @@ class AkunController extends Controller
             'no_wa_edit' => 'required',
             'jenis_kelamin_edit' => 'required',
             'alamat_edit' => 'required',
+            'bank_edit' => 'required',
+            'rekening_edit' => 'required',
             'jenis_akun_edit' => 'required',
         ]);
 
@@ -99,6 +105,8 @@ class AkunController extends Controller
         $no_wa = $request->input('no_wa_edit');
         $jenis_kelamin = $request->input('jenis_kelamin_edit');
         $alamat = $request->input('alamat_edit');
+        $bank = $request->input('bank_edit');
+        $rekening = $request->input('rekening_edit');
         $jenis_akun = $request->input('jenis_akun_edit');
 
         $akun = Akun::where('id', $id)->first();
@@ -112,6 +120,8 @@ class AkunController extends Controller
         $akun->no_wa = $no_wa;
         $akun->jenis_kelamin = $jenis_kelamin;
         $akun->alamat = $alamat;
+        $akun->bank = $bank;
+        $akun->rekening = $rekening;
         $akun->jenis_akun = $jenis_akun;
         $akun->updated_at = now();
 

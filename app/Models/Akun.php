@@ -23,6 +23,8 @@ class Akun extends Model
         'foto',
         'jenis_kelamin',
         'alamat',
+        'bank',
+        'rekening',
         'jenis_akun',
         'status',
     ];
