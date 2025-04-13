@@ -13,6 +13,11 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        table.dataTable th,
+        table.dataTable td {
+            border: 1px solid #dddd;
+        }
+
         .dataTables_wrapper .dataTables_length,
         .dataTables_wrapper .dataTables_filter,
         .dataTables_wrapper .dataTables_info,
