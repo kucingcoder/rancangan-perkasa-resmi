@@ -119,6 +119,10 @@
         $('#daftar-stok').DataTable();
     });
 
+    const formatRupiah = (angka) => {
+        return 'Rp. ' + angka.toLocaleString('id-ID');
+    };
+
     async function detail(id, total) {
         try {
             const response = await fetch(`/gajian/${id}`);
@@ -128,10 +132,10 @@
             document.getElementById('detail_nama').value = data.karyawan.nama;
 
             // Set gaji
-            document.getElementById('detail_gaji').value = data.karyawan.gaji;
+            document.getElementById('detail_gaji').value = formatRupiah(data.karyawan.gaji);
 
             // Set total
-            document.getElementById('detail_total').value = total;
+            document.getElementById('detail_total').value = formatRupiah(total);
 
             // Kosongkan elemen sebelumnya
             const detailLembur = document.getElementById('detail_lembur');
@@ -143,7 +147,7 @@
                 lemburDiv.innerHTML = `
                     <div class="flex justify-between">
                         <span>${lemburan.lembur.judul}</span>
-                        <span>${lemburan.uang_lembur}</span>
+                        <span>${formatRupiah(lemburan.uang_lembur)}</span>
                     </div>
                 `;
                 detailLembur.appendChild(lemburDiv);
