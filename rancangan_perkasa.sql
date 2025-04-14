@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Apr 2025 pada 11.05
+-- Waktu pembuatan: 14 Apr 2025 pada 05.55
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -36,6 +36,8 @@ CREATE TABLE `akun` (
   `foto` varchar(45) NOT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
   `alamat` text NOT NULL,
+  `bank` varchar(100) NOT NULL,
+  `rekening` varchar(20) NOT NULL,
   `jenis_akun` enum('sales','admin','owner') NOT NULL DEFAULT 'sales',
   `status` enum('aktif','nonaktif') NOT NULL DEFAULT 'aktif',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -46,8 +48,8 @@ CREATE TABLE `akun` (
 -- Dumping data untuk tabel `akun`
 --
 
-INSERT INTO `akun` (`id`, `email`, `no_wa`, `password`, `nama`, `foto`, `jenis_kelamin`, `alamat`, `jenis_akun`, `status`, `created_at`, `updated_at`) VALUES
-('6bde6ca2-f0f3-11ef-a016-1063c8e04372', 'admin@rancanganperkasa.com', '085229205799', '40a2618a2218496e7ebfc7d0fd68e182', 'Ananda Adhitama Afriansyah', 'kosong', 'laki-laki', 'Jl. Srigunting No.43, RT.001/RW.002 Kel, Randugunting, Kec. Tegal Sel., Kota Tegal, Jawa Tengah 52131', 'admin', 'aktif', '2025-03-02 06:40:28', '2025-03-02 06:40:28');
+INSERT INTO `akun` (`id`, `email`, `no_wa`, `password`, `nama`, `foto`, `jenis_kelamin`, `alamat`, `bank`, `rekening`, `jenis_akun`, `status`, `created_at`, `updated_at`) VALUES
+('6bde6ca2-f0f3-11ef-a016-1063c8e04372', 'admin@rancanganperkasa.com', '085229205799', '40a2618a2218496e7ebfc7d0fd68e182', 'Ananda Adhitama Afriansyah', 'kosong', 'laki-laki', 'Jl. Srigunting No.43, RT.001/RW.002 Kel, Randugunting, Kec. Tegal Sel., Kota Tegal, Jawa Tengah 52131', '-', '-', 'admin', 'aktif', '2025-03-02 06:40:28', '2025-03-02 06:40:28');
 
 -- --------------------------------------------------------
 
