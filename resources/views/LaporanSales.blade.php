@@ -172,11 +172,11 @@
     <table>
         <thead>
             <tr>
-                <th>No</th>
+                <th style="width: 5%;">No</th>
                 <th>Produk</th>
-                <th>Jumlah</th>
-                <th>Harga</th>
-                <th>Total Harga</th>
+                <th style="width: 10%;">Jumlah</th>
+                <th style="width: 20%;">Harga</th>
+                <th style="width: 25%;">Total Harga</th>
             </tr>
         </thead>
         <tbody>
@@ -189,7 +189,10 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->produk->nama }}</td>
-                <td>{{ $item->jumlah }} {{ $item->produk->satuan }}</td>
+                <td>
+                    <p>{{ $item->jumlah }}</p>
+                    <p>{{ $item->produk->satuan }}</p>
+                </td>
                 <td>{{ "Rp. " . number_format($item->produk->harga, 0, ',', '.') }}</td>
                 <td>{{ "Rp. " . number_format($item->jumlah * $item->produk->harga, 0, ',', '.') }}</td>
             </tr>
